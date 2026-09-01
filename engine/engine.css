@@ -1,0 +1,149 @@
+/* engine.css — protagonist-neutral structure and type.
+   Colour lives entirely in tokens, so a content pack can ramp the palette per act
+   (FOUNDER.md's technique) without touching layout. */
+
+:root {
+  --ink: #2b2016;
+  --ink-2: #6b5847;
+  --marginal: #8c3a2b;      /* the second ink */
+  --paper: #efe4cf;
+  --paper-2: #e5d7bd;
+  --rule: #c0a97f;
+  --gold: #9a7b34;
+  --shadow: rgba(60, 40, 20, 0.16);
+  --measure: 34rem;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 2.5rem 1.25rem 4rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  transition: background 700ms ease, color 700ms ease;
+  min-height: 100vh;
+}
+
+/* --- palette ramp: the page ages with the man (NARRATIVE_DESIGN §5) --------- */
+body[data-palette="vellum"]      { --paper:#efe4cf; --paper-2:#e5d7bd; --ink:#2b2016; --rule:#c0a97f; }
+body[data-palette="vellum-warm"] { --paper:#f0e2c6; --paper-2:#e6d4b0; --ink:#2a1d12; --rule:#c4a86f; --gold:#a8842f; }
+body[data-palette="glass"]       { --paper:#dfe0da; --paper-2:#d2d5d0; --ink:#1d2124; --rule:#9aa3a1; --marginal:#3f5a63; --gold:#7d8a86; }
+body[data-palette="prague"]      { --paper:#241d17; --paper-2:#2e2419; --ink:#e8dcc2; --ink-2:#b7a385; --rule:#7a5f2b; --marginal:#d9a86a; --gold:#c9a34a; --shadow:rgba(0,0,0,.5); }
+body[data-palette="faded"]       { --paper:#e9e3d4; --paper-2:#e2dbc9; --ink:#4a4136; --ink-2:#8a8171; --rule:#cabfa5; --marginal:#8d6a5c; --measure:32rem; }
+
+#app { display: flex; justify-content: center; }
+
+.card {
+  width: 100%;
+  max-width: var(--measure);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 1px 0 var(--rule), 0 8px 28px var(--shadow);
+  animation: rise 420ms ease both;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+h1 { font-size: 2rem; margin: 0.2rem 0 0.6rem; letter-spacing: 0.01em; }
+h2 { font-size: 1.5rem; margin: 0.2rem 0 0.9rem; }
+h3 { font-size: 1.05rem; margin: 2rem 0 0.5rem; }
+h4 { font-size: 0.9rem; margin: 1.2rem 0 0.35rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+
+.eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-2); margin: 0 0 0.4rem;
+}
+.tagline { font-style: italic; color: var(--marginal); margin: 0 0 1.1rem; }
+.premise, .act-text, .scene, .ending-text { margin: 0 0 1.25rem; }
+.act-text { font-style: italic; }
+.note { font-size: 0.8rem; color: var(--ink-2); margin: 1.4rem 0 0; border-top: 1px solid var(--rule); padding-top: 0.8rem; }
+
+/* --- the act mark: a drawn figure from Dee's own geometry ------------------ */
+.act-mark { margin: 0 0 1.4rem; display: flex; justify-content: center; }
+.act-mark svg { width: 7.5rem; height: auto; color: var(--gold); opacity: .85;
+  animation: ink 900ms ease both; }
+@keyframes ink { from { opacity: 0; transform: scale(.97); } to { opacity: .85; transform: none; } }
+
+/* --- tipped-in plates: period images with caption and nothing louder --------- */
+.plate { margin: 0 0 1.3rem; }
+.plate img { display: block; width: 100%; height: auto; border: 1px solid var(--rule);
+  filter: sepia(.08) contrast(.97); background: var(--paper); }
+.plate figcaption { font-size: .72rem; font-style: italic; color: var(--ink-2);
+  padding-top: .4rem; line-height: 1.5; }
+.frontispiece { max-width: 15rem; margin: 0 auto 1.5rem; }
+.frontispiece img { border-width: 3px; border-style: double; }
+.coda-plate { max-width: 20rem; margin: 1.6rem auto; }
+
+/* option number keys — quiet, for the replayer */
+.option .key { display: inline-block; min-width: 1.1rem; margin-right: .45rem;
+  font-size: .68rem; color: var(--ink-2); opacity: .55; font-variant-numeric: tabular-nums; }
+
+/* --- the scene header: date left, cataloguer's mark right ------------------ */
+.scene-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; border-bottom: 1px solid var(--rule); padding-bottom: .5rem; margin-bottom: 1.1rem; }
+.scene-head .eyebrow { margin: 0; }
+.mark { margin: 0; font-size: .72rem; font-style: italic; color: var(--marginal); opacity: .85; white-space: nowrap; }
+
+/* --- options: underlinings a reader would make ---------------------------- */
+.options { display: flex; flex-direction: column; gap: 0.55rem; margin-bottom: 1.5rem; }
+.option {
+  font: inherit; text-align: left; color: var(--ink);
+  background: transparent; border: 1px solid var(--rule); border-radius: 2px;
+  padding: 0.7rem 0.9rem; cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease, transform 90ms ease;
+}
+.option:hover { background: var(--paper); border-color: var(--gold); }
+.option:active { transform: translateY(1px); }
+.option.capability { border-left: 3px solid var(--gold); }
+.option .cap { color: var(--gold); font-variant: small-caps; letter-spacing: .04em; }
+
+button.primary {
+  font: inherit; cursor: pointer; color: var(--paper-2); background: var(--gold);
+  border: 1px solid var(--gold); border-radius: 2px; padding: 0.6rem 1.4rem;
+}
+button.primary:hover { filter: brightness(1.08); }
+.actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.actions button:not(.primary) {
+  font: inherit; cursor: pointer; background: transparent; color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 2px; padding: 0.6rem 1.4rem;
+}
+
+/* --- the persistent panel: quiet, peripheral, never demanding -------------- */
+.panel { border-top: 1px solid var(--rule); padding-top: 0.8rem; display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+.verbs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.15rem 1.1rem; flex: 1; }
+.verbs li { display: grid; grid-template-columns: 5.2rem 1fr 1.1rem; align-items: center; gap: .4rem; font-size: 0.72rem; color: var(--ink-2); }
+.verbs span { font-variant: small-caps; letter-spacing: .04em; }
+.verbs i { height: 2px; background: var(--rule); position: relative; }
+.verbs i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--n) / 8 * 100%); background: var(--gold); }
+.verbs b { font-weight: 500; font-size: .7rem; text-align: right; }
+.progress { margin: 0; font-size: 0.72rem; color: var(--ink-2); white-space: nowrap; }
+
+/* --- the consequence beat: a marginal annotation, in a second ink ---------- */
+.consequence-card { background: transparent; border: 0; box-shadow: none; padding-top: 3rem; }
+.marginal {
+  font-style: italic; color: var(--marginal); font-size: 1.1rem; line-height: 1.7;
+  border-left: 2px solid var(--marginal); padding-left: 1.1rem; margin: 0 0 2rem;
+  transform: rotate(-0.35deg); transform-origin: left center;
+}
+
+/* --- the catalogue ending -------------------------------------------------- */
+.epilogue { border-left: 2px solid var(--rule); padding-left: 1rem; color: var(--ink-2); }
+.coda { font-style: italic; color: var(--marginal); }
+.catalogue-title { border-top: 1px solid var(--rule); padding-top: 1.2rem; font-variant: small-caps; letter-spacing: .05em; }
+.shelf ul { list-style: none; margin: 0; padding: 0; }
+.shelf li { font-size: 0.85rem; padding: 0.3rem 0; border-bottom: 1px dotted var(--rule);
+  display: grid; grid-template-columns: 9.5rem 1fr; gap: 0.75rem; align-items: baseline; }
+.shelf .date { color: var(--ink-2); font-size: 0.72rem; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 34rem) {
+  body { padding: 1.25rem 0.85rem 3rem; }
+  .card { padding: 1.4rem 1.25rem; }
+  h1 { font-size: 1.6rem; }
+  .verbs { grid-template-columns: 1fr; }
+  .panel { flex-direction: column; align-items: stretch; }
+  .shelf li { grid-template-columns: 1fr; gap: 0.1rem; }
+}

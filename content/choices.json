@@ -1,0 +1,2508 @@
+{
+  "_meta": {
+    "protagonist": "John Dee",
+    "game": "Imperial Magus",
+    "version": "0.1-skeleton",
+    "acts": 8,
+    "nodes_per_run": 40,
+    "nodes_authored": 46,
+    "note": "Structure + thin prose. See docs/CHOICE_ARCHITECTURE.md for the coverage/foreclosure rule and docs/WRITING_GUIDE.md before revising any text. Grounding badges render to the player; LEAD never does.",
+    "verbs": [
+      "calculate",
+      "predict",
+      "experiment",
+      "invoke",
+      "navigate",
+      "map",
+      "persuade"
+    ],
+    "hidden_states": [
+      "angelic_authority",
+      "scholarly_credibility",
+      "political_utility"
+    ],
+    "quantities": [
+      "stain",
+      "library",
+      "ottoman"
+    ],
+    "corrections": [
+      "2026-08-31: d20 re-dated from c.1580 to 1560s-1570. Parry (Arch-Conjuror pp.89-105) shows Murphyn's slanders damaged Dee's prospects from the 1560s and that Dee complained of them in the Mathematical Preface, February 1570. See docs/HISTORIOGRAPHICAL_ISSUES.md sec.4.",
+      "2026-08-31: d17, d23, d27c, d38 revised against the day books (docs/DAYBOOK_TEXTURE.md) - Peckham on the Norombega title, Kelley's felony commission, Jane's petition about money put to the angels at Prague, and Elizabeth Kyrton's twelve years of service ending. Scene texture from the diary, not invented.",
+      "2026-08-31: plates added at 10 nodes (assets/registry.json); d31 gained an England-branch text variant fixing a coherence bug (the sack-in-absence text played even when the player never left); composed two-paragraph consequence beats added to the five highest-stakes choices per GAMELOOP.md’s diagnosed weakness."
+    ]
+  },
+  "acts": [
+    {
+      "n": 1,
+      "title": "The Trellis",
+      "years": "1542–1551",
+      "palette": "vellum",
+      "intro": "Cambridge keeps its hours by bell. You keep yours by candle, and the candle is cheaper than the bell is kind. There is a whole method of the world waiting to be assembled, and nobody in this college believes it exists."
+    },
+    {
+      "n": 2,
+      "title": "The Horoscope",
+      "years": "1552–1558",
+      "palette": "vellum",
+      "intro": "A queen's nativity is a diagram of when she was born. Read aloud in the wrong room, it becomes a diagram of when she will die. The mathematics does not change. The reader is what changes."
+    },
+    {
+      "n": 3,
+      "title": "The Election",
+      "years": "1558–1570",
+      "palette": "vellum",
+      "intro": "A new reign, and they want a date from you — an hour chosen out of the whole turning sky. You are thirty-one, and for the first time the instruments and the crown are pointed the same way."
+    },
+    {
+      "n": 4,
+      "title": "The Limits",
+      "years": "1570–1582",
+      "palette": "vellum-warm",
+      "intro": "Four thousand volumes on the river at Mortlake, and the Queen herself has ridden out to see them. She admires the library. She does not fund it. Favour and money, you are learning, are two different offices."
+    },
+    {
+      "n": 5,
+      "title": "The Glass",
+      "years": "1581–1583",
+      "palette": "glass",
+      "intro": "The books have given what books can give. Somewhere past their edge is the thing Enoch had and you do not: instruction, direct, from the one who wrote the world. You need only a stone, and a man who can see into it."
+    },
+    {
+      "n": 6,
+      "title": "The Crossing",
+      "years": "1583–1589",
+      "palette": "prague",
+      "intro": "A Polish prince with debts and a favourable star stands in your parlour, and the angels approve of him. Beyond the door is the whole Continent, and behind you is a house with everything you own in it."
+    },
+    {
+      "n": 7,
+      "title": "The Petition",
+      "years": "1589–1605",
+      "palette": "faded",
+      "intro": "There is a word attached to your name now that no argument reaches. Not a charge — a charge could be answered. Something quieter, that gets into rooms before you do and stays after you have left them."
+    },
+    {
+      "n": 8,
+      "title": "The Catalogue",
+      "years": "1605–1609",
+      "palette": "faded",
+      "intro": "The shelves have gaps you can read like a sentence. Each gap was a meal. You are old, the house is cold, and your daughter has learned to bank the fire so it lasts until morning."
+    }
+  ],
+  "choices": [
+    {
+      "id": "d01",
+      "act": 1,
+      "date": "1546, Cambridge",
+      "grounding": "LEGEND",
+      "event": "Becomes a founding fellow of Trinity College",
+      "text": "Trinity is founded and you are made a fellow of it at nineteen. You will tell the story of these years for the rest of your life — eighteen hours at the desk, four asleep, two for meals and the rest of humanity.",
+      "options": [
+        {
+          "id": "grind",
+          "label": "Keep the eighteen hours. Learning is a quantity, and you will out-measure them all.",
+          "verbs": {
+            "calculate": 2
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "consequence": "The reputation forms before the work does: not a clever man, an inexhaustible one."
+        },
+        {
+          "id": "stagecraft",
+          "label": "Build the flying scarab for the Aristophanes. Let them see what mathematics does.",
+          "verbs": {
+            "experiment": 2
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "stain": 1,
+          "consequence": "The beetle flies. Someone in the hall says the word conjurer, and it is not said as praise."
+        },
+        {
+          "id": "networks",
+          "label": "Cultivate the men who will matter — patrons come out of colleges, not books.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "consequence": "You leave Cambridge with fewer notes and more names. Both are capital; only one pays soon."
+        }
+      ]
+    },
+    {
+      "id": "d02",
+      "act": 1,
+      "date": "1548–1550, Louvain",
+      "grounding": "ATTESTED",
+      "event": "Studies and networks at Louvain",
+      "text": "Louvain is where the instruments are. Gemma Frisius measures the world by triangles; Mercator draws it flat without lying about it. Both take you seriously, which no Englishman yet has.",
+      "options": [
+        {
+          "id": "instruments",
+          "label": "Buy the globes and the astronomer's staff. Bring the Continent home in a crate.",
+          "verbs": {
+            "navigate": 1,
+            "map": 2
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "library": 1,
+          "consequence": "The crate costs more than a year's living. It will also be the reason great men climb your stairs."
+        },
+        {
+          "id": "method",
+          "label": "Learn the triangulation itself. Instruments break; the method does not.",
+          "verbs": {
+            "calculate": 2,
+            "map": 1
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "consequence": "You come back with less to show and more to do. Frisius says you were the quickest he taught."
+        },
+        {
+          "id": "correspondents",
+          "label": "Bind yourself to these men by letter, and keep the Continent open behind you.",
+          "verbs": {
+            "persuade": 1,
+            "navigate": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "ottoman": 1,
+          "consequence": "Mercator writes to you for thirty years. A door stays unlocked that you will need at fifty-six."
+        }
+      ]
+    },
+    {
+      "id": "d03",
+      "act": 1,
+      "date": "1550, Paris",
+      "grounding": "ATTESTED",
+      "event": "Lectures on Euclid in Paris",
+      "text": "You lecture on Euclid at Rheims and the hall will not hold the crowd — men standing at the windows outside to hear geometry. Paris offers you a readership on the spot.",
+      "options": [
+        {
+          "id": "decline",
+          "label": "Decline it. England has no mathematician of this rank; you intend to be him.",
+          "verbs": {
+            "calculate": 1,
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "consequence": "You wager a certain European chair against an uncertain English crown. The wager is the life."
+        },
+        {
+          "id": "tour",
+          "label": "Stay awhile. Take every offer of a table, a library, a conversation.",
+          "verbs": {
+            "calculate": 2
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "library": 1,
+          "consequence": "Another year of the Continent's best rooms. England will not have noticed you were gone."
+        },
+        {
+          "id": "publish",
+          "label": "Turn the lectures into a book before someone else turns them into theirs.",
+          "verbs": {
+            "calculate": 1,
+            "persuade": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "consequence": "Printed, a lecture stops being an event and becomes an authority. You have learned the difference early."
+        }
+      ]
+    },
+    {
+      "id": "d04",
+      "act": 1,
+      "date": "1551, London",
+      "grounding": "PLAUSIBLE-GAP",
+      "event": "Return to England and the search for place",
+      "text": "Home, with globes and no income. The Duke of Northumberland's household will take a learned man; so will the Church, if you will be ordained; so will the merchants fitting out ships for a north-east passage.",
+      "options": [
+        {
+          "id": "court",
+          "label": "The great household. Proximity to power is the only currency that buys more of itself.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "consequence": "You are inside. Nobody inside is ever quite paid, but everybody inside is always nearly paid."
+        },
+        {
+          "id": "church",
+          "label": "Take the rectory. A living is a living, and it leaves the days free.",
+          "verbs": {
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 1,
+            "scholarly_credibility": 1
+          },
+          "consequence": "Bread, at last, with someone else's God attached. You will hold the benefice and rarely the parish."
+        },
+        {
+          "id": "merchants",
+          "label": "The ships. Teach pilots the sphere, and let trade pay for cosmography.",
+          "verbs": {
+            "navigate": 2,
+            "map": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "ottoman": 1,
+          "consequence": "Merchants pay promptly, which no lord does. And their ships go where the Queen's writ does not."
+        }
+      ]
+    },
+    {
+      "id": "d05",
+      "act": 1,
+      "date": "1551",
+      "grounding": "PLAUSIBLE-GAP",
+      "event": "The destiny declaration",
+      "text": "Late, with the globes still in their straw. What is all of it *for* — the geometry, the stars, the instruments, the Hebrew you are teaching yourself at night? Name the work now, while it is still yours to name.",
+      "options": [
+        {
+          "id": "monas",
+          "label": "One perfect science. Everything true is one thing, and it can be written as one sign.",
+          "verbs": {
+            "calculate": 1,
+            "experiment": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "flags": {
+            "destiny": "monas"
+          },
+          "consequence": "You have committed to the hardest of the three: a claim that cannot be demonstrated in parts."
+        },
+        {
+          "id": "impire",
+          "label": "The British Impire. Knowledge that does not move a kingdom is a hobby.",
+          "verbs": {
+            "navigate": 1,
+            "map": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "flags": {
+            "destiny": "impire"
+          },
+          "consequence": "You have made the crown your instrument and your judge at once. It will use you and it will not keep you."
+        },
+        {
+          "id": "angels",
+          "label": "The conversation of angels. The patriarchs were taught directly. Why not a man now?",
+          "verbs": {
+            "invoke": 1,
+            "predict": 1
+          },
+          "states": {
+            "angelic_authority": 1
+          },
+          "flags": {
+            "destiny": "angels"
+          },
+          "consequence": "Nobody hears you say it. It will be thirty years before you admit it to a second person."
+        }
+      ]
+    },
+    {
+      "id": "d06",
+      "act": 2,
+      "date": "1553–1554",
+      "grounding": "CONTEXT",
+      "event": "Court service under Mary I",
+      "text": "Mary is queen and the reformers you served are dead or hiding. But an astrologer is a technician: every regime needs the hours read, whatever it burns on the other days.",
+      "options": [
+        {
+          "id": "serve",
+          "label": "Serve the new regime plainly. Mathematics has no confession.",
+          "verbs": {
+            "predict": 1,
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "consequence": "A useful neutrality — until someone decides that a man with no side is a man hiding one."
+        },
+        {
+          "id": "quiet",
+          "label": "Go quiet. Teach, read, publish nothing, and let the reign pass over you.",
+          "verbs": {
+            "calculate": 2
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "library": 1,
+          "consequence": "Two years of unwatched study. The safest thing you will ever do, and it nearly works."
+        },
+        {
+          "id": "petition",
+          "label": "Petition Mary to found a national library from the dissolved monastic books.",
+          "verbs": {
+            "persuade": 2,
+            "map": 1
+          },
+          "states": {
+            "scholarly_credibility": 1,
+            "political_utility": 1
+          },
+          "library": 1,
+          "consequence": "The proposal is ignored. You will spend forty years and your own money doing it privately instead."
+        }
+      ]
+    },
+    {
+      "id": "d07",
+      "act": 2,
+      "date": "1555",
+      "grounding": "ATTESTED",
+      "event": "Arrested under Mary I after astrological suspicion",
+      "text": "You have cast three nativities: Mary's, Philip's, and the Princess Elizabeth's. Elizabeth's household asked for it. Someone has told the Council, and the word they used was not astrology.",
+      "options": [
+        {
+          "id": "defend_math",
+          "label": "Call it what it is: physic and mathematics. A nativity is a calculation, not a wish.",
+          "verbs": {
+            "calculate": 2,
+            "persuade": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "consequence": "The argument is correct and lands on men who do not care whether it is. But it is written down."
+        },
+        {
+          "id": "silent",
+          "label": "Say nothing about Elizabeth's household. Let them hold you and hope they tire.",
+          "verbs": {
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "stain": 1,
+          "consequence": "Silence protects a princess and costs you weeks in the Tower. She will remember. So will your accusers."
+        },
+        {
+          "id": "name",
+          "label": "Give them the chain of the commission. You were asked; name who asked.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": -1
+          },
+          "consequence": "The interrogation ends sooner. Something ends with it that you will not get back cheaply."
+        }
+      ]
+    },
+    {
+      "id": "d08",
+      "act": 2,
+      "date": "1555, Star Chamber",
+      "grounding": "ATTESTED",
+      "event": "Examination and the treason charge",
+      "text": "The Star Chamber. The charge has grown teeth on the way: not calculing but conjuring, and not error but the Queen's life. Your accuser's children, meanwhile, have gone blind and died, and London has decided why.",
+      "options": [
+        {
+          "id": "rebut",
+          "label": "Dismantle the charge point by point, before men trained to hear reasons.",
+          "verbs": {
+            "calculate": 1,
+            "persuade": 2
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "consequence": "You are cleared of treason. The city keeps the other story, the one with the blind children in it."
+        },
+        {
+          "id": "patron",
+          "label": "Send to every man who owes you a favour and let the room fill with them.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "consequence": "Cleared, and visibly cleared by influence — which is a different acquittal, and everyone can tell."
+        },
+        {
+          "id": "submit",
+          "label": "Submit on the religious question. Survive the day; argue in a better year.",
+          "verbs": {
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "stain": 1,
+          "consequence": "You keep your life and hand them the leash. It has your name on it in the martyrologies already."
+        }
+      ]
+    },
+    {
+      "id": "d09",
+      "act": 2,
+      "date": "1555–1557",
+      "grounding": "ATTESTED",
+      "event": "In Bishop Bonner's household",
+      "text": "Cleared of treason, held on religion, and remanded into the household of Edmund Bonner — the man who examines heretics for a living. You are living in the house of the fire.",
+      "options": [
+        {
+          "id": "assist",
+          "label": "Assist at the examinations. Be seen to be sound, whatever it costs to watch.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "stain": 2,
+          "consequence": "You are safe, and Foxe is taking notes. In forty years the printed page will still have you in that room."
+        },
+        {
+          "id": "endure",
+          "label": "Live in the house, dispute nothing, assist at nothing, and wait.",
+          "verbs": {
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "stain": 1,
+          "consequence": "A narrow, unheroic survival. Nobody who tells the story later will bother with the distinction."
+        },
+        {
+          "id": "use",
+          "label": "Use the man. Bonner has books, and a bishop's licence opens presses.",
+          "verbs": {
+            "persuade": 1,
+            "experiment": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "library": 2,
+          "stain": 2,
+          "consequence": "You come out with a library richer and a name dirtier. You have made your first bad trade of this kind."
+        }
+      ]
+    },
+    {
+      "id": "d10",
+      "act": 2,
+      "date": "1558",
+      "grounding": "PLAUSIBLE-GAP",
+      "event": "Mary dies; Elizabeth's accession approaches",
+      "text": "Mary is dying and everyone in England is quietly re-reading their own last five years. Elizabeth is coming, and you have a debt of silence she may or may not remember.",
+      "options": [
+        {
+          "id": "claim",
+          "label": "Present yourself at once and remind her whose secret you kept in the Tower.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "consequence": "She remembers. Gratitude is a currency that converts once and cannot be spent twice."
+        },
+        {
+          "id": "useful",
+          "label": "Arrive with work in hand, not a claim. Be the man who solves the first problem.",
+          "verbs": {
+            "calculate": 1,
+            "predict": 1
+          },
+          "states": {
+            "political_utility": 1,
+            "scholarly_credibility": 1
+          },
+          "consequence": "Cheaper to establish and far harder to dismiss: not owed, needed."
+        },
+        {
+          "id": "wait",
+          "label": "Wait to be sent for. A man who arrives uninvited is a petitioner forever.",
+          "verbs": {
+            "predict": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "consequence": "You are sent for. But the delay teaches the court that you can be left waiting."
+        }
+      ]
+    },
+    {
+      "id": "d11",
+      "act": 3,
+      "date": "1558–1559",
+      "grounding": "ATTESTED",
+      "event": "Consulted around Elizabeth I's accession",
+      "text": "Dudley brings the commission himself: elect the day of the coronation. Out of the whole turning heavens, one hour, for a reign that must not look accidental.",
+      "options": [
+        {
+          "id": "honest",
+          "label": "Elect the genuinely best configuration and say so, whatever the calendar's convenience.",
+          "verbs": {
+            "predict": 2,
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 2,
+            "angelic_authority": 1
+          },
+          "consequence": "15 January. You have put your science under the crown of England and it has held the weight."
+        },
+        {
+          "id": "flatter",
+          "label": "Elect a good day that also suits the Council's arrangements. Both can be true.",
+          "verbs": {
+            "predict": 1,
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "consequence": "Everyone is pleased, which teaches the court that your sky is negotiable. It will ask again."
+        },
+        {
+          "id": "public",
+          "label": "Make the reasoning public — let the realm see that the reign is astrologically sound.",
+          "verbs": {
+            "predict": 1,
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 1,
+            "angelic_authority": 1
+          },
+          "stain": 1,
+          "consequence": "The crown is now openly attached to your art. Which cuts both ways, and one of the ways is toward you."
+        }
+      ],
+      "plate": "glindoni"
+    },
+    {
+      "id": "d12",
+      "act": 3,
+      "date": "1558",
+      "grounding": "ATTESTED",
+      "event": "Publishes Propaedeumata aphoristica",
+      "text": "One hundred and twenty aphorisms: astrology rebuilt as a physics of rays, everything acting on everything by radiating force, all of it calculable. It is the respectable case for your whole life's premise.",
+      "options": [
+        {
+          "id": "rigor",
+          "label": "Publish it at full mathematical strength and let it be difficult.",
+          "verbs": {
+            "calculate": 2
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "consequence": "Twelve men in Europe read it properly. All twelve matter. None of them can get you a pension."
+        },
+        {
+          "id": "dedicate",
+          "label": "Dedicate it to Mercator — bind yourself to the Continent's judgement, not the court's.",
+          "verbs": {
+            "calculate": 1,
+            "navigate": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "ottoman": 1,
+          "consequence": "Your name travels along the Continent's book-routes. Some of those routes run further east than you plan."
+        },
+        {
+          "id": "plain",
+          "label": "Pitch it at the Council: this is a technology of prediction, and it is yours to buy.",
+          "verbs": {
+            "predict": 1,
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "consequence": "They understand you perfectly, and they file you under the useful — which is not the same as the funded."
+        }
+      ]
+    },
+    {
+      "id": "d13",
+      "act": 3,
+      "date": "1564, Antwerp",
+      "grounding": "ATTESTED",
+      "event": "Publishes Monas hieroglyphica",
+      "text": "Twelve days in the house of Willem Silvius, royal typographer, writing as if dictated to. One glyph, holding the planets, the elements and the cross — the whole science in one figure. But a glyph must be *set*, in metal, and how it is set is what it will mean.",
+      "options": [
+        {
+          "id": "linguistic",
+          "label": "Set it as letters — alpha, omega, the Hebrew permutations. Let the sign be read.",
+          "verbs": {
+            "calculate": 1,
+            "invoke": 1
+          },
+          "states": {
+            "scholarly_credibility": 1,
+            "angelic_authority": 1
+          },
+          "flags": {
+            "monas": "linguistic"
+          },
+          "consequence": "The chymists of the Continent will spend a century unfolding it. Elizabeth's court cannot open it at all."
+        },
+        {
+          "id": "pyronomic",
+          "label": "Set it as geometry — proportions, radii, the real bulk of mercury and sulphur.",
+          "verbs": {
+            "calculate": 1,
+            "experiment": 2
+          },
+          "states": {
+            "scholarly_credibility": 1,
+            "political_utility": 1
+          },
+          "flags": {
+            "monas": "pyronomic"
+          },
+          "consequence": "A furnace-master could work from Theorem XII. Emperors keep furnace-masters; that is the point."
+        },
+        {
+          "id": "sealed",
+          "label": "Set it so it cannot be read without the key, and keep the key.",
+          "verbs": {
+            "invoke": 2
+          },
+          "states": {
+            "angelic_authority": 2
+          },
+          "flags": {
+            "monas": "sealed"
+          },
+          "stain": 1,
+          "consequence": "Perfectly secure and perfectly useless, which is how the word conjurer gets said about a book of mathematics."
+        }
+      ],
+      "plate": "monas-title"
+    },
+    {
+      "id": "d14",
+      "act": 3,
+      "date": "1564",
+      "grounding": "ATTESTED",
+      "event": "The dedication of the Monas",
+      "text": "The book needs a patron on its first page. Maximilian is being crowned in Hungary and would understand it. Elizabeth is at home and will ask you to explain it to her personally.",
+      "options": [
+        {
+          "id": "maximilian",
+          "label": "Dedicate to Maximilian. An emperor is the correct size of reader for this.",
+          "verbs": {
+            "persuade": 1,
+            "navigate": 1
+          },
+          "states": {
+            "political_utility": 1,
+            "scholarly_credibility": 1
+          },
+          "ottoman": 1,
+          "consequence": "The Habsburg court takes note of an English adept. So, eventually, does the court after it."
+        },
+        {
+          "id": "elizabeth",
+          "label": "Bring it home to Elizabeth and read it with her, page by page, yourself.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "consequence": "She becomes your pupil for an afternoon. It is the closest to funded you will ever feel."
+        },
+        {
+          "id": "both",
+          "label": "Dedicate abroad, present at home. Let each think the other is the audience.",
+          "verbs": {
+            "persuade": 2,
+            "predict": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "stain": 1,
+          "consequence": "It works. It also plants the first suspicion that your loyalties are as portable as your books."
+        }
+      ]
+    },
+    {
+      "id": "d15",
+      "act": 3,
+      "date": "1570",
+      "grounding": "ATTESTED",
+      "event": "Writes the Mathematical Preface to Euclid",
+      "text": "Billingsley is putting Euclid into English — the first time. He wants a preface. You could write the map of all the mathematical arts, and it would be read by men the universities have never let in.",
+      "options": [
+        {
+          "id": "mechanicians",
+          "label": "Write it for the mechanicians — the shipwrights, the gunners, the surveyors.",
+          "verbs": {
+            "calculate": 1,
+            "map": 2,
+            "persuade": 1
+          },
+          "states": {
+            "scholarly_credibility": 2,
+            "political_utility": 1
+          },
+          "consequence": "The most useful thing you will ever write, and the only one that outlives the slander unharmed."
+        },
+        {
+          "id": "archemastrie",
+          "label": "Include archemastrie — name the higher arts openly, at the top of the ladder.",
+          "verbs": {
+            "invoke": 1,
+            "map": 1
+          },
+          "states": {
+            "angelic_authority": 2,
+            "scholarly_credibility": 1
+          },
+          "stain": 2,
+          "consequence": "You have put the occult sciences into a mathematics textbook in English. Some readers will never forgive it."
+        },
+        {
+          "id": "safe",
+          "label": "Keep to the demonstrable arts. Say nothing that a hostile reader can lift out.",
+          "verbs": {
+            "calculate": 2
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "consequence": "Impeccable and slightly smaller than the truth. The ladder stops three rungs below where you live."
+        }
+      ]
+    },
+    {
+      "id": "d16",
+      "act": 4,
+      "date": "1560s–1570s, Mortlake",
+      "grounding": "ATTESTED",
+      "event": "Builds the Mortlake library",
+      "text": "The house grows outward — rooms added for books, rooms for the furnaces, rooms for the men who come to consult you. Four thousand volumes. There is nothing like it in England, including at the universities.",
+      "options": [
+        {
+          "id": "monastic",
+          "label": "Buy the monastic wreckage — the dispersed manuscripts nobody else is saving.",
+          "verbs": {
+            "map": 1,
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "library": 3,
+          "consequence": "You have privately assembled the national library the Crown refused to fund. It is in a house on a river."
+        },
+        {
+          "id": "oriental",
+          "label": "Buy east — Arabic, Hebrew, whatever the merchants bring back with the silk.",
+          "verbs": {
+            "invoke": 1,
+            "navigate": 1
+          },
+          "states": {
+            "scholarly_credibility": 1,
+            "angelic_authority": 1
+          },
+          "library": 2,
+          "ottoman": 2,
+          "consequence": "Shelves in three alphabets you can only partly read. The Soyga sits among them, waiting fifteen years."
+        },
+        {
+          "id": "open",
+          "label": "Open the house. A library nobody uses is a hoard; let England come and read.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 2,
+            "scholarly_credibility": 1
+          },
+          "library": 1,
+          "consequence": "Mortlake becomes an academy without a charter — and a public building with a private owner, undefended."
+        }
+      ]
+    },
+    {
+      "id": "d17",
+      "act": 4,
+      "date": "1576–1578",
+      "grounding": "ATTESTED",
+      "event": "Publishes General and Rare Memorials; the Frobisher voyages",
+      "text": "Sir George Peckham is at your door wanting the English title to Norombega — in respect, he says, of Spain and Portugal having parted the whole world's discoveries between them. You have Ramusio open and annotated to the margins. Two documents are possible.",
+      "options": [
+        {
+          "id": "limits",
+          "label": "Write the Limits: Arthur, Madoc, prior title, and the Pope's line denied.",
+          "verbs": {
+            "map": 2,
+            "navigate": 1,
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "flags": {
+            "empire": "limits"
+          },
+          "stain": 1,
+          "consequence": "You have given England a legal empire out of chronicles. Spain now knows your name, and knows why."
+        },
+        {
+          "id": "synopsis",
+          "label": "Write the Synopsis instead: navy, fisheries, wool. A commonwealth that can pay for itself.",
+          "verbs": {
+            "map": 1,
+            "calculate": 1,
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 1,
+            "scholarly_credibility": 1
+          },
+          "flags": {
+            "empire": "synopsis"
+          },
+          "consequence": "Sober, useful, and unglamorous. Burghley reads it twice. Nobody funds a voyage out of it."
+        },
+        {
+          "id": "assay",
+          "label": "Take the assay work — test Frobisher's ore yourself and stake your name on the result.",
+          "verbs": {
+            "experiment": 2
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "flags": {
+            "empire": "assay"
+          },
+          "consequence": "A thousand tons of black rock, and the men who swore it was gold are ruined. You were nearly one of them."
+        }
+      ]
+    },
+    {
+      "id": "d18",
+      "act": 4,
+      "date": "1582",
+      "grounding": "ATTESTED",
+      "event": "Calendar reform counsel",
+      "text": "Rome has cut ten days out of October and England must answer. Burghley asks you for the mathematics. The mathematics is not in doubt; the mathematics is Catholic.",
+      "options": [
+        {
+          "id": "correct",
+          "label": "Give the true correction and argue it as arithmetic, not obedience.",
+          "verbs": {
+            "calculate": 2,
+            "persuade": 1
+          },
+          "states": {
+            "scholarly_credibility": 2,
+            "political_utility": 1
+          },
+          "consequence": "Burghley is convinced. The bishops are not, and bishops decide. England keeps the wrong sky for 170 years."
+        },
+        {
+          "id": "english",
+          "label": "Devise an English correction — same result, different derivation, no Roman fingerprints.",
+          "verbs": {
+            "calculate": 1,
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "consequence": "Ingenious diplomacy. It still fails, and now you have been ingenious in public about the Pope."
+        },
+        {
+          "id": "withdraw",
+          "label": "Deliver the figures and refuse the politics. You are not a theologian.",
+          "verbs": {
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "consequence": "You keep clean hands and lose the one commission where the Council actually wanted your art."
+        }
+      ]
+    },
+    {
+      "id": "d19",
+      "act": 4,
+      "date": "1570s–1580s",
+      "grounding": "ATTESTED",
+      "event": "Rival alchemists at court",
+      "text": "John Prestall has plotted against the Queen twice and walks free both times, because each time he promises the Council silver into gold. He is everything you are accused of being, and he is being paid for it.",
+      "options": [
+        {
+          "id": "match",
+          "label": "Promise them the stone as he does. Play the game as it is actually scored.",
+          "verbs": {
+            "experiment": 2,
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "stain": 2,
+          "consequence": "You have entered the market you despise, at its price. The word conjurer now has evidence behind it."
+        },
+        {
+          "id": "expose",
+          "label": "Show the Council exactly what Prestall's process is worth. Publicly.",
+          "verbs": {
+            "experiment": 1,
+            "persuade": 2
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "stain": 1,
+          "consequence": "You are right and you have made a permanent enemy of a man with nothing left to lose."
+        },
+        {
+          "id": "elevate",
+          "label": "Refuse the ground entirely. Offer them empire and navigation instead of gold.",
+          "verbs": {
+            "map": 1,
+            "navigate": 1
+          },
+          "states": {
+            "political_utility": 1,
+            "scholarly_credibility": 1
+          },
+          "consequence": "A cleaner offer that takes twenty years to pay. Prestall's takes an afternoon."
+        }
+      ]
+    },
+    {
+      "id": "d20",
+      "act": 4,
+      "date": "1560s–1570, London",
+      "grounding": "ATTESTED",
+      "event": "Vincent Murphyn's slander campaign",
+      "text": "Vincent Murphyn, forger, has been calling you a Catholic coiner and a great conjuror for years, and it is costing you appointments you never learn you were considered for. You have just complained of him, in print, in the Preface to Euclid.",
+      "options": [
+        {
+          "id": "sue",
+          "label": "Sue him. Put the words in front of a judge and make him prove them.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "stain": 1,
+          "consequence": "In open court he answers by describing your correspondents, your furnaces, your foreign letters. All true."
+        },
+        {
+          "id": "clerical",
+          "label": "Seek Whitgift's cover. Purge the shelves of what cannot be defended and be seen doing it.",
+          "verbs": {
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 1,
+            "angelic_authority": -1
+          },
+          "library": -1,
+          "consequence": "Orthodox, protected, and diminished. You have conceded that some of your books are indefensible."
+        },
+        {
+          "id": "ignore",
+          "label": "Ignore it. A gentleman does not wrestle a forger in the street.",
+          "verbs": {
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "stain": 2,
+          "consequence": "Unanswered, it hardens across two decades. Nobody will remember it began with a forger nobody believed."
+        }
+      ]
+    },
+    {
+      "id": "d21",
+      "act": 5,
+      "date": "1581",
+      "grounding": "ATTESTED",
+      "event": "First surviving angelic action",
+      "text": "Fifty-four years old, the greatest library in England, and you have read to the end of what reading gives. The world is decaying faster than it can be catalogued. Enoch was *taught*. You want the teaching.",
+      "options": [
+        {
+          "id": "prayer",
+          "label": "Begin with prayer alone, for months, and let it be God's move, not yours.",
+          "verbs": {
+            "invoke": 2
+          },
+          "states": {
+            "angelic_authority": 2
+          },
+          "flags": {
+            "approach": "pious"
+          },
+          "consequence": "A patient, orthodox, unbearable waiting. When it breaks, you will have no doubt it was answered."
+        },
+        {
+          "id": "method",
+          "label": "Treat it as an experiment: instruments, procedure, record everything, judge later.",
+          "verbs": {
+            "invoke": 1,
+            "experiment": 2
+          },
+          "states": {
+            "angelic_authority": 1,
+            "scholarly_credibility": 1
+          },
+          "flags": {
+            "approach": "method"
+          },
+          "consequence": "You will keep the fullest record any man has kept of such a thing. It is why we can read you at all."
+        },
+        {
+          "id": "urgent",
+          "label": "There is no time for method. Nature is running down; get the key or lose the age.",
+          "verbs": {
+            "invoke": 2,
+            "predict": 1
+          },
+          "states": {
+            "angelic_authority": 2,
+            "scholarly_credibility": -1
+          },
+          "flags": {
+            "approach": "urgent"
+          },
+          "consequence": "The eschatology gets its hooks in early. Everything after this is measured against a clock nobody else hears."
+        }
+      ],
+      "plate": "mirror"
+    },
+    {
+      "id": "d22",
+      "act": 5,
+      "date": "1581–1582",
+      "grounding": "ATTESTED",
+      "event": "Barnabas Saul fails as scryer",
+      "text": "You cannot see into the stone yourself. Barnabas Saul can, or says he can, until the night he recants everything and admits he saw nothing at all.",
+      "options": [
+        {
+          "id": "dismiss",
+          "label": "Dismiss him and find another. The failure is the man's, not the work's.",
+          "verbs": {
+            "invoke": 1,
+            "persuade": 1
+          },
+          "states": {
+            "angelic_authority": 1
+          },
+          "consequence": "You have established the precedent that will govern the next eight years: the seer is replaceable."
+        },
+        {
+          "id": "self",
+          "label": "Try the stone yourself, again, seriously, for as long as it takes.",
+          "verbs": {
+            "invoke": 2,
+            "experiment": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "consequence": "Nothing. Not once, not ever. The whole edifice will rest on another man's eyes, and you know it tonight."
+        },
+        {
+          "id": "stop",
+          "label": "Take the recantation as an answer. Close the stone and go back to the books.",
+          "verbs": {
+            "calculate": 2
+          },
+          "states": {
+            "angelic_authority": -1,
+            "scholarly_credibility": 1
+          },
+          "consequence": "You stop for eleven weeks. Then a man knocks at Mortlake under a name that is not his."
+        }
+      ],
+      "plate": "crystal"
+    },
+    {
+      "id": "d23",
+      "act": 5,
+      "date": "March 1582",
+      "grounding": "ATTESTED",
+      "event": "Edward Kelley enters the angelic work",
+      "text": "He gives his name as Edward Talbot, and in one sitting he sees more than Saul saw in a year. Then his brother brings word that a commission is out to attach him as a felon, and he falls into a marvellous great disquietness of mind, fury and rage. Jane wants him gone.",
+      "options": [
+        {
+          "id": "confront",
+          "label": "Ask him plainly about the name, the conviction, and what Jane has been told.",
+          "verbs": {
+            "persuade": 2,
+            "experiment": 1
+          },
+          "states": {
+            "scholarly_credibility": 1,
+            "angelic_authority": -1
+          },
+          "flags": {
+            "kelley": "confronted"
+          },
+          "consequence": "He weeps, threatens to leave, and stays. You have the truth and a partner who now knows you doubt him."
+        },
+        {
+          "id": "suppress",
+          "label": "Say nothing. Whatever he is, what comes through him is not what he is.",
+          "verbs": {
+            "invoke": 2
+          },
+          "states": {
+            "angelic_authority": 2
+          },
+          "flags": {
+            "kelley": "trusted"
+          },
+          "consequence": "You choose the channel over the man. Every later crisis is this choice, made again at a higher price."
+        },
+        {
+          "id": "test",
+          "label": "Test him. Set questions only the angels could answer and only you can check.",
+          "verbs": {
+            "experiment": 2,
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "flags": {
+            "kelley": "tested"
+          },
+          "consequence": "He passes some and fails others, exactly as a real oracle or a good cheat would. You learn nothing final."
+        }
+      ],
+      "plate": "kelley"
+    },
+    {
+      "id": "d24",
+      "act": 5,
+      "date": "1582",
+      "grounding": "ATTESTED",
+      "event": "The Book of Soyga",
+      "text": "You put the Soyga to them — the cipher-book you have owned for years and never cracked. Uriel defers; Michael, they say, can expound it. Later a translation comes through, and it does not agree with your own notes.",
+      "options": [
+        {
+          "id": "accept",
+          "label": "Accept the angelic reading. Your notes were the work of a man; theirs is not.",
+          "verbs": {
+            "invoke": 2
+          },
+          "states": {
+            "angelic_authority": 2,
+            "scholarly_credibility": -1
+          },
+          "flags": {
+            "soyga": "accept"
+          },
+          "consequence": "You subordinate fifteen years of your own scholarship to a voice in a stone. Deliberately, and in writing."
+        },
+        {
+          "id": "verify",
+          "label": "Hold both readings side by side and go looking for which tradition the book came from.",
+          "verbs": {
+            "calculate": 2,
+            "experiment": 1
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "library": 1,
+          "ottoman": 2,
+          "flags": {
+            "soyga": "verify"
+          },
+          "consequence": "The trail runs east, into Arabic magical books you half-own and cannot fully read. It stays open."
+        },
+        {
+          "id": "shelve",
+          "label": "Shelve the contradiction. Not everything has to be settled this year.",
+          "verbs": {
+            "predict": 1
+          },
+          "states": {},
+          "flags": {
+            "soyga": "shelve"
+          },
+          "consequence": "The first thing you decline to resolve. It will not be the last, and the habit is forming."
+        }
+      ]
+    },
+    {
+      "id": "d25",
+      "act": 5,
+      "date": "1582–1583",
+      "grounding": "ATTESTED",
+      "event": "Heptarchical system takes shape",
+      "text": "It is becoming a system: forty-nine princes, tables, seals, the Sigillum to be cut in wax nine inches across. This is no longer asking questions. This is being given an apparatus.",
+      "options": [
+        {
+          "id": "record",
+          "label": "Record it all exactly, in order, with dates. Whatever it is, it must be preserved entire.",
+          "verbs": {
+            "experiment": 2,
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 1,
+            "angelic_authority": 1
+          },
+          "flags": {
+            "record": "full"
+          },
+          "consequence": "Because of tonight, four centuries later, we can still read every word. Including the ones that ruin you."
+        },
+        {
+          "id": "practice",
+          "label": "Build it. Cut the seals, make the table, use the apparatus as instructed.",
+          "verbs": {
+            "invoke": 2,
+            "experiment": 1
+          },
+          "states": {
+            "angelic_authority": 2
+          },
+          "flags": {
+            "record": "practice"
+          },
+          "consequence": "The workshop turns to another purpose. Whatever the angels are, they now have furniture in your house."
+        },
+        {
+          "id": "conceal",
+          "label": "Seal the books. Nothing of this leaves the room while you live.",
+          "verbs": {
+            "invoke": 1,
+            "persuade": 1
+          },
+          "states": {
+            "angelic_authority": 1,
+            "political_utility": 1
+          },
+          "flags": {
+            "record": "sealed"
+          },
+          "consequence": "Prudent, and it works for exactly seventy-six years, until a chest with a false bottom is opened."
+        }
+      ],
+      "plate": "sigillum-wax"
+    },
+    {
+      "id": "d26",
+      "act": 6,
+      "date": "September 1583",
+      "grounding": "ATTESTED",
+      "event": "Leaves England with Albert Laski",
+      "text": "Albert Łaski, Palatine of Sieradz — magnificent, indebted, and hungry for a throne the angels have hinted at. He will take you and your household to Poland and keep you as no Englishman has. Behind you: the library, the house, the whole assembled proof of your life.",
+      "foreclosure": true,
+      "options": [
+        {
+          "id": "cross",
+          "label": "Go. The work has outgrown this island and the Queen was never going to pay.",
+          "verbs": {
+            "navigate": 2,
+            "invoke": 1
+          },
+          "states": {
+            "angelic_authority": 2,
+            "political_utility": 1
+          },
+          "flags": {
+            "branch": "continent"
+          },
+          "consequence": "You sail with your family, your seer and a chest of books, and leave four thousand volumes behind a locked door.",
+          "consequence_long": [
+            "You sail with your family, your seer, and a chest of books, and leave four thousand volumes behind a locked door.",
+            "Years from now you will try to remember whether you looked back at the house from the river. The diary does not say. It says what time the tide served."
+          ]
+        },
+        {
+          "id": "stay",
+          "label": "Refuse. The library is the work; a man who leaves it has already lost the argument.",
+          "verbs": {
+            "calculate": 1,
+            "persuade": 1
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "flags": {
+            "branch": "england"
+          },
+          "library": 1,
+          "consequence": "Łaski sails without you and takes Kelley's ambition with him. Mortlake keeps its doors and its roof.",
+          "consequence_long": [
+            "Łaski sails without you and takes Kelley's ambition with him. Mortlake keeps its doors and its roof.",
+            "You will spend the rest of your life not knowing what the other life was. That is the price of the road not taken: it stays perfect."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d27c",
+      "act": 6,
+      "date": "April–May 1584, Cracow",
+      "grounding": "ATTESTED",
+      "requires": {
+        "d26": "cross"
+      },
+      "event": "Revealed language, tables, and calls",
+      "text": "Nalvage spells out the Gates of Nature — forty-nine governors, forty-eight keys, letter by letter from a grid, for hours. Kelley is exhausted: ask them about metals instead. So, in her own perplexity for want of money, does Jane.",
+      "options": [
+        {
+          "id": "keys",
+          "label": "Take the keys. The elements are decaying and this is the instrument for reading them.",
+          "verbs": {
+            "invoke": 2,
+            "calculate": 1
+          },
+          "states": {
+            "angelic_authority": 3,
+            "scholarly_credibility": -1
+          },
+          "flags": {
+            "gates": "taken"
+          },
+          "consequence": "You get the language. Kelley gets nothing he wanted, and begins keeping a private account of what he is owed."
+        },
+        {
+          "id": "metals",
+          "label": "Yield. Let them speak of Adam's alchemy — Łaski's creditors are at the door.",
+          "verbs": {
+            "experiment": 2,
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 2,
+            "angelic_authority": -1
+          },
+          "flags": {
+            "gates": "traded"
+          },
+          "consequence": "The furnace work begins in earnest, and the household eats. The Gates close, politely, and are never fully opened again."
+        },
+        {
+          "id": "both",
+          "label": "Take the keys by day and the metals by night. Drive him and yourself.",
+          "verbs": {
+            "invoke": 1,
+            "experiment": 1,
+            "calculate": 1
+          },
+          "states": {
+            "angelic_authority": 1,
+            "political_utility": 1
+          },
+          "flags": {
+            "gates": "forced"
+          },
+          "consequence": "Two years of work in one, and a partner who begins to hate the hours. You are spending him like coin."
+        }
+      ],
+      "plate": "enochian-letters"
+    },
+    {
+      "id": "d27e",
+      "act": 6,
+      "date": "1584–1588, Mortlake",
+      "grounding": "PLAUSIBLE-GAP",
+      "requires": {
+        "d26": "stay"
+      },
+      "event": "The English years Dee did not have",
+      "text": "Łaski is gone and the house is still yours. Kelley stays, restless, because the stone is here. And England is turning: Whitgift is archbishop, the pamphlets against magic are multiplying, and a fleet is coming.",
+      "options": [
+        {
+          "id": "armada",
+          "label": "Serve the war. Give the Council your seas, your winds, your calculations.",
+          "verbs": {
+            "navigate": 2,
+            "predict": 1,
+            "map": 1
+          },
+          "states": {
+            "political_utility": 3
+          },
+          "flags": {
+            "english": "armada"
+          },
+          "consequence": "The wind serves England and men remember who predicted it. For one year the word conjurer means something useful."
+        },
+        {
+          "id": "academy",
+          "label": "Make Mortlake official. Petition for the library to be chartered and endowed.",
+          "verbs": {
+            "persuade": 2,
+            "map": 1
+          },
+          "states": {
+            "scholarly_credibility": 2,
+            "political_utility": 1
+          },
+          "library": 2,
+          "flags": {
+            "english": "academy"
+          },
+          "consequence": "The petition goes up. It is read, admired, and not answered, which is how England says no."
+        },
+        {
+          "id": "defend",
+          "label": "Answer the pamphlets. Fight the counter-revolution against magic in print.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "scholarly_credibility": 1,
+            "angelic_authority": 1
+          },
+          "stain": 2,
+          "flags": {
+            "english": "defend"
+          },
+          "consequence": "You have made yourself the visible champion of the thing they are trying to burn. They will remember the address."
+        }
+      ]
+    },
+    {
+      "id": "d28c",
+      "act": 6,
+      "date": "1584–1586, Prague",
+      "grounding": "ATTESTED",
+      "requires": {
+        "d26": "cross"
+      },
+      "event": "Prague, Rudolf II, and imperial audiences",
+      "text": "One audience with the Emperor. Rudolf collects adepts the way other men collect coins, and you have perhaps a quarter of an hour to be worth collecting.",
+      "options": [
+        {
+          "id": "prophecy",
+          "label": "Deliver the angels' message entire: repent, or the empire is judged.",
+          "verbs": {
+            "invoke": 2,
+            "persuade": 1
+          },
+          "states": {
+            "angelic_authority": 3,
+            "political_utility": -2
+          },
+          "flags": {
+            "rudolf": "prophecy"
+          },
+          "consequence": "He is courteous. He does not send for you again. The nuncio, however, sends for someone about you."
+        },
+        {
+          "id": "utility",
+          "label": "Offer the Monas and the furnace-work. Emperors buy processes, not sermons.",
+          "verbs": {
+            "experiment": 2,
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "flags": {
+            "rudolf": "utility"
+          },
+          "consequence": "Interest, of the collector's kind. You are entered in a catalogue of men who might be useful."
+        },
+        {
+          "id": "hold",
+          "label": "Say little. Let the reputation speak and keep the substance in reserve.",
+          "verbs": {
+            "persuade": 1,
+            "predict": 1
+          },
+          "states": {
+            "political_utility": 1,
+            "angelic_authority": 1
+          },
+          "flags": {
+            "rudolf": "held"
+          },
+          "consequence": "You leave with your dignity and no patron. Kelley notices which of you the court asked to stay behind."
+        }
+      ],
+      "plate": "golden-disc"
+    },
+    {
+      "id": "d28e",
+      "act": 6,
+      "date": "1585–1588, London",
+      "grounding": "PLAUSIBLE-GAP",
+      "requires": {
+        "d26": "stay"
+      },
+      "event": "Kelley in an English house",
+      "text": "The sessions continue at Mortlake, but Kelley is not a man built for a small country. He wants a court, a title, a furnace of his own, and he has begun to say so with the angels' voice.",
+      "options": [
+        {
+          "id": "hold_him",
+          "label": "Hold him with money you do not have. Sell books if you must.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "angelic_authority": 1
+          },
+          "library": -2,
+          "flags": {
+            "kelley_end": "held"
+          },
+          "consequence": "You buy two more years of the stone with the shelves. Nobody in the house says what that means."
+        },
+        {
+          "id": "release",
+          "label": "Let him go to whoever will have him. The work will find another pair of eyes.",
+          "verbs": {
+            "invoke": 1,
+            "calculate": 1
+          },
+          "states": {
+            "angelic_authority": -2,
+            "scholarly_credibility": 1
+          },
+          "flags": {
+            "kelley_end": "released"
+          },
+          "consequence": "He goes east without you, to Bohemia and a knighthood and a prison. The stone stays dark for years."
+        },
+        {
+          "id": "bind",
+          "label": "Bind him properly — a written covenant, terms, and the angels as witness.",
+          "verbs": {
+            "persuade": 1,
+            "invoke": 2
+          },
+          "states": {
+            "angelic_authority": 2,
+            "scholarly_credibility": -1
+          },
+          "flags": {
+            "kelley_end": "bound"
+          },
+          "consequence": "A contract with a spirit-medium, countersigned by spirits. It will be produced against you later, in English."
+        }
+      ]
+    },
+    {
+      "id": "d29c",
+      "act": 6,
+      "date": "1586, Prague",
+      "grounding": "ATTESTED",
+      "requires": {
+        "d26": "cross"
+      },
+      "event": "The books in the furnace",
+      "text": "Malaspina's men have been asking questions and Bishop Sega has the ear of Rome. Then the command comes through the stone: the twenty-eight volumes of the actions are to go into the oratory furnace. All of them. Tonight.",
+      "options": [
+        {
+          "id": "burn",
+          "label": "Burn them. If the command is theirs, obedience costs only paper.",
+          "verbs": {
+            "invoke": 3
+          },
+          "states": {
+            "angelic_authority": 3,
+            "scholarly_credibility": -2
+          },
+          "flags": {
+            "burning": "obeyed"
+          },
+          "consequence": "Twenty-eight volumes of your life in the fire. Days later a man in the garden returns them, unmarked. You believe utterly now.",
+          "consequence_long": [
+            "Twenty-eight volumes of your life in the fire. You write the fact down in the book that is not burning, because the record is the one obedience you cannot give up.",
+            "Days later a man you have never seen tends the garden, and the books are returned unmarked, and you believe utterly now. Whatever this is, it has shown you what it can ask, and what you will answer."
+          ]
+        },
+        {
+          "id": "hide",
+          "label": "Burn something. Not these. Hide the true books under the floor.",
+          "verbs": {
+            "persuade": 2,
+            "experiment": 1
+          },
+          "states": {
+            "scholarly_credibility": 1,
+            "angelic_authority": -2
+          },
+          "flags": {
+            "burning": "hidden"
+          },
+          "consequence": "The deception holds for a week. Then he tells you the angels have gone silent on your house, and means it."
+        },
+        {
+          "id": "refuse",
+          "label": "Refuse outright. No spirit that asks for the record is speaking for God.",
+          "verbs": {
+            "calculate": 2,
+            "persuade": 1
+          },
+          "states": {
+            "scholarly_credibility": 3,
+            "angelic_authority": -3
+          },
+          "flags": {
+            "burning": "refused"
+          },
+          "consequence": "The first time you have judged the voice instead of obeying it. The sessions never quite recover their authority.",
+          "consequence_long": [
+            "The first time in five years you have judged the voice instead of obeying it.",
+            "The sessions continue, but something has shifted its weight. A man who will not burn his books on instruction is a man keeping his own counsel, and everyone in the stone seems to know it."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d29e",
+      "act": 6,
+      "date": "1586–1589, England",
+      "grounding": "PLAUSIBLE-GAP",
+      "requires": {
+        "d26": "stay"
+      },
+      "event": "The counter-revolution against magic",
+      "text": "The mood has changed. Preachers who once ignored astrology now name it from the pulpit, and Whitgift's licensers have begun asking what exactly is kept in the rooms at Mortlake.",
+      "options": [
+        {
+          "id": "purge",
+          "label": "Purge the house. Burn what cannot be explained and let them search.",
+          "verbs": {
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 2,
+            "angelic_authority": -2
+          },
+          "library": -2,
+          "flags": {
+            "purge": "yes"
+          },
+          "consequence": "They find a mathematician's library and go away satisfied. You have destroyed the part that was irreplaceable."
+        },
+        {
+          "id": "patron_shield",
+          "label": "Get behind a great man — Leicester, Walsingham, anyone with more enemies than you.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 2
+          },
+          "stain": 1,
+          "flags": {
+            "purge": "shielded"
+          },
+          "consequence": "Protection, on loan, for exactly as long as he lives. You have made your safety into someone else's health."
+        },
+        {
+          "id": "stand",
+          "label": "Stand on the record. Forty years of service, published, dedicated, and lawful.",
+          "verbs": {
+            "persuade": 1,
+            "calculate": 2
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "stain": 1,
+          "flags": {
+            "purge": "stood"
+          },
+          "consequence": "The record is excellent and entirely beside the point. They are not making an argument."
+        }
+      ]
+    },
+    {
+      "id": "d30c",
+      "act": 6,
+      "date": "April 1587, Třeboň",
+      "grounding": "ATTESTED",
+      "requires": {
+        "d26": "cross"
+      },
+      "event": "The communion of wives crisis",
+      "text": "The command that comes through the stone this time is that you and Kelley are to hold all things in common — goods, work, and wives. He adds that the powder will not answer for a man who refuses. Jane is in the next room. You write down what you feel, as you have written down everything.",
+      "options": [
+        {
+          "id": "consent",
+          "label": "Consent, and set your hand to the covenant, and record that you did.",
+          "verbs": {
+            "invoke": 2
+          },
+          "states": {
+            "angelic_authority": 2,
+            "political_utility": 1,
+            "scholarly_credibility": -2
+          },
+          "flags": {
+            "treboň": "consent"
+          },
+          "consequence": "It is done and written down. The partnership survives a year longer. Nothing in the house does.",
+          "consequence_long": [
+            "It is done, and the covenant is signed, and you record that you did it, because you have recorded everything and will not stop at the worst page.",
+            "The partnership survives a year longer. Nothing in the house does. The diary keeps the dates; what passed between you and Jane it does not keep, and that silence is the loudest thing in the record."
+          ]
+        },
+        {
+          "id": "refuse",
+          "label": "Refuse. There is a voice you will not obey, and this is where it speaks.",
+          "verbs": {
+            "persuade": 2,
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 2,
+            "angelic_authority": -2,
+            "political_utility": -2
+          },
+          "flags": {
+            "treboň": "refuse"
+          },
+          "consequence": "Kelley takes the powder, the patron and the future. You take your household home through winter, poor.",
+          "consequence_long": [
+            "There is a voice you will not obey, and now everyone — Kelley, the patron, whatever speaks in the stone — knows where it stops.",
+            "Kelley takes the powder, the patron and the future. You take your household home through winter, poor, with the one thing the covenant would have spent still unspent."
+          ]
+        },
+        {
+          "id": "delay",
+          "label": "Ask for it again, and again, and again, until the asking is its own answer.",
+          "verbs": {
+            "experiment": 2,
+            "invoke": 1
+          },
+          "states": {
+            "angelic_authority": -1,
+            "scholarly_credibility": 1
+          },
+          "flags": {
+            "treboň": "delay"
+          },
+          "consequence": "Three sessions of demanding confirmation. Whatever was between you and Kelley does not survive being tested this way."
+        }
+      ]
+    },
+    {
+      "id": "d30e",
+      "act": 6,
+      "date": "1588–1589, Mortlake",
+      "grounding": "PLAUSIBLE-GAP",
+      "requires": {
+        "d26": "stay"
+      },
+      "event": "The road not taken",
+      "text": "Word comes from Bohemia: Łaski ruined, Kelley knighted and making gold for an emperor, the whole Continent apparently open to men who went. You are here, solvent, unfamous, with your books.",
+      "options": [
+        {
+          "id": "content",
+          "label": "Let it go. You have the library, the household, and the work is still yours.",
+          "verbs": {
+            "calculate": 2
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "flags": {
+            "regret": "content"
+          },
+          "consequence": "The rarest thing in this life: a decision you do not spend the next twenty years re-arguing."
+        },
+        {
+          "id": "late",
+          "label": "Write to Bohemia. Perhaps the door is still open a little.",
+          "verbs": {
+            "persuade": 1,
+            "navigate": 1
+          },
+          "states": {
+            "political_utility": -1,
+            "angelic_authority": 1
+          },
+          "flags": {
+            "regret": "late"
+          },
+          "consequence": "The letters go. Kelley answers one of three, briefly, as a knight answers an old employer."
+        },
+        {
+          "id": "east",
+          "label": "Look further east instead. The merchants of the Turkey trade are still sailing.",
+          "verbs": {
+            "navigate": 2
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "ottoman": 3,
+          "flags": {
+            "regret": "east"
+          },
+          "consequence": "A different map opens on the table, with Constantinople on it, and nobody in England to say it is madness."
+        }
+      ]
+    },
+    {
+      "id": "o1",
+      "act": 6,
+      "date": "c. 1588",
+      "grounding": "COUNTERFACTUAL",
+      "requires_min": {
+        "ottoman": 6
+      },
+      "event": "so it might have been — the eastward invitation",
+      "text": "A factor of the Turkey Company, home from Constantinople, has heard of your Arabic shelves. There is a sultan there, he says, who reads the stars himself and takes his dreams as counsel — and who pays scholars of exactly your kind. *The record holds no such offer. It holds only that Dee's every western patron failed him.*",
+      "options": [
+        {
+          "id": "pursue",
+          "label": "Ask him everything. Names, letters, what such a court would want from such a man.",
+          "verbs": {
+            "navigate": 2,
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "ottoman": 3,
+          "flags": {
+            "ottoman_route": "pursued"
+          },
+          "consequence": "You copy out an address in a hand that shakes slightly. A road exists now that did not exist yesterday."
+        },
+        {
+          "id": "note",
+          "label": "Take the intelligence and file it. A door does not have to be walked through to be useful.",
+          "verbs": {
+            "map": 1,
+            "predict": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "ottoman": 1,
+          "flags": {
+            "ottoman_route": "noted"
+          },
+          "consequence": "It goes into the commonplace book with the other roads. You will read the page again when you are old."
+        },
+        {
+          "id": "decline",
+          "label": "Decline. You are an English subject and your work is for this crown.",
+          "verbs": {
+            "persuade": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "flags": {
+            "ottoman_route": "declined"
+          },
+          "consequence": "Loyalty, offered to a crown that has not yet paid you and will not. You do not regret it for some years."
+        }
+      ]
+    },
+    {
+      "id": "d31",
+      "act": 7,
+      "date": "1589 / late 1580s",
+      "grounding": "ATTESTED",
+      "event": "Mortlake library damaged and dispersed",
+      "text": "The accounting of what is left. Instruments broken, shelves gapped, the great quartos gone to men who will never admit having them — some of it while you were away, some of it by process of law, all of it beyond recovery.",
+      "options": [
+        {
+          "id": "recover",
+          "label": "Hunt it down. Every volume, every borrower, however long it takes.",
+          "verbs": {
+            "map": 2,
+            "persuade": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "library": 1,
+          "consequence": "You get some of it back and a reputation for grievance. Both are permanent."
+        },
+        {
+          "id": "catalogue",
+          "label": "Catalogue what remains, exactly, and make the loss a document.",
+          "verbs": {
+            "calculate": 2,
+            "map": 1
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "consequence": "The list survives. It is how anyone knows what England had at Mortlake and lost without noticing."
+        },
+        {
+          "id": "claim",
+          "label": "Petition the Crown for restitution. The house was robbed in the Queen's service.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "consequence": "Commissioners are appointed. They are sympathetic. Nothing arrives, in the usual way."
+        }
+      ],
+      "text_variants": [
+        {
+          "when": {
+            "branch": "england"
+          },
+          "text": "The library was never sacked — you were here to keep it. But an accounting is still owed: volumes lent to great men and never returned, instruments seized against debts, the slow leak that needs no mob. What was saved by staying was not saved entire."
+        }
+      ]
+    },
+    {
+      "id": "d32",
+      "act": 7,
+      "date": "1592",
+      "grounding": "ATTESTED",
+      "event": "The Compendious Rehearsal",
+      "text": "Two royal commissioners at your table, and you have written out your entire life to read to them — every service, every book, every promise made and unpaid, forty years compressed into a plea.",
+      "options": [
+        {
+          "id": "full",
+          "label": "Read it all. Let the length of the list be the argument.",
+          "verbs": {
+            "persuade": 1,
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "consequence": "They are moved and they are not empowered. The document outlives them, which is its real function."
+        },
+        {
+          "id": "dignified",
+          "label": "Give them the service and leave out the debts. Ask as an equal, not a suppliant.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "political_utility": 1,
+            "scholarly_credibility": 1
+          },
+          "consequence": "Dignity, at the price of clarity. They report that Dr Dee seems comfortable enough."
+        },
+        {
+          "id": "angels",
+          "label": "Include the angelic work. It is the greatest thing you have done; do not hide it.",
+          "verbs": {
+            "invoke": 2,
+            "persuade": 1
+          },
+          "states": {
+            "angelic_authority": 2
+          },
+          "stain": 2,
+          "consequence": "You have put it in a document intended for the Crown. It will be copied, and copied, and used."
+        }
+      ],
+      "plate": "letter"
+    },
+    {
+      "id": "d33",
+      "act": 7,
+      "date": "1595",
+      "grounding": "ATTESTED",
+      "event": "Appointed Warden of Manchester College",
+      "text": "Whitgift's solution to you: a wardenship two hundred miles north, in a town of quarrelling puritans, with embezzled accounts and fellows who will fight you over tithes. It is an office. It is also removal.",
+      "foreclosure": true,
+      "options": [
+        {
+          "id": "accept",
+          "label": "Take it. An office with a stipend is not nothing, and you are sixty-eight.",
+          "verbs": {
+            "persuade": 1,
+            "calculate": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "flags": {
+            "manchester": "yes"
+          },
+          "consequence": "You go north with what is left of the library in carts, into the quietest exile England could arrange."
+        },
+        {
+          "id": "refuse",
+          "label": "Refuse. To leave London is to concede that they have finished with you.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "scholarly_credibility": 1,
+            "political_utility": -2
+          },
+          "flags": {
+            "manchester": "no"
+          },
+          "consequence": "You stay at Mortlake, unemployed and visible, which turns out to be a different kind of quiet."
+        }
+      ]
+    },
+    {
+      "id": "d34m",
+      "act": 7,
+      "date": "1596–1604, Manchester",
+      "grounding": "ATTESTED",
+      "requires": {
+        "d33": "accept"
+      },
+      "event": "Demonising the exorcists",
+      "text": "Manchester is at war with itself over John Darrell, who casts devils out of boys in front of crowds. Both sides want the famous doctor's opinion, and both will use it. You have been asked to examine the possessed.",
+      "options": [
+        {
+          "id": "back",
+          "label": "Support Darrell. Spirits are real; you of all men cannot pretend otherwise.",
+          "verbs": {
+            "invoke": 2
+          },
+          "states": {
+            "angelic_authority": 2
+          },
+          "stain": 3,
+          "consequence": "You have publicly certified the reality of spirits in the year the Church decided to deny it. They join the two names forever."
+        },
+        {
+          "id": "expose",
+          "label": "Examine the children properly and say what you actually find.",
+          "verbs": {
+            "experiment": 2,
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "stain": 1,
+          "consequence": "Fraud, in two cases plainly. Nobody thanks a conjuror for detecting a fraud; they ask how he knew."
+        },
+        {
+          "id": "abstain",
+          "label": "Refuse to be used. Send them to the bishops and keep to the college accounts.",
+          "verbs": {
+            "persuade": 1,
+            "calculate": 1
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "consequence": "The safest possible answer, delivered by a man everyone already has an opinion about."
+        }
+      ]
+    },
+    {
+      "id": "d34p",
+      "act": 7,
+      "date": "1596–1604, Mortlake",
+      "grounding": "PLAUSIBLE-GAP",
+      "requires": {
+        "d33": "refuse"
+      },
+      "event": "The visible poverty",
+      "text": "No office, no pension, and a house on the river that everyone can find. Old pupils send small sums. Curious gentlemen come to see the famous conjuror and go away with a story to tell at dinner.",
+      "options": [
+        {
+          "id": "teach",
+          "label": "Teach whoever pays — navigation, arithmetic, whatever a merchant's son needs.",
+          "verbs": {
+            "calculate": 1,
+            "navigate": 2
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "consequence": "Honest, small work. It keeps the household and buries the greatest mathematician in England in a tutor's hours."
+        },
+        {
+          "id": "cast",
+          "label": "Cast nativities for money. It is what they come for; charge them properly.",
+          "verbs": {
+            "predict": 2
+          },
+          "states": {
+            "political_utility": 1
+          },
+          "stain": 2,
+          "consequence": "The income is steady. So is the confirmation, in every parlour in London, of what you are."
+        },
+        {
+          "id": "write",
+          "label": "Write. Defend the work in print while there is still a hand to do it.",
+          "verbs": {
+            "persuade": 2
+          },
+          "states": {
+            "scholarly_credibility": 1,
+            "angelic_authority": 1
+          },
+          "consequence": "The Apologetical Letter. Reasoned, dignified, and answered by nobody at all."
+        }
+      ]
+    },
+    {
+      "id": "d35",
+      "act": 7,
+      "date": "1604–1605",
+      "grounding": "ATTESTED",
+      "event": "The petition to be tried",
+      "text": "James is king, and James has written a book about witches. There is one instrument left: petition the King to put you on trial — a real trial, with a charge you can answer — so that you can be cleared at law of being a conjuror. You are seventy-seven years old.",
+      "options": [
+        {
+          "id": "petition",
+          "label": "Petition. Demand the trial. Ask to be tried for your life to get your name back.",
+          "verbs": {
+            "persuade": 2,
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "flags": {
+            "petition": "made"
+          },
+          "consequence": "It is refused — not denied, refused. There will be no charge. You cannot be cleared of a thing nobody will accuse you of.",
+          "consequence_long": [
+            "It is refused — not denied, refused. There will be no charge. You cannot be cleared of a thing nobody will accuse you of.",
+            "This is the lesson the whole life has been arranging: a charge can be answered. A stain cannot. The tribunal you survived at twenty-eight was the only mercy of its kind you would ever be shown."
+          ]
+        },
+        {
+          "id": "swear",
+          "label": "Offer instead a sworn oath before God, and let that be the answer.",
+          "verbs": {
+            "invoke": 1,
+            "persuade": 1
+          },
+          "states": {
+            "angelic_authority": 1
+          },
+          "flags": {
+            "petition": "oath"
+          },
+          "consequence": "An oath is accepted, filed, and changes nothing. The word was never in the court's keeping."
+        },
+        {
+          "id": "silence",
+          "label": "Say nothing more. Let the work stand and the slander do what it does.",
+          "verbs": {
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "flags": {
+            "petition": "none"
+          },
+          "consequence": "The only choice here that cannot be refused, because it asks nothing of anyone."
+        }
+      ],
+      "plate": "necromancy"
+    },
+    {
+      "id": "d36",
+      "act": 8,
+      "date": "1605",
+      "grounding": "ATTESTED",
+      "event": "Jane Dee dies",
+      "text": "Plague. Jane, who managed the household through the Tower and the crossing and Třeboň and the empty shelves, dies in a week. The diary records it in a line, because that is what the diary does.",
+      "options": [
+        {
+          "id": "record",
+          "label": "Write the line and keep the book. It is the only monument you can afford.",
+          "verbs": {
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "consequence": "Four words in a margin. It is how we know, and it is all we know, which is its own kind of grief."
+        },
+        {
+          "id": "ask",
+          "label": "Ask the stone. If they ever spoke true, let them speak to this.",
+          "verbs": {
+            "invoke": 2
+          },
+          "states": {
+            "angelic_authority": 1
+          },
+          "consequence": "The answer, when it comes through another man's mouth, is general and consoling and could have come from anywhere."
+        },
+        {
+          "id": "close",
+          "label": "Close the diary for a season. Some things are not evidence.",
+          "verbs": {},
+          "states": {},
+          "consequence": "The record has a hole in it the size of a marriage. Later readers will call it a gap in the sources."
+        }
+      ]
+    },
+    {
+      "id": "d37",
+      "act": 8,
+      "date": "1607",
+      "grounding": "ATTESTED",
+      "event": "Late angelic actions",
+      "text": "Bartholomew Hickman is the last of them, and the visions he brings are generous: promises of restoration, of a great book, of favour coming. Another man in the house says Hickman is inventing every word.",
+      "options": [
+        {
+          "id": "trust",
+          "label": "Believe him. At eighty there is no time left to be careful.",
+          "verbs": {
+            "invoke": 2
+          },
+          "states": {
+            "angelic_authority": 2,
+            "scholarly_credibility": -2
+          },
+          "flags": {
+            "last": "trust"
+          },
+          "consequence": "The promises never arrive. You are still writing them down, in a firm hand, in the last year of your life."
+        },
+        {
+          "id": "burn",
+          "label": "Burn his books and end it. If it was ever true, it is not true now.",
+          "verbs": {
+            "calculate": 2
+          },
+          "states": {
+            "angelic_authority": -3,
+            "scholarly_credibility": 2
+          },
+          "flags": {
+            "last": "burn"
+          },
+          "consequence": "The fire takes the last of the actions and the last of the voices. What follows is silence, and it is complete."
+        },
+        {
+          "id": "keep",
+          "label": "Keep the record and withhold the belief. Write it down; sign nothing.",
+          "verbs": {
+            "experiment": 2
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "flags": {
+            "last": "keep"
+          },
+          "consequence": "The discipline of fifty years, held to the end: whatever this is, it will be preserved accurately."
+        }
+      ]
+    },
+    {
+      "id": "d38",
+      "act": 8,
+      "date": "1607–1608",
+      "grounding": "ATTESTED",
+      "event": "Selling the books",
+      "text": "The shelves empty one volume at a time, in the order of what you can bear. Elizabeth Kyrton, twelve years in this house — five apprenticed, seven for wages — goes from your service this month, all being paid her. That took the Roger Bacon manuscripts.",
+      "options": [
+        {
+          "id": "sell_all",
+          "label": "Sell what will feed the house. A library is not worth a daughter going hungry.",
+          "verbs": {},
+          "states": {
+            "scholarly_credibility": -1
+          },
+          "library": -3,
+          "consequence": "The right decision, made correctly, that empties the only room in England that could not be replaced."
+        },
+        {
+          "id": "keep_core",
+          "label": "Keep the irreplaceable ones whatever it costs. Sell the furniture instead.",
+          "verbs": {
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "library": -1,
+          "consequence": "A cold house with a good shelf in it. Some of those volumes survive because of this winter."
+        },
+        {
+          "id": "place",
+          "label": "Place them where they will be kept — a college, a collector, anyone who will hold them together.",
+          "verbs": {
+            "persuade": 2,
+            "map": 1
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "library": -2,
+          "consequence": "Scattered deliberately rather than by theft. It is the difference between a dispersal and a wreck."
+        }
+      ]
+    },
+    {
+      "id": "d39",
+      "act": 8,
+      "date": "1608",
+      "grounding": "PLAUSIBLE-GAP",
+      "event": "The transmission",
+      "text": "Arthur is a physician now and knows enough alchemy to be dangerous. Katherine keeps the house and has read more of the books than either of you noticed. There is a chest under the floor with everything in it.",
+      "options": [
+        {
+          "id": "arthur",
+          "label": "To Arthur, with the method and the warning. He will carry the art.",
+          "verbs": {
+            "experiment": 1,
+            "persuade": 1
+          },
+          "states": {
+            "angelic_authority": 1
+          },
+          "flags": {
+            "heir": "arthur"
+          },
+          "consequence": "He takes it to Moscow and a Tsar's service and writes his own book. Not yours, but not nothing."
+        },
+        {
+          "id": "katherine",
+          "label": "To Katherine, with the truth about all of it. She has earned the whole account.",
+          "verbs": {
+            "persuade": 1,
+            "calculate": 1
+          },
+          "states": {
+            "scholarly_credibility": 1
+          },
+          "flags": {
+            "heir": "katherine"
+          },
+          "consequence": "She keeps what she is given, faithfully, and history does not record what a daughter was told."
+        },
+        {
+          "id": "chest",
+          "label": "To the chest. Seal it, tell no one, and let the age that deserves it find it.",
+          "verbs": {
+            "invoke": 1,
+            "predict": 1
+          },
+          "states": {
+            "angelic_authority": 1
+          },
+          "flags": {
+            "heir": "chest"
+          },
+          "consequence": "Sealed under the floor of a house you no longer own. Found sixty years later, by accident, half-eaten."
+        }
+      ]
+    },
+    {
+      "id": "d40",
+      "act": 8,
+      "date": "1608 or 1609",
+      "grounding": "INVENTED-COMPATIBLE",
+      "event": "Death at Mortlake",
+      "text": "The parish register for this year will be lost, so no one will ever know the day. There is a last page in front of you and a hand that still works. Name the life while you can still name it.",
+      "options": [
+        {
+          "id": "servant",
+          "label": "\"A servant of the Almighty, who was answered.\" Whatever it cost, you were spoken to.",
+          "verbs": {
+            "invoke": 2
+          },
+          "states": {
+            "angelic_authority": 2
+          },
+          "flags": {
+            "last_word": "servant"
+          },
+          "consequence": "Written plainly, in the hand of a man who never once claimed to have seen it himself.",
+          "consequence_long": [
+            "“A servant of the Almighty, who was answered.” Written plainly, in the hand of a man who never once claimed to have seen it himself.",
+            "The pen is set down. Outside, the river goes on doing what it did when the house was full."
+          ]
+        },
+        {
+          "id": "mathematician",
+          "label": "\"A mathematician of England, and no conjuror.\" The record will have to do the rest.",
+          "verbs": {
+            "calculate": 2
+          },
+          "states": {
+            "scholarly_credibility": 2
+          },
+          "flags": {
+            "last_word": "mathematician"
+          },
+          "consequence": "It takes the record three hundred years. But it does, eventually, do the rest.",
+          "consequence_long": [
+            "“A mathematician of England, and no conjuror.” The record will have to do the rest.",
+            "It takes the record three hundred years. But it does, eventually, do the rest."
+          ]
+        },
+        {
+          "id": "unfinished",
+          "label": "\"The work is not finished.\" Say only what is certainly true.",
+          "verbs": {
+            "map": 1,
+            "predict": 1
+          },
+          "states": {},
+          "flags": {
+            "last_word": "unfinished"
+          },
+          "consequence": "The most accurate sentence in the whole book, and the only one nobody has ever disputed.",
+          "consequence_long": [
+            "“The work is not finished.” The most accurate sentence in the whole book, and the only one nobody has ever disputed.",
+            "The pen is set down. Outside, the river goes on doing what it did when the house was full."
+          ]
+        }
+      ]
+    }
+  ]
+}
