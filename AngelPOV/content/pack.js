@@ -1,4 +1,4 @@
-import { SIGILS } from './sigils.js?v=13';
+import { SIGILS } from './sigils.js?v=18';
 
 // pack.js — the angelic content pack for "Spoken Backward".
 // Sister to protagonists/dee/content/pack.js: same century, same room, inverted POV.
@@ -41,12 +41,12 @@ export const pack = {
   // The chamber state per act — read by engine/chamber.js. See DESIGN.md §6.
   chamberFor(act) {
     return {
-      1: { candles: 1, letters: 0, figures: 1, tint: 0x9fb4c4, sigil: 0.25 },
-      2: { candles: 2, letters: 48, figures: 2, tint: 0xc4a86f, sigil: 1.0 },
-      3: { candles: 4, letters: 64, figures: 2, tint: 0xd9a86a, sigil: 0.8 },
-      4: { candles: 3, letters: 40, figures: 2, tint: 0xd06a3a, sigil: 1.2 },
-      5: { candles: 1, letters: 16, figures: 1, tint: 0x8a8171, sigil: 0.4 },
-      6: { candles: 1, letters: 8, figures: 1, tint: 0x6f7f8a, sigil: 0.15 },
+      1: { candles: 1, letters: 0, figures: 1, tint: 0x9fb4c4, sigil: 0.25, room: 0x14171c },
+      2: { candles: 2, letters: 48, figures: 2, tint: 0xc4a86f, sigil: 1.0, room: 0x191410 },
+      3: { candles: 4, letters: 64, figures: 2, tint: 0xd9a86a, sigil: 0.8, room: 0x1d1710 },
+      4: { candles: 3, letters: 40, figures: 2, tint: 0xd06a3a, sigil: 1.2, room: 0x1e120d },
+      5: { candles: 1, letters: 16, figures: 1, tint: 0x8a8171, sigil: 0.4, room: 0x121211 },
+      6: { candles: 1, letters: 8, figures: 1, tint: 0x6f7f8a, sigil: 0.15, room: 0x0b0d10 },
     }[act.n];
   },
 
@@ -97,15 +97,11 @@ export const pack = {
       'Rome and the courts are listening at the door.',
     ][band(w, 0.65, 0.25)];
 
-    const crowns = [
-      ['the Queen', q.crown_english],
-      ['Prague', q.crown_imperial],
-      ['a road east', q.crown_ottoman],
-    ].sort((a, b) => b[1] - a[1]);
+    const crowns = this.crownWeights(q);
     const empire =
-      crowns[0][1] < 3
+      crowns[0][2] < 0.45
         ? 'The empire is not resting on anyone yet.'
-        : crowns[0][1] === crowns[1][1]
+        : crowns[0][2] - crowns[1][2] < 0.12
           ? `The weight is split between ${crowns[0][0]} and ${crowns[1][0]}.`
           : `The weight is on ${crowns[0][0]}.`;
 
@@ -120,6 +116,9 @@ export const pack = {
     design: 'https://github.com/t3dy/DeeVisualNovel/blob/main/AngelPOV/DESIGN.md',
     dee: 'https://t3dy.github.io/DeeVisualNovel/',
     portal: 'https://t3dy.github.io/DeeVisualNovel/portal/',
+    // Playtest capture. The ending screen appends a run fingerprint so a report arrives
+    // with the outcome, the length and the dominant mode already filled in.
+    feedback: 'https://github.com/t3dy/DeeVisualNovel/issues/new',
   },
 
   // Shown on the title screen. Mixed audience: a stranger should be able to start
@@ -142,22 +141,41 @@ export const pack = {
   journalTitle: 'The Account of What Was Said',
   journalGroups: [
     { title: 'What we showed',
-      nodes: ['a01', 'a03', 'a19', 'a20', 'a31', 'a33'] },
+      nodes: ['a01', 'a03', 'a19', 'a20', 'a23b', 'a31', 'a33'] },
     { title: 'What we promised',
       nodes: ['a04', 'a08', 'a11', 'a14', 'a22', 'a30', 'a32'] },
     { title: 'What we withheld',
-      nodes: ['a02', 'a07', 'a13', 'a16', 'a23', 'a28'] },
+      nodes: ['a02', 'a07', 'a13', 'a16', 'a23', 'a26b', 'a28'] },
     { title: 'What we required',
       nodes: ['a05', 'a10', 'a12', 'a17', 'a21', 'a29'] },
     { title: 'What he wrote down instead',
-      nodes: ['a06', 'a09', 'a15', 'a18', 'a24', 'a25', 'a26', 'a27', 'a34'] },
+      nodes: ['a06', 'a09', 'a15', 'a18', 'a24', 'a25', 'a25b', 'a26', 'a27', 'a34'] },
   ],
 
   // Relative dominance against measured means, not absolute cutoffs. This is the fix
   // tools/dist.mjs forced on the Dee pack (fixed thresholds either never fire or always
   // do); inherited deliberately. Re-run `node tools/dist.mjs angels` after any content
   // change and update these.
-  norms: { fidelity: 21, obedience: 29, notice: 12 },
+  norms: { fidelity: 24, obedience: 29, notice: 14 },
+
+  // The three thrones do not accumulate at the same rate -- there are simply more
+  // opportunities to load England than Prague -- so comparing their raw totals hands
+  // England the verdict by default. Compare each against its own measured mean instead,
+  // which is the same principle the states use and self-corrects when content changes.
+  // Re-run `node tools/dist.mjs 6000` after any content change and paste these back.
+  crownNorms: { crown_english: 5.0, crown_imperial: 3.6, crown_ottoman: 4.2 },
+
+  // Which throne is actually carrying the weight, as a ratio against its own norm.
+  // Shared by computeEnding() and stateReading() so the player's orientation line and
+  // the ending can never disagree about who the empire is resting on.
+  crownWeights(q) {
+    const n = this.crownNorms;
+    return [
+      ['the Queen', 'crown_english', q.crown_english / n.crown_english],
+      ['Prague', 'crown_imperial', q.crown_imperial / n.crown_imperial],
+      ['a road east', 'crown_ottoman', q.crown_ottoman / n.crown_ottoman],
+    ].sort((a, b) => b[2] - a[2]);
+  },
 
   // The game never adjudicates what you are. Every line reports only what happened.
   computeEnding(s) {
@@ -285,12 +303,22 @@ export const pack = {
 
     // 6 — no throne ever really took the weight. The long irony gets its own door here,
     // BEFORE the dominance test, or the crown checks swallow every remaining run.
-    if (q.crown_english + q.crown_imperial < 5) {
+    const crowns = this.crownWeights(q);
+    const west = crowns.filter((c) => c[1] !== 'crown_ottoman');
+    // Combined, not max: the question is whether the empire found ANY Christian throne,
+    // and two half-hearted crowns still add up to a life spent on patronage. The cut is
+    // set where tools/dist.mjs puts it at roughly one run in seven -- the same share the
+    // raw-total version produced before crownNorms replaced it.
+    const westWeight = west.reduce((a, c) => a + c[2], 0);
+    if (westWeight < 1.15) {
       return longWayRound(reception);
     }
 
-    // 7/8 — which throne took the weight. Ordinary, documented, and unsuccessful.
-    if (q.crown_imperial > q.crown_english) {
+    // 7/8 — which throne took the weight, measured against how easily each ACCUMULATES
+    // rather than by raw total. See crownNorms.
+    const imperial = west.find((c) => c[1] === 'crown_imperial')[2];
+    const english = west.find((c) => c[1] === 'crown_english')[2];
+    if (imperial > english) {
       return {
         id: 'habsburg_silence',
         mark: 'the record holds this',
@@ -311,7 +339,7 @@ export const pack = {
       };
     }
 
-    if (q.crown_english >= q.crown_imperial && q.crown_english > 0) {
+    if (english >= imperial && q.crown_english > 0) {
       return {
         id: 'tides_and_title',
         mark: 'the record holds this',

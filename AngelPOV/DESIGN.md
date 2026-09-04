@@ -67,7 +67,7 @@ choice made so it reads identically early and late. No numerals ever reach the s
 The player can feel a trend and still cannot min-max it, which was the point of hiding
 the states in the first place.
 
-**`node.evidence`** — `{ source, text }` on all 34 scenes, rendered collapsed on the
+**`node.evidence`** — `{ source, text }` on all 37 scenes, rendered collapsed on the
 transmission screen. Its job is four-fold and every note does at least two of them:
 
 1. name the manuscript or the scholarship the scene rests on;
@@ -113,6 +113,19 @@ and `millennium` (how near you have promised the end). The endings read the vect
 nationality is negotiable. Withholding it is historically correct and mechanically
 required for the Ottoman route — Dee will not go east for a God who admits to shopping.
 
+## 3b. Why the thrones are normalised
+
+The endings originally compared `crown_english` against `crown_imperial` as raw totals.
+That is wrong, and `tools/dist.mjs` proved it as soon as act 5 grew: England accumulates
+faster simply because more scenes touch the Crown, so it took 35% of runs while Prague
+fell to 9%. `crownNorms` holds each throne's measured mean and `crownWeights()` returns
+ratios; `computeEnding()` and `stateReading()` both call it, so the line telling the
+player where the weight sits is computed from the same numbers that decide the ending.
+
+The "no throne took it" door uses the **combined** western weight rather than the maximum,
+because the question is whether the empire found any Christian throne at all, and two
+half-hearted crowns still amount to a life spent on patronage.
+
 ## 4. Acts
 
 | # | Title | Years | Where |
@@ -121,10 +134,10 @@ required for the Ottoman route — Dee will not go east for a God who admits to 
 | 2 | The Tables | 1582-1583 | Mortlake |
 | 3 | The Kings | 1583-1586 | Krakow, Prague |
 | 4 | The Covenant | 1586-1587 | Trebon |
-| 5 | Eighty-Eight | 1588-1595 | the road home |
+| 5 | Eighty-Eight | 1588-1595 | the road home (8 scenes: the collapse gets the room it needs) |
 | 6 | Where We Put It | 1595-1608, and elsewhere | Mortlake — or the passage east |
 
-34 nodes authored; 25-32 played per run, depending on foreclosure.
+37 nodes authored; 26-35 played per run, depending on foreclosure.
 
 ## 5. Endings (eight)
 

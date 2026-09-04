@@ -6,14 +6,14 @@
 //   2. a three.js chamber runs behind everything, driven by the act — and its absence
 //      is a supported state, not an error.
 
-import { State } from './state.js?v=13';
+import { State } from './state.js?v=18';
 import {
   renderTitle,
   renderActIntro,
   renderChoice,
   renderTransmission,
   renderEnding,
-} from './ui.js?v=13';
+} from './ui.js?v=18';
 
 // --- the chamber, loaded lazily and allowed to fail --------------------------
 async function bootChamber() {
@@ -21,7 +21,7 @@ async function bootChamber() {
   const canvas = document.getElementById('chamber');
   if (!canvas || q.get('flat') === '1') return null;
   try {
-    const { createChamber } = await import('./chamber.js?v=13');
+    const { createChamber } = await import('./chamber.js?v=18');
     const ch = createChamber(canvas, {
       seed: Number(q.get('seed')) || 1583,
       debug: q.get('debug') === '1',

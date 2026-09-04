@@ -128,7 +128,7 @@ else {
   }
 }
 if (!Array.isArray(pack.howItWorks) || !pack.howItWorks.length) W('pack has no howItWorks');
-for (const k of ['design', 'dee', 'portal']) {
+for (const k of ['design', 'dee', 'portal', 'feedback']) {
   const u = pack.links && pack.links[k];
   if (!u) E(`pack.links.${k} missing`);
   else if (!/^https?:\/\//.test(u)) E(`pack.links.${k} must be absolute (GitHub Pages serves .md as a download)`);

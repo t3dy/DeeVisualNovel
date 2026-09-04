@@ -206,6 +206,30 @@ export function renderTransmission(node, act, entry, drifted, option, onContinue
 
 // --- ending ------------------------------------------------------------------
 
+// A playtest report is only useful if it says which run it is about. Prefill the issue
+// with the run's fingerprint so the tester only has to write the opinion.
+function feedbackUrl(pack, ending, state) {
+  const dominant = Object.entries(state.modes).sort((a, b) => b[1] - a[1])[0];
+  const body = [
+    '<!-- your notes here -->',
+    '',
+    'What did you not understand?',
+    'Where did you get bored?',
+    'Did the evidence notes earn their place?',
+    '',
+    '---',
+    `ending: ${ending.id} (${ending.title})`,
+    `choices made: ${state.history.length}`,
+    `most-used mode: ${dominant[0]} (${dominant[1]})`,
+    `build: ${location.pathname}`,
+  ].join('\n');
+  return (
+    `${pack.links.feedback}?title=${encodeURIComponent('Spoken Backward playtest: ' + ending.title)}` +
+    `&labels=${encodeURIComponent('playtest')}` +
+    `&body=${encodeURIComponent(body)}`
+  );
+}
+
 export function renderEnding(pack, ending, state, { onRestart, plate }) {
   setPalette(pack.endPalette);
   const groups = pack.journalGroups
@@ -229,7 +253,11 @@ export function renderEnding(pack, ending, state, { onRestart, plate }) {
       <p class="ending-text reception">${esc(ending.reception)}</p>
       <h3 class="catalogue-title">${esc(pack.journalTitle)}</h3>
       ${groups}
-      <div class="actions"><button class="primary" id="again">Say it differently</button></div>
+      <div class="actions">
+        <button class="primary" id="again">Say it differently</button>
+        <a class="button-link" href="${esc(feedbackUrl(pack, ending, state))}"
+           target="_blank" rel="noopener">Tell us how it played</a>
+      </div>
       <p class="note">Eight outcomes. The documented one is not privileged among them, and the
         one marked <em>so it might have been</em> is Melvin-Koushki&rsquo;s counterfactual, not
         the record&rsquo;s. The sources and the reasoning are in

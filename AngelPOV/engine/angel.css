@@ -162,6 +162,10 @@ button.primary:hover { filter: brightness(1.12); }
 .actions button:not(.primary) { font: inherit; cursor: pointer; background: transparent; color: var(--ink);
   border: 1px solid var(--rule); border-radius: 2px; padding: .6rem 1.4rem; }
 .actions button:not(.primary):hover { border-color: var(--gold); }
+.button-link { font: inherit; text-decoration: none; cursor: pointer; background: transparent;
+  color: var(--ink); border: 1px solid var(--rule); border-radius: 2px; padding: .6rem 1.4rem;
+  display: inline-flex; align-items: center; }
+.button-link:hover { border-color: var(--gold); color: var(--gold); }
 
 /* --- the panel: orientation first, then the seven modes -------------------- */
 .panel { border-top: 1px solid var(--rule); padding-top: .8rem; display: flex;

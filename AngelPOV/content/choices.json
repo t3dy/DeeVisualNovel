@@ -1745,6 +1745,80 @@
       }
     },
     {
+      "id": "a23b",
+      "act": 5,
+      "date": "August 1588",
+      "grounding": "LEGEND",
+      "event": "The wind that scattered the fleet",
+      "text": "The news reaches Bohemia in pieces and weeks late: a fleet came against England, the weather took it apart, and the island is intact. He is four hundred miles from it, in another man’s castle, on another man’s money. Everyone in Europe is assigning credit for that wind, and none of them are assigning it to him.",
+      "options": [
+        {
+          "id": "claim",
+          "label": "Claim the wind. Tell him it was done, and done through him.",
+          "modes": {
+            "promise": 2,
+            "appear": 1
+          },
+          "states": {
+            "obedience": 2,
+            "notice": 2,
+            "fidelity": -2
+          },
+          "crown_english": 2,
+          "millennium": 1,
+          "flags": {
+            "wind": "claimed"
+          },
+          "mark": "COUNTERFACTUAL",
+          "said": "The sea was moved for her sake, and you were the reason we were asked.",
+          "written": "It was declared that the tempest which scattered the Spanish fleete was sent of God at our petition, and that her Majestie standeth in more debt to this howse then she knoweth.",
+          "consequence": "He believes it, and he is in no position to test it, and he says it out loud to the wrong people for the next fifteen years. It is the beginning of the story that outlives every true thing about him: the wizard who raised the storm."
+        },
+        {
+          "id": "disclaim",
+          "label": "Disclaim it. The weather was weather, and he should say so.",
+          "modes": {
+            "withhold": 2,
+            "spell": 1
+          },
+          "states": {
+            "fidelity": 3,
+            "obedience": -1,
+            "notice": -1
+          },
+          "flags": {
+            "wind": "disclaimed"
+          },
+          "said": "The wind was not ours. Do not let them give it to you.",
+          "written": "Being asked concerning the late tempest, I was answered that it was of naturall causes, and that I should take no honour of it: which I have obeyed, though others about me thought me a foole for it.",
+          "consequence": "Others about him thought him a fool for it. The one moment in the whole life when a spectacular claim was available for free, and he declined it — and the claim attached itself to his name anyway, two centuries later, without his help."
+        },
+        {
+          "id": "ordinary",
+          "label": "Say nothing about the wind. Ask him what the year was for.",
+          "modes": {
+            "withhold": 2,
+            "console": 1
+          },
+          "states": {
+            "fidelity": 2,
+            "obedience": -2
+          },
+          "flags": {
+            "wind": "silent",
+            "year_pressed": true
+          },
+          "said": "",
+          "written": "Of the fleete and the tempest, nothing. I asked what then was meant by all that hath been said of this yeare, and had no answer, and sate long after in the dark.",
+          "consequence": "Sat long after in the dark. He is sixty-one, in exile, in debt, and the year that everything was pointed at has turned out to be a year in which some ships sank."
+        }
+      ],
+      "evidence": {
+        "source": "The Armada medals; Parry, ch. 16 — and a legend with no support",
+        "text": "The Armada was broken by a combination of English gunnery, fireships and weather in the summer of 1588, and the commemorative medal struck for it reads Flavit et dissipati sunt — He blew, and they were scattered. The credit went to God and to the navy. The story that Dr Dee raised that storm is a much later invention, repeated confidently ever since and supported by nothing contemporary. It is also chronologically awkward: Dee was not in England in 1588 at all. He was at Trebon in Bohemia, and did not come home until December 1589. This scene is graded as legend because that is exactly what it is, and the game lets you watch the legend being manufactured."
+      }
+    },
+    {
       "id": "a24",
       "act": 5,
       "date": "1589",
@@ -1885,6 +1959,80 @@
       }
     },
     {
+      "id": "a25b",
+      "act": 5,
+      "date": "22 November 1592",
+      "grounding": "ATTESTED",
+      "event": "Two commissioners come to Mortlake",
+      "text": "The Crown sends two men to sit in his house and hear him out — an actual hearing, the only one he will ever get. He has prepared for it the way he prepares for everything: a written account of forty years of service and everything it has cost him, with figures. He will read it aloud over two days.",
+      "plate": "letter",
+      "options": [
+        {
+          "id": "inventory",
+          "label": "Have him read the inventory. Services rendered, losses sustained, in order.",
+          "modes": {
+            "spell": 3,
+            "command": 1
+          },
+          "states": {
+            "fidelity": 3,
+            "notice": 1
+          },
+          "flags": {
+            "rehearsal": "inventory"
+          },
+          "said": "Read it as you wrote it. Numbers, dates, in order. Do not plead.",
+          "written": "I have layd before the Commissioners the whole Rehearsall of my studies and services, with the names of the bookes lost and their value, and they heard me two dayes together, and seemed moved.",
+          "consequence": "They seem moved. The document he read them survives, and it is the reason we know what was in the library at all — an inventory that exists only because the thing inventoried was already gone."
+        },
+        {
+          "id": "ask_post",
+          "label": "Have him ask for a post. Sympathy is not a salary.",
+          "modes": {
+            "command": 3,
+            "promise": 1
+          },
+          "states": {
+            "obedience": 2,
+            "notice": 1
+          },
+          "crown_english": 2,
+          "flags": {
+            "rehearsal": "post"
+          },
+          "said": "Ask for the place, not for justice. They can give one and not the other.",
+          "written": "I have humbly moved for some ecclesiasticall living, that I might have wherewith to live and to follow my studies, and was told my suit should be remembered.",
+          "consequence": "His suit is remembered for three years, and then answered with Manchester — four hundred miles away, in a town that will ask him about witches. The Crown had discovered a way to honour a man and remove him in the same motion."
+        },
+        {
+          "id": "confess",
+          "label": "Have him tell them about us. Openly, on the record, to the Queen’s men.",
+          "modes": {
+            "appear": 1,
+            "spell": 2,
+            "threaten": 1
+          },
+          "states": {
+            "notice": 4,
+            "obedience": 2,
+            "fidelity": 1
+          },
+          "millennium": 1,
+          "flags": {
+            "rehearsal": "angels"
+          },
+          "mark": "PLAUSIBLE-GAP",
+          "said": "Tell them what the work was. All of it. You have never once been ashamed of it.",
+          "written": "I declared unto them somewhat of the Angelicall conferences, and of what hath been promised concerning this realme: whereat they were silent, and wrote nothing downe, and shortly after tooke their leave.",
+          "consequence": "They wrote nothing down. That is the whole mechanism of his ruin in one gesture: not a charge, not a denial, not an argument — an official silence, and then men putting on their coats."
+        }
+      ],
+      "evidence": {
+        "source": "John Dee, The Compendious Rehearsal (November 1592)",
+        "text": "This happened. Sir Thomas Gorge and Sir John Wolley were sent to Mortlake in November 1592 to hear Dee’s case, and he read them a long autobiographical account — the Compendious Rehearsal — setting out his services to the Crown since the 1550s and itemising what the sack of his library had cost. It is our single best source for the size and contents of that collection, and it exists only because the collection had been destroyed. He got sympathy, a little money, and eventually Manchester. The petition genre matters here: an early modern scholar without a salary lived by writing exactly this kind of document, and being heard was not the same as being helped."
+      }
+    },
+    {
       "id": "a26",
       "act": 5,
       "date": "c. 1590",
@@ -1953,6 +2101,74 @@
       "evidence": {
         "source": "Dee's own account; Melvin-Koushki (2021), 75",
         "text": "Dee burned years of the record himself, in a temper, after the world failed to end. This is why the archive is a fragment: what survives is a critical mass, not the whole. The rest of the loss came later and stranger — a chest bought secondhand, a false bottom opened around 1662, and a maid who used a good part of the papers to line pie dishes before Elias Ashmole rescued what was left. Concealment is not preservation. It is a wager on the next householder."
+      }
+    },
+    {
+      "id": "a26b",
+      "act": 5,
+      "date": "1591–1597",
+      "grounding": "ATTESTED",
+      "event": "What became of Edward Kelley",
+      "text": "The reports come in over six years, each worse than the last. Knighted by the Emperor. Rich. Then arrested, because a man who has promised gold to a prince must eventually produce gold. Then out, then arrested again, then dead — a fall, during or after an escape. He is asking you what he should feel about it.",
+      "plate": "kelley",
+      "options": [
+        {
+          "id": "mourn",
+          "label": "Let him grieve. Whatever else the man was, he was there for twenty years.",
+          "modes": {
+            "console": 3
+          },
+          "states": {
+            "obedience": 2,
+            "fidelity": 1
+          },
+          "flags": {
+            "kelley_news": "mourned"
+          },
+          "said": "He was with you longer than most men have friends. Grieve him.",
+          "written": "Newes of the death of Sir Edward Kelley, whom God forgive. I have thought upon our yeares together, and upon the bookes, and have not been able to be glad of it.",
+          "consequence": "Not able to be glad of it. After the covenant, after the wives, after the partnership that cost him his household — he cannot manage satisfaction at the news. That is either grace or exhaustion, and the diary does not distinguish."
+        },
+        {
+          "id": "vindicate",
+          "label": "Use it. The man who ruined the record is dead and cannot contradict you.",
+          "modes": {
+            "command": 2,
+            "promise": 1
+          },
+          "states": {
+            "obedience": 1,
+            "fidelity": -3,
+            "notice": 1
+          },
+          "flags": {
+            "kelley_news": "used"
+          },
+          "said": "Now it is yours alone. Say what the work was, and there is no one left to correct you.",
+          "written": "Being now the onely liver of the two that were called, I purpose to set the whole in order as it was truly delivered, and to leave out such things as were of E.K. his owne adding.",
+          "consequence": "He starts editing. Deciding, at sixty-nine, which parts were Kelley’s additions — which is precisely the judgement no one has ever been able to make, including you, who were supposedly there."
+        },
+        {
+          "id": "nothing_kelley",
+          "label": "Nothing. The channel closed in 1589 and this is only weather now.",
+          "modes": {
+            "withhold": 3
+          },
+          "states": {
+            "fidelity": 2,
+            "obedience": -2
+          },
+          "flags": {
+            "kelley_news": "silence"
+          },
+          "said": "",
+          "written": "Sir Edward Kelley dead in Bohemia, as is reported. Wet all this weeke.",
+          "consequence": "One line, and then the weather. The private diary really does run like this — a death, a debt and a rainstorm given the same number of words, in the same hand, on the same afternoon."
+        }
+      ],
+      "evidence": {
+        "source": "Dee’s private diary; Rudolfine court records; Nummedal on alchemical debt",
+        "text": "Kelley was knighted by Rudolf II around 1590, grew briefly very rich, and was then imprisoned when he could not deliver on the transmutation he had promised — the standard end of a court alchemist’s career, as Tara Nummedal has shown: princely investment created a debt, and the debt was enforced with a cell. He was released, detained again, and died in 1597 after a fall, variously reported as an escape attempt. Dee recorded the news. The register of the private diary is genuinely as flat as the third option here — deaths, debts and weather in adjacent clauses — which is worth knowing before reading any emotion into his silences."
       }
     },
     {

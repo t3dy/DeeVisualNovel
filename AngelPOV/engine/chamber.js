@@ -27,6 +27,7 @@ const EMISSIVE = {
   stone: 2.6, // where you are — small in frame, because you are behind it
   sigil: 4.2, // the authored subject; pulses
   letter: 2.4,
+  page: 1.45, // the open book under Dee's hand -- the only warm thing at his end of the table
   chalk: 0.75,
   grid: 0.22,
   // wood, wax, robes, floor: 0 — ordinary lit surface
@@ -220,6 +221,36 @@ function floorTexture(seed) {
     const a = (Math.PI * 2 * i) / 28;
     markGlyph(ctx, cx + S * 0.425 * Math.cos(a), cy + S * 0.425 * Math.sin(a), 22, rnd);
   }
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
+// The open page under Dee's hand: ruled lines of the same non-semantic marks. This is
+// the thing the whole game is about, so it should look written on rather than blank.
+function pageTexture(seed) {
+  const rnd = mulberry32(seed ^ 0x0dee);
+  const [c, ctx] = canvas2d(256);
+  ctx.fillStyle = '#efe6d2';
+  ctx.fillRect(0, 0, 256, 256);
+  for (let i = 0; i < 260; i++) {
+    ctx.fillStyle = `rgba(150,132,104,${rnd() * 0.16})`;
+    ctx.fillRect(rnd() * 256, rnd() * 256, 1 + rnd() * 5, 1 + rnd() * 3);
+  }
+  ctx.strokeStyle = 'rgba(48,36,24,0.62)';
+  ctx.lineWidth = 1.5;
+  ctx.lineCap = 'round';
+  for (let row = 0; row < 9; row++) {
+    const y = 28 + row * 24;
+    const n = 5 + Math.floor(rnd() * 4);
+    for (let i = 0; i < n; i++) markGlyph(ctx, 30 + i * (196 / n) + rnd() * 6, y, 11, rnd);
+  }
+  ctx.strokeStyle = 'rgba(48,36,24,0.28)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(128, 10);
+  ctx.lineTo(128, 246);
+  ctx.stroke();
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
   return t;
@@ -447,7 +478,7 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
   });
 
   // a floor of near-nothing so the room is not literally black
-  scene.add(new THREE.AmbientLight(0x2a3038, 0.05));
+  scene.add(new THREE.AmbientLight(0x2a3038, 0.09));
   const cold = new THREE.DirectionalLight(0x5b7080, 0.045); // the window, off-frame
   cold.position.set(-3, 2.4, -2);
   scene.add(cold);
@@ -455,7 +486,7 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
   // --- the two men --------------------------------------------------------------
   // Robed silhouettes: a revolved profile and a head. Deliberately unindividuated —
   // no attempt at portraiture, and none of the period images are being reproduced.
-  function figure({ x, z, height, kneeling, facing }) {
+  function figure({ x, z, height, kneeling, facing, writing = false }) {
     const g = new THREE.Group();
     const profile = [];
     const steps = 12;
@@ -468,22 +499,58 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
     }
     const robe = new THREE.Mesh(
       track(new THREE.LatheGeometry(profile, 18)),
-      track(new THREE.MeshStandardMaterial({ color: 0x272227, roughness: 0.95, metalness: 0 }))
+      track(new THREE.MeshStandardMaterial({ color: 0x3a3340, roughness: 0.95, metalness: 0 }))
     );
     const head = new THREE.Mesh(
       track(new THREE.SphereGeometry(0.075, 16, 12)),
-      track(new THREE.MeshStandardMaterial({ color: 0x4a3f34, roughness: 0.9, metalness: 0 }))
+      track(new THREE.MeshStandardMaterial({ color: 0x6b5a49, roughness: 0.9, metalness: 0 }))
     );
     head.position.y = height + 0.055;
     head.scale.set(1, 1.15, 0.95);
     g.add(robe, head);
+
+    // A silhouette alone reads as a lump. Give the man an occupation: a sloped desk and
+    // an open page catching the candle. It is also the whole subject of the game -- the
+    // page is the only thing in this room that survives to be argued about.
+    let page = null;
+    if (writing) {
+      const desk = new THREE.Mesh(
+        track(new THREE.BoxGeometry(0.3, 0.02, 0.22)),
+        track(new THREE.MeshStandardMaterial({ color: 0x241a12, roughness: 0.9 }))
+      );
+      desk.position.set(0, height * 0.88, 0.2);
+      desk.rotation.x = 0.52;
+      page = new THREE.Mesh(
+        track(new THREE.PlaneGeometry(0.21, 0.15)),
+        track(new THREE.MeshBasicMaterial({
+          map: track(pageTexture(seed)), toneMapped: false, side: THREE.DoubleSide,
+        }))
+      );
+      page.material.color.setScalar(EMISSIVE.page);
+      page.position.set(0, height * 0.88 + 0.014, 0.2);
+      page.rotation.set(-Math.PI / 2 + 0.52, 0, 0);
+      const glow = new THREE.PointLight(0xffd9a0, 0.22, 0.9, 2);
+      glow.position.set(0, height * 0.88 + 0.1, 0.16);
+      g.add(desk, page, glow);
+    }
+
     g.position.set(x, 0, z);
     g.rotation.y = facing;
-    return g;
+    return { group: g, head, page, height };
   }
-  const dee = figure({ x: -0.46, z: -1.02, height: 0.88, kneeling: true, facing: 0.55 });
-  const kelley = figure({ x: 0.44, z: -1.08, height: 1.2, kneeling: false, facing: -0.5 });
-  scene.add(dee, kelley);
+  // Dee kneels and writes; Kelley stands over the stone and looks. Positions and facings
+  // put both of them behind the table and turned toward it, so the camera sees two people
+  // attending to the same object rather than two posts in the dark.
+  const dee = figure({ x: -0.66, z: -0.26, height: 0.9, kneeling: true, facing: 1.25, writing: true });
+  const kelley = figure({ x: 0.30, z: -0.92, height: 1.18, kneeling: false, facing: -0.3 });
+  scene.add(dee.group, kelley.group);
+
+  // Separation light: without it both figures merge into the back wall. Sits behind and
+  // above them, aimed forward, dim enough to read as spill rather than a source.
+  const rim = new THREE.DirectionalLight(0x8fa8bd, 1.5);
+  rim.position.set(0, 2.2, -3);
+  rim.target.position.set(0, 0.8, 0);
+  scene.add(rim, rim.target);
 
   // --- the letters that leave the table -----------------------------------------
   // 12 InstancedMeshes (one per mark) rather than one mesh per letter: 12 draw calls
@@ -563,8 +630,12 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
   }
 
   // --- state the content pack drives ------------------------------------------------
-  const target = { candles: 2, letters: 0, figures: 2, sigil: 1, tint: 0xc4a86f };
-  const current = { letters: 0, sigil: 0.001, candles: 2, tintV: new THREE.Color(0xc4a86f) };
+  const target = { candles: 2, letters: 0, figures: 2, sigil: 1, tint: 0xc4a86f, room: 0x0b0a09 };
+  const current = {
+    letters: 0, sigil: 0.001, candles: 2,
+    tintV: new THREE.Color(0xc4a86f),
+    roomV: new THREE.Color(0x0b0a09),
+  };
   let visionUntil = 0;
 
   // `immediate` snaps past the easing. Used by the fixed-view visual contract (a
@@ -576,11 +647,14 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
     if (typeof s.figures === 'number') target.figures = s.figures;
     if (typeof s.sigil === 'number') target.sigil = s.sigil;
     if (typeof s.tint === 'number') target.tint = s.tint;
+    if (typeof s.room === 'number') target.room = s.room;
     if (immediate) {
       current.sigil = target.sigil;
       current.letters = target.letters;
       current.candles = target.candles;
       current.tintV.set(target.tint);
+      current.roomV.set(target.room);
+      applyRoom();
       if (reduced) frame(0.016, clock.elapsedTime);
     }
   }
@@ -588,6 +662,14 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
   // A flare, for when the player chooses to appear.
   function pulse(strength = 1) {
     visionUntil = performance.now() + 1400 * strength;
+  }
+
+  // Walls and fog carry the act as much as the sigil does. Mortlake is cold slate,
+  // Prague is gold-brown, Trebon is ember, the late acts go grey and then nearly out.
+  function applyRoom() {
+    roomMat.color.copy(current.roomV);
+    scene.fog.color.copy(current.roomV).multiplyScalar(0.35);
+    scene.background.copy(scene.fog.color);
   }
 
   // --- loop --------------------------------------------------------------------------
@@ -613,6 +695,8 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
     current.letters += (target.letters - current.letters) * ease(1.6);
     current.candles += (target.candles - current.candles) * ease(2.6);
     current.tintV.lerp(new THREE.Color(target.tint), ease(1.4));
+    current.roomV.lerp(new THREE.Color(target.room), ease(1.0));
+    applyRoom();
 
     // the sigil breathes; the vision drives it hard
     const pulseAmt = 0.72 + 0.28 * Math.sin(t * 0.85) + v * 2.4;
@@ -637,8 +721,16 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
       c.flame.scale.set(0.8 * f, 1.6 * f, 0.8 * f);
     });
 
-    dee.visible = target.figures >= 1;
-    kelley.visible = target.figures >= 2;
+    dee.group.visible = target.figures >= 1;
+    kelley.group.visible = target.figures >= 2;
+
+    // Idle motion, small enough to be felt rather than watched: Dee's head dips and
+    // lifts as he copies; Kelley leans in over the stone and holds, then eases back.
+    dee.head.rotation.x = 0.22 + Math.sin(t * 0.9) * 0.1 + Math.sin(t * 2.7) * 0.03;
+    if (dee.page) dee.page.material.color.setScalar(EMISSIVE.page * (0.92 + 0.08 * Math.sin(t * 7.1)));
+    const lean = 0.12 + 0.1 * Math.sin(t * 0.42) + v * 0.25;
+    kelley.group.rotation.x = lean * 0.35;
+    kelley.head.rotation.x = lean;
 
     // letters: rise off the table, orbit, and face the camera
     const shown = Math.round(current.letters);

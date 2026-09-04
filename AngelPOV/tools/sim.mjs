@@ -10,6 +10,7 @@ const base = new URL('../', import.meta.url);
 const { pack } = await import(new URL('content/pack.js', base));
 const data = JSON.parse(readFileSync(new URL('content/choices.json', base), 'utf8'));
 const NODES = data.choices;
+const MIN_RUN = 22;
 
 function run(pick) {
   const s = new State(pack);
@@ -67,9 +68,12 @@ for (const [name, pick] of Object.entries(strategies)) {
     const { s, ending } = run(pick);
     seen.set(ending.id, (seen.get(ending.id) || 0) + 1);
     const n = s.history.length;
-    if (n < 22 || n > 34) {
+    // Derived, not hardcoded: the ceiling is everything authored, and the floor is the
+    // shortest legitimate life (the England branch forecloses Krakow, Prague, Trebon and
+    // the covenant). A run outside this either terminated early or looped.
+    if (n < MIN_RUN || n > NODES.length) {
       fail++;
-      console.log(`  FAIL ${name}: ${n} nodes`);
+      console.log(`  FAIL ${name}: ${n} nodes (expected ${MIN_RUN}..${NODES.length})`);
     }
     for (const h of s.history) {
       if (h.consequence == null) { fail++; console.log(`  FAIL ${h.id}: no consequence`); }

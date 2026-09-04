@@ -67,7 +67,7 @@ The empire is not resting on anyone yet.
 Channel, instrument, world, and which throne currently carries the weight. Everything is
 normalised per choice made, so it reads the same at choice 3 as at choice 28.
 
-**An evidence note on every one of the 34 scenes**, collapsed by default, opening into
+**An evidence note on every one of the 37 scenes**, collapsed by default, opening into
 what the scene rests on and what you would need to know to read it properly: the
 manuscript or the scholar, where the record goes silent, where the game has compressed
 its chronology and admits it, and the context — courtly patronage, the economics of
@@ -94,20 +94,53 @@ screen says so outright rather than letting you infer it later:
   Elizabeth's, Rudolf's, Murad's, and how near you have promised the end.
 - **Grounding marks on every scene** — *the record holds this · the record is silent
   here · as the age went · so it was later told · so it might have been.*
-- **34 nodes authored, 25–32 played** depending on foreclosure. Six acts, 1581 to 1608
-  and elsewhere. A run is about 12 minutes.
+- **37 nodes authored, 26–35 played** depending on foreclosure. Six acts, 1581 to 1608
+  and elsewhere. A run is about 13 minutes.
 
 **Eight endings**, chosen by relative dominance against measured norms. The documented
 outcome is not privileged among them. The eastward road is rare and has to be built out
 of everything you decline to say, twenty years before you can take it.
 
+## The second pass
+
+**Act 5 was thin** — five scenes for the seven years in which everything collapses. Three
+more, all of which needed writing anyway:
+
+- **August 1588, the wind.** The Armada is scattered and everyone in Europe is assigning
+  credit for the weather. This is the game's one `so it was later told` scene, because the
+  story that Dr Dee raised that storm is a much later invention supported by nothing
+  contemporary — and chronologically awkward, since Dee was not in England in 1588 at all.
+  He was at Třeboň. You can watch the legend being manufactured, or decline it.
+- **22 November 1592, the commissioners.** Two Crown officers sit in his house and hear
+  him out over two days — the only hearing he ever gets. He reads them the *Compendious
+  Rehearsal*, which is why we know what was in the library: an inventory that exists only
+  because the thing inventoried was gone.
+- **1591–1597, what became of Kelley.** Knighted, rich, imprisoned for failing to produce
+  the gold he had promised, dead after a fall. The standard arc of a court alchemist's
+  career, and Dee is asked what to feel about it.
+
+**The thrones are now compared against their own rates.** There are simply more chances to
+load England than Prague, so comparing raw totals handed England the verdict by default
+(35% of runs, with Prague at 9%). `crownNorms` fixes it the same way the states are
+handled — measured means, ratios, and the same shared function used by both the ending
+and the orientation line, so they can never disagree about who the empire is resting on.
+
+**And the ending asks for a report.** "Tell us how it played" opens a GitHub issue
+prefilled with the run's fingerprint — the outcome, the number of choices, the mode you
+leaned on — so a playtest note arrives already knowing which run it is about.
+
 ## The chamber
 
 Behind the text, a three.js scrying chamber rendered **from inside the shew-stone,
 looking out**: the Holy Table on its four wax seals, the Sigillum Dei Aemeth as heptagram
-geometry, chalk circles, candlelight, letters rising off the table, and two robed figures
-who are the reason you are here. It changes with the act and flares when you choose to
-appear.
+geometry, chalk circles, candlelight, letters rising off the table, and the two men.
+
+Dee sits at the side of the table with a sloped desk and an open page catching the candle
+— the page being the only thing in the room that survives to be argued about — and his
+head dips and lifts as he copies. Kelley stands over the stone and leans in. They are
+deliberately unindividuated: this is a grimoire diagram that moves, not portraiture, and
+no attempt is made to reproduce any period image of either man. The walls and fog take
+the act's colour too, so Mortlake, Prague and Třeboň are different rooms.
 
 Built procedurally, no assets, no build step. It degrades all the way down — WebGL2 →
 WebGL1 → reduced-motion still frame → no canvas at all — and **the game is completely
@@ -161,9 +194,9 @@ show), and that no node requires a flag nothing sets.
 Current distribution over 4,000 random runs — nothing unreachable, nothing dominant:
 
 ```
-tides_and_title 24.9% · habsburg_silence 17.6% · true_and_faithful 15.8%
-long_way_round 14.1% · the_covenant 9.4% · stone_goes_dark 7.4%
-the_year_that_came 6.5% · sultans_angels 4.1%
+tides_and_title 24.9% · habsburg_silence 19.7% · true_and_faithful 14.8%
+long_way_round 10.5% · the_covenant 10.1% · the_year_that_came 9.2%
+stone_goes_dark 7.2% · sultans_angels 3.6%
 ```
 
 ## Where things live
@@ -174,8 +207,8 @@ generated copy, assembled by `../tools/build_deploy.py` along with the rest of t
 
 - [DESIGN.md](DESIGN.md) — the premise and its source, the POV inversion table, the
   systems, the eight endings, the chamber's visual contract, and why the engine is forked.
-- `content/choices.json` — 34 nodes; every option carries `said`, `written` and
-  `consequence`.
+- `content/choices.json` — 37 nodes; every option carries `said`, `written` and
+  `consequence`, and every scene carries an `evidence` note.
 - `engine/chamber.js` — the three.js chamber, with its emissive hierarchy documented at
   the top.
 
