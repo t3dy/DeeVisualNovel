@@ -42,6 +42,16 @@ for (const n of NODES) {
   if (n.plate && !registry.plates[n.plate]) E(`${at}: plate "${n.plate}" not in registry`);
   if (!n.options || n.options.length < 2) E(`${at}: needs at least 2 options`);
 
+  // The apparatus is shipped content, not a nice-to-have: every scene must carry its
+  // evidence note, and every note must name what it rests on.
+  if (!n.evidence) E(`${at}: no evidence note`);
+  else {
+    if (!n.evidence.source) E(`${at}: evidence has no source`);
+    if (!n.evidence.text) E(`${at}: evidence has no text`);
+    else if (words(n.evidence.text) < 45)
+      W(`${at}: evidence is thin (${words(n.evidence.text)} words)`);
+  }
+
   const oids = new Set();
   for (const o of n.options || []) {
     const ot = `${at}/${o.id}`;
@@ -60,6 +70,7 @@ for (const n of NODES) {
       if (!pack.hiddenStates.includes(k)) E(`${ot}: unknown state "${k}"`);
     for (const k of Object.keys(o.gate_min || {}))
       if (!pack.quantities.includes(k)) E(`${ot}: gate_min on unknown quantity "${k}"`);
+    if (o.mark && !MARKS.includes(o.mark)) E(`${ot}: unknown option mark "${o.mark}"`);
     if (!o.modes || !Object.keys(o.modes).length)
       if (o.said !== '') W(`${ot}: no modes — an utterance with no manner`);
   }
@@ -96,6 +107,31 @@ for (const n of NODES) {
     const settable = NODES.some((m) => (m.options || []).some((o) => o.flags && k in o.flags));
     if (!settable) E(`${n.id}: requires flag "${k}" that no option ever sets`);
   }
+}
+
+// --- orientation -----------------------------------------------------------------------
+if (typeof pack.stateReading !== 'function') E('pack has no stateReading()');
+else {
+  const probe = (hist, st, q) =>
+    pack.stateReading({ history: new Array(hist), states: st, quantities: q });
+  const zero = { fidelity: 0, obedience: 0, notice: 0 };
+  const zq = { crown_english: 0, crown_imperial: 0, crown_ottoman: 0, millennium: 0 };
+  for (const [h, st, q] of [
+    [0, zero, zq],
+    [1, { fidelity: -4, obedience: -3, notice: -2 }, zq],
+    [30, { fidelity: 60, obedience: 70, notice: 40 }, { crown_english: 9, crown_imperial: 9, crown_ottoman: 2, millennium: 12 }],
+  ]) {
+    const r = probe(h, st, q);
+    if (!Array.isArray(r) || r.length < 4) E(`stateReading returned ${JSON.stringify(r)} for ${h} nodes`);
+    if (r.some((line) => typeof line !== 'string' || !line.trim()))
+      E(`stateReading produced an empty line at ${h} nodes`);
+  }
+}
+if (!Array.isArray(pack.howItWorks) || !pack.howItWorks.length) W('pack has no howItWorks');
+for (const k of ['design', 'dee', 'portal']) {
+  const u = pack.links && pack.links[k];
+  if (!u) E(`pack.links.${k} missing`);
+  else if (!/^https?:\/\//.test(u)) E(`pack.links.${k} must be absolute (GitHub Pages serves .md as a download)`);
 }
 
 // --- report ---------------------------------------------------------------------------

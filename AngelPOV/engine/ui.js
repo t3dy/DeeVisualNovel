@@ -51,11 +51,39 @@ const MARKS = {
   COUNTERFACTUAL: 'so it might have been',
   'INVENTED-COMPATIBLE': 'here we imagine',
 };
+// How far from the documented record each mark sits. Used to decide whether a choice
+// has moved the player somewhere the scene itself was not.
+const MARK_RANK = {
+  ATTESTED: 0,
+  CONTEXT: 1,
+  'PLAUSIBLE-GAP': 2,
+  LEGEND: 2,
+  'INVENTED-COMPATIBLE': 3,
+  COUNTERFACTUAL: 4,
+};
+const markText = (m) => MARKS[m] || m;
+
+// The apparatus: what this scene rests on, where the record stops, and the context you
+// would need to read it properly. Collapsed by default — a 12-minute run stays a
+// 12-minute run, and everything is there for anyone who wants it.
+function evidenceHtml(node) {
+  if (!node.evidence) return '';
+  return `
+    <details class="evidence">
+      <summary><span class="ev-label">the evidence</span><span class="ev-src">${esc(
+        node.evidence.source
+      )}</span></summary>
+      <p>${esc(node.evidence.text)}</p>
+    </details>`;
+}
 
 // --- title ------------------------------------------------------------------
 
 export function renderTitle(pack, hasSave, { onStart, onResume }) {
   setPalette('stone');
+  const how = (pack.howItWorks || [])
+    .map((p) => `<li>${esc(p)}</li>`)
+    .join('');
   shell(`
     <article class="card title-card">
       ${plateHtml(pack.frontispiece, 'frontispiece')}
@@ -63,6 +91,7 @@ export function renderTitle(pack, hasSave, { onStart, onResume }) {
       <h1>${esc(pack.title)}</h1>
       <p class="tagline">${esc(pack.tagline)}</p>
       <p class="premise">${esc(pack.premise)}</p>
+      ${how ? `<h4>How this works</h4><ul class="how">${how}</ul>` : ''}
       <div class="actions">
         ${hasSave ? '<button class="primary" id="resume">Continue</button>' : ''}
         <button class="${hasSave ? '' : 'primary'}" id="start">Answer him</button>
@@ -93,7 +122,7 @@ export function renderActIntro(act, onContinue, diagram) {
 
 // --- choice ------------------------------------------------------------------
 
-export function renderChoice(node, act, state, options, { onPick, progress, plate }) {
+export function renderChoice(node, act, state, options, { onPick, progress, plate, reading }) {
   setPalette(act.palette);
   const opts = options
     .map(
@@ -106,18 +135,22 @@ export function renderChoice(node, act, state, options, { onPick, progress, plat
   const modes = Object.entries(state.modes)
     .map(([m, n]) => `<li><span>${esc(m)}</span><i style="--n:${Math.min(n, 8)}"></i><b>${n}</b></li>`)
     .join('');
+  const readingHtml = (reading || []).map((r) => `<li>${esc(r)}</li>`).join('');
   shell(`
     <article class="card choice-card">
       <header class="scene-head">
         <p class="eyebrow">Act ${act.n} &middot; ${esc(node.date)}</p>
-        <p class="mark" title="${esc(node.grounding)}">${esc(MARKS[node.grounding] || node.grounding)}</p>
+        <p class="mark" title="grounding: ${esc(node.grounding)}">${esc(markText(node.grounding))}</p>
       </header>
       ${plateHtml(plate)}
       <p class="scene">${esc(node.text)}</p>
       <div class="options">${opts}</div>
       <footer class="panel">
-        <ul class="modes">${modes}</ul>
-        <p class="progress">${progress.done} of ${progress.total}</p>
+        ${readingHtml ? `<ul class="reading">${readingHtml}</ul>` : ''}
+        <div class="panel-row">
+          <ul class="modes">${modes}</ul>
+          <p class="progress">choice ${progress.done} &middot; act ${act.n} of ${progress.acts}<span class="hint">number keys choose</span></p>
+        </div>
       </footer>
     </article>`);
   const map = {};
@@ -131,7 +164,7 @@ export function renderChoice(node, act, state, options, { onPick, progress, plat
 // --- THE TRANSMISSION BEAT ---------------------------------------------------
 // What you said, and what he wrote down. The gap is the game.
 
-export function renderTransmission(node, act, entry, drifted, onContinue) {
+export function renderTransmission(node, act, entry, drifted, option, onContinue) {
   setPalette(act.palette);
   const said = entry.said
     ? `<p class="said">${esc(entry.said)}</p>`
@@ -139,6 +172,16 @@ export function renderTransmission(node, act, entry, drifted, onContinue) {
   const written = entry.written
     ? `<p class="written">${esc(entry.written)}</p>`
     : `<p class="written empty">— no entry for this night —</p>`;
+
+  // If THIS choice sits further from the record than the scene did, say so here, at the
+  // moment it happens, rather than leaving the player to infer it later.
+  const om = option && option.mark;
+  const stepped = om && (MARK_RANK[om] ?? 0) > (MARK_RANK[node.grounding] ?? 0);
+  const steppedHtml = stepped
+    ? `<p class="stepped"><span>${esc(markText(om))}</span> — the scene is documented; this
+       answer is not. You have moved off the record.</p>`
+    : '';
+
   shell(`
     <article class="card transmission-card">
       <div class="channel">
@@ -152,7 +195,9 @@ export function renderTransmission(node, act, entry, drifted, onContinue) {
         </div>
       </div>
       ${drifted ? '<p class="drift">the channel is authoring you</p>' : ''}
+      ${steppedHtml}
       <p class="outcome">${esc(entry.consequence)}</p>
+      ${evidenceHtml(node)}
       <div class="actions"><button class="primary" id="go">Continue</button></div>
     </article>`);
   el('go').onclick = onContinue;
@@ -187,7 +232,10 @@ export function renderEnding(pack, ending, state, { onRestart, plate }) {
       <div class="actions"><button class="primary" id="again">Say it differently</button></div>
       <p class="note">Eight outcomes. The documented one is not privileged among them, and the
         one marked <em>so it might have been</em> is Melvin-Koushki&rsquo;s counterfactual, not
-        the record&rsquo;s.</p>
+        the record&rsquo;s. The sources and the reasoning are in
+        <a href="${esc(pack.links.design)}">the design record</a>; the same twenty-seven years
+        from John Dee&rsquo;s side are in <a href="${esc(pack.links.dee)}">Imperial Magus</a>,
+        and the research companion is <a href="${esc(pack.links.portal)}">the Dee Portal</a>.</p>
     </article>`);
   el('again').onclick = onRestart;
   keys({ Enter: onRestart, ' ': onRestart });

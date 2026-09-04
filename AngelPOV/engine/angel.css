@@ -50,7 +50,32 @@ body[data-palette="faded"]      { --ground:#0c0d0d; --card:rgba(20,21,21,.965); 
   opacity: 0;
   transition: opacity 1600ms ease;
 }
-#chamber.ready { opacity: 1; }
+/* The chamber is atmosphere, not competition. At tall viewports the card covers only
+   part of the screen and the lit table sits directly behind the state reading, so the
+   canvas is held back and a scrim is laid over it. Verified at 900x1400. */
+#chamber.ready { opacity: .72; }
+
+/* Scrim: paints above the canvas (same z-index, later in DOM order) and below #app.
+   Darkest through the centre column where the card sits; the chamber still reads at
+   the edges. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(to right,
+      rgba(6, 7, 10, 0.15) 0%,
+      rgba(6, 7, 10, 0.72) 26%,
+      rgba(6, 7, 10, 0.72) 74%,
+      rgba(6, 7, 10, 0.15) 100%),
+    linear-gradient(to bottom,
+      rgba(6, 7, 10, 0.45) 0%,
+      rgba(6, 7, 10, 0.10) 35%,
+      rgba(6, 7, 10, 0.55) 100%);
+}
+body.no-chamber::after { display: none; }
 /* No WebGL, or reduced motion: a still ground that still reads as a dark room. */
 body.no-chamber {
   background:
@@ -85,6 +110,13 @@ h4 { font-size: .82rem; margin: 1.2rem 0 .35rem; letter-spacing: .14em; text-tra
 .premise, .act-text, .scene, .ending-text { margin: 0 0 1.25rem; }
 .act-text { font-style: italic; }
 .note { font-size: .8rem; color: var(--ink-2); margin: 1.4rem 0 0; border-top: 1px solid var(--rule); padding-top: .8rem; }
+.note a { color: var(--gold); }
+
+/* --- title screen: how this works ------------------------------------------ */
+.how { list-style: none; margin: 0 0 1.4rem; padding: 0; display: flex;
+  flex-direction: column; gap: .7rem; }
+.how li { font-size: .88rem; line-height: 1.6; color: var(--ink-2);
+  padding-left: .85rem; border-left: 2px solid var(--rule); }
 
 /* --- the act mark ---------------------------------------------------------- */
 .act-mark { margin: 0 0 1.4rem; display: flex; justify-content: center; }
@@ -131,9 +163,17 @@ button.primary:hover { filter: brightness(1.12); }
   border: 1px solid var(--rule); border-radius: 2px; padding: .6rem 1.4rem; }
 .actions button:not(.primary):hover { border-color: var(--gold); }
 
-/* --- the panel: the seven modes, quiet ------------------------------------- */
+/* --- the panel: orientation first, then the seven modes -------------------- */
 .panel { border-top: 1px solid var(--rule); padding-top: .8rem; display: flex;
-  justify-content: space-between; align-items: flex-end; gap: 1rem; }
+  flex-direction: column; gap: .9rem; }
+.panel-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+
+/* The qualitative state reading. No numbers, by design: the player should be able to
+   feel the trend without being able to min-max it. See pack.stateReading(). */
+.reading { list-style: none; margin: 0; padding: 0 0 0 .85rem; border-left: 2px solid var(--rule); }
+.reading li { font-size: .82rem; line-height: 1.55; color: var(--ink-2); }
+.reading li:first-child { color: var(--said); }
+.reading li:last-child { color: var(--gold); font-style: italic; }
 .modes { list-style: none; margin: 0; padding: 0; display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .15rem 1.1rem; flex: 1; }
 .modes li { display: grid; grid-template-columns: 4.8rem 1fr 1.1rem; align-items: center; gap: .4rem;
@@ -142,7 +182,8 @@ button.primary:hover { filter: brightness(1.12); }
 .modes i { height: 2px; background: var(--rule); position: relative; }
 .modes i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--n) / 8 * 100%); background: var(--gold); }
 .modes b { font-weight: 500; font-size: .7rem; text-align: right; }
-.progress { margin: 0; font-size: .72rem; color: var(--ink-2); white-space: nowrap; }
+.progress { margin: 0; font-size: .72rem; color: var(--ink-2); white-space: nowrap; text-align: right; }
+.progress .hint { display: block; opacity: .55; font-size: .66rem; letter-spacing: .06em; }
 
 /* --- THE TRANSMISSION BEAT -------------------------------------------------
    The load-bearing screen. What you said, and what he wrote down, side by side,
@@ -179,8 +220,28 @@ button.primary:hover { filter: brightness(1.12); }
 .drift { margin: -1.2rem 0 2rem; font-size: .72rem; letter-spacing: .1em;
   text-transform: uppercase; color: var(--written); opacity: .75; }
 
-.outcome { color: var(--ink); font-size: 1.02rem; line-height: 1.7; margin: 0 0 2rem;
+.outcome { color: var(--ink); font-size: 1.02rem; line-height: 1.7; margin: 0 0 1.6rem;
   border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+
+/* Told at the moment it happens: this scene is documented, this answer is not. */
+.stepped { margin: -1rem 0 1.6rem; font-size: .8rem; line-height: 1.55; color: var(--gold);
+  border: 1px dashed var(--gold); border-radius: 2px; padding: .6rem .8rem; opacity: .9; }
+.stepped span { font-variant: small-caps; letter-spacing: .06em; font-weight: 600; }
+
+/* --- the apparatus: collapsed by default ---------------------------------- */
+.evidence { margin: 0 0 1.8rem; border-top: 1px solid var(--rule); }
+.evidence summary { cursor: pointer; list-style: none; padding: .7rem 0 .2rem;
+  display: flex; align-items: baseline; gap: .6rem; flex-wrap: wrap; }
+.evidence summary::-webkit-details-marker { display: none; }
+.evidence summary::before { content: "\25b8"; color: var(--gold); font-size: .7rem;
+  transition: transform 160ms ease; display: inline-block; }
+.evidence[open] summary::before { transform: rotate(90deg); }
+.evidence .ev-label { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold); }
+.evidence .ev-src { font-size: .74rem; font-style: italic; color: var(--ink-2); }
+.evidence summary:hover .ev-src { color: var(--ink); }
+.evidence p { margin: .5rem 0 1rem; font-size: .86rem; line-height: 1.68; color: var(--ink-2);
+  padding-left: 1.15rem; border-left: 1px solid var(--rule); }
 
 /* --- ending ---------------------------------------------------------------- */
 .epilogue { border-left: 2px solid var(--rule); padding-left: 1rem; color: var(--ink-2); }
@@ -199,7 +260,8 @@ button.primary:hover { filter: brightness(1.12); }
   .card { padding: 1.4rem 1.25rem; }
   h1 { font-size: 1.6rem; }
   .modes { grid-template-columns: 1fr; }
-  .panel { flex-direction: column; align-items: stretch; }
+  .panel-row { flex-direction: column; align-items: stretch; gap: .8rem; }
+  .progress { text-align: left; }
   .shelf li { grid-template-columns: 1fr; gap: .1rem; }
 }
 

@@ -48,6 +48,40 @@ turned into a verb.
 
 **You cannot verify your own transmission. Neither can anyone else, ever.**
 
+## Orientation, and the apparatus
+
+Two things were added after the first playtest build, because a game that hides
+everything is not mysterious, it is just confusing.
+
+**A qualitative state reading, under every scene.** The three hidden states are still
+never shown as numbers — the series rule is that you cannot optimize what you cannot see
+— but you are told, in plain language, where you stand:
+
+```
+Your words are reaching him whole.
+He obeys before he has understood.
+Nobody outside this room is listening.
+The empire is not resting on anyone yet.
+```
+
+Channel, instrument, world, and which throne currently carries the weight. Everything is
+normalised per choice made, so it reads the same at choice 3 as at choice 28.
+
+**An evidence note on every one of the 34 scenes**, collapsed by default, opening into
+what the scene rests on and what you would need to know to read it properly: the
+manuscript or the scholar, where the record goes silent, where the game has compressed
+its chronology and admits it, and the context — courtly patronage, the economics of
+alchemy, the Adamic-language research programme, apocalyptic politics — that makes the
+scene legible. Written for a mixed audience: a stranger to the period is never lost, and
+a specialist gets the citation.
+
+**And a flag the moment you leave the record.** Scenes carry a grounding mark; so do
+individual answers. When the scene is documented but your answer is not, the transmission
+screen says so outright rather than letting you infer it later:
+
+> **so it might have been** — the scene is documented; this answer is not. You have moved
+> off the record.
+
 ## Systems
 
 - **Seven modes of appearing** — *appear, spell, threaten, promise, command, withhold,
@@ -112,6 +146,11 @@ node tools/dist.mjs 4000
 node tools/lint.mjs
 ```
 
+`lint` also holds the apparatus to account: every scene must carry an evidence note with
+a named source, no `said` may equal its `written`, option marks must be real grounding
+codes, and `stateReading()` must return usable lines at choice 0, at negative states, and
+at the top of the range.
+
 `sim` proves every run reaches an ending and all eight are reachable by deliberate play.
 `dist` is the calibration instrument — it is the reason the endings use relative
 dominance rather than fixed thresholds, and it caught the counterfactual firing in 66%
@@ -122,9 +161,9 @@ show), and that no node requires a flag nothing sets.
 Current distribution over 4,000 random runs — nothing unreachable, nothing dominant:
 
 ```
-tides_and_title 24.7% · habsburg_silence 17.6% · true_and_faithful 15.8%
-long_way_round 15.0% · the_covenant 9.9% · stone_goes_dark 7.7%
-the_year_that_came 5.3% · sultans_angels 3.9%
+tides_and_title 24.9% · habsburg_silence 17.6% · true_and_faithful 15.8%
+long_way_round 14.1% · the_covenant 9.4% · stone_goes_dark 7.4%
+the_year_that_came 6.5% · sultans_angels 4.1%
 ```
 
 ## Where things live

@@ -6,14 +6,14 @@
 //   2. a three.js chamber runs behind everything, driven by the act — and its absence
 //      is a supported state, not an error.
 
-import { State } from './state.js?v=8';
+import { State } from './state.js?v=13';
 import {
   renderTitle,
   renderActIntro,
   renderChoice,
   renderTransmission,
   renderEnding,
-} from './ui.js?v=8';
+} from './ui.js?v=13';
 
 // --- the chamber, loaded lazily and allowed to fail --------------------------
 async function bootChamber() {
@@ -21,7 +21,7 @@ async function bootChamber() {
   const canvas = document.getElementById('chamber');
   if (!canvas || q.get('flat') === '1') return null;
   try {
-    const { createChamber } = await import('./chamber.js?v=8');
+    const { createChamber } = await import('./chamber.js?v=13');
     const ch = createChamber(canvas, {
       seed: Number(q.get('seed')) || 1583,
       debug: q.get('debug') === '1',
@@ -79,10 +79,12 @@ export async function boot(pack) {
   function currentNode() {
     return remaining()[0] || null;
   }
-  // Honest progress: foreclosure changes the length of a run, so report the real total
-  // rather than the pack's nominal one.
+  // Honest progress. The run length genuinely is not knowable mid-run -- choosing to
+  // cross to the Continent at a10 unlocks eight nodes at once, so a "9 of 21" would
+  // become "9 of 30" one screen later. Report the act instead, which is stable, plus
+  // the count of choices actually made.
   function progress() {
-    return { done: state.history.length + 1, total: state.history.length + remaining().length };
+    return { done: state.history.length + 1, acts: ACTS.length };
   }
 
   function step() {
@@ -109,6 +111,8 @@ export async function boot(pack) {
     renderChoice({ ...node, text: sceneText(node, state) }, act, state, opts, {
       progress: progress(),
       plate: plate(node.plate),
+      // Qualitative, in-fiction orientation. The numbers stay hidden; see pack.stateReading.
+      reading: pack.stateReading ? pack.stateReading(state) : null,
       onPick: (option) => {
         // Did the channel author this one? Decided BEFORE the choice is applied, since
         // applyChoice moves fidelity.
@@ -124,7 +128,14 @@ export async function boot(pack) {
         }
 
         screen = 'transmission';
-        renderTransmission(node, act, state.history[state.history.length - 1], drifted, () => step());
+        renderTransmission(
+          node,
+          act,
+          state.history[state.history.length - 1],
+          drifted,
+          option, // carries `mark` when this answer steps off the record
+          () => step()
+        );
       },
     });
   }

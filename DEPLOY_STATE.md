@@ -57,3 +57,23 @@ this repo except its `KEEP` set, and `KEEP` was `{".git"}`. Since the script nev
 generates `README.md` or `DEPLOY_STATE.md`, every export was quietly deleting both. `KEEP`
 is now `{".git", "README.md", "DEPLOY_STATE.md", ".nojekyll"}`. Anything else you
 hand-maintain in this repo must be added to `KEEP` too.
+
+## Gotcha: never run the export with anything open inside the deploy tree
+
+`clean_target()` empties `DeeVisualNovel/` of everything outside `KEEP` before rebuilding
+it. On Windows a directory cannot be deleted while any process has it as a working
+directory, so a terminal sitting in `DeeVisualNovel/AngelPOV/`, an editor with a file open
+there, or a `python -m http.server` serving it will make the delete fail.
+
+It used to fail *halfway*: on 2026-09-04 an export gutted `AngelPOV/` (28 files) and then
+aborted, because a shell was cd'd into it. Nothing was lost -- the canonical source is
+here -- but the deploy tree was left broken.
+
+`clean_target()` is now **all-or-nothing**: it renames every entry out of the way first,
+which fails against exactly the same locks a delete would but destroys nothing, rolls the
+renames back, and exits with a message naming the likely cause. Only once every entry has
+been renamed does it delete. Verified by holding a lock and confirming a seeded 75-file
+tree came through untouched.
+
+If you see `build_deploy: aborted with ... untouched`, close whatever is inside the deploy
+tree and run it again. Nothing was deleted.

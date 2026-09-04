@@ -56,6 +56,43 @@ scholarship (Harkness; Clucas; Parry), rendered as a verb instead of a footnote.
 **Design consequence:** the player experiences the historiographical problem from the
 inside. You cannot verify your own transmission. Neither can anyone else, ever.
 
+## 2b. Orientation and apparatus (added in the playtest pass)
+
+The first build hid everything, and hiding everything turned out to read as confusion
+rather than mystery. Two additions fix that without giving up the series rule.
+
+**`pack.stateReading(s)`** returns four short in-fiction lines — channel, instrument,
+world, empire — banded around the means `tools/dist.mjs` measures, and normalised per
+choice made so it reads identically early and late. No numerals ever reach the screen.
+The player can feel a trend and still cannot min-max it, which was the point of hiding
+the states in the first place.
+
+**`node.evidence`** — `{ source, text }` on all 34 scenes, rendered collapsed on the
+transmission screen. Its job is four-fold and every note does at least two of them:
+
+1. name the manuscript or the scholarship the scene rests on;
+2. say where the record goes silent, and where *the game* has compressed or invented —
+   a09 confesses that the Watchtower material actually arrives at Kraków in 1584, not at
+   Mortlake in 1583;
+3. supply the history-of-science or court context a reader needs — what a nuncio was for,
+   why aristocrats funded alchemy, why the Adamic language was a research programme and
+   not a whim, why 1588 was already loaded before Dee said anything;
+4. flag where a claim everyone repeats is thinner than it looks. Kelley's cropped ears
+   are the standing example: universally retold, including by this game, and not actually
+   documented.
+
+**Per-option grounding marks.** `option.mark` carries a grounding code. The transmission
+screen compares its rank against the scene's and, when the answer sits further from the
+record than the scene did, says so at the moment it happens. This is why a11 is graded
+`PLAUSIBLE-GAP` and not `COUNTERFACTUAL`: the scene (Dee pressing about the purpose of
+the work) is plausible, the specific answers are not, and grading the whole node
+counterfactual made the per-answer flags unreachable — nothing can step further than the
+scene has already stepped.
+
+**Progress is reported as act, not as a fraction.** A run's length is genuinely unknown
+mid-run: choosing to cross at a10 unlocks eight nodes at once, so "9 of 21" would become
+"9 of 30" one screen later. The counter now reads `choice 9 · act 2 of 6`.
+
 ## 3. Systems
 
 **Modes (seven).** Every one is documented angelic behaviour in the *Mysteriorum Libri* /
@@ -87,14 +124,14 @@ required for the Ottoman route — Dee will not go east for a God who admits to 
 | 5 | Eighty-Eight | 1588-1595 | the road home |
 | 6 | Where We Put It | 1595-1608, and elsewhere | Mortlake — or the passage east |
 
-34 nodes authored, 30 played per run.
+34 nodes authored; 25-32 played per run, depending on foreclosure.
 
 ## 5. Endings (eight)
 
 1. **The Sultan's Angels** — *so it might have been.* The Ottoman route. Requires the
    ottoman vector loaded, Dee desperate, and the objective concealed throughout.
 2. **The Long Way Round** — *so it was later told.* No millennium; but the phrase Dee
-   coined runs a quarter of the earth by 1899, and the Golden Dawn works your tables.
+   coined runs a quarter of the earth, and the Golden Dawn (founded 1888) works your tables.
 3. **A True & Faithful Relation** — *the record holds this.* High notice, high fidelity:
    Casaubon prints you in 1659 to prove you were devils, and so keeps every word forever.
 4. **The Covenant** — *the record holds this.* The channel spent on the wives.

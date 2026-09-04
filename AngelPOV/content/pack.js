@@ -1,4 +1,4 @@
-import { SIGILS } from './sigils.js?v=8';
+import { SIGILS } from './sigils.js?v=13';
 
 // pack.js — the angelic content pack for "Spoken Backward".
 // Sister to protagonists/dee/content/pack.js: same century, same room, inverted POV.
@@ -63,6 +63,81 @@ export const pack = {
       6: SIGILS.tahawi,     // the circle drawn in Isfahan in 1432
     }[act.n];
   },
+
+  // --- orientation ----------------------------------------------------------
+  // The three states stay hidden as numbers -- the series rule is that you cannot
+  // optimize what you cannot see -- but the player is given a QUALITATIVE, in-fiction
+  // reading of them, because being disoriented is not the same as being unable to
+  // min-max. Everything is normalised per choice made, so it reads the same at node 3
+  // as at node 28. Bands sit around the means measured by tools/dist.mjs.
+  stateReading(s) {
+    const n = Math.max(1, s.history.length);
+    const f = s.states.fidelity / n;
+    const o = s.states.obedience / n;
+    const w = s.states.notice / n;
+    const q = s.quantities;
+
+    const band = (v, hi, mid) => (v >= hi ? 2 : v >= mid ? 1 : 0);
+
+    const channel = [
+      'The channel is putting words in your mouth.',
+      'He writes down most of what you say.',
+      'Your words are reaching him whole.',
+    ][band(f, 1.0, 0.45)];
+
+    const instrument = [
+      'He weighs everything you say before he moves.',
+      'He obeys, and then checks the arithmetic.',
+      'He obeys before he has understood.',
+    ][band(o, 1.25, 0.6)];
+
+    const world = [
+      'Nobody outside this room is listening.',
+      'Word is getting out of the room.',
+      'Rome and the courts are listening at the door.',
+    ][band(w, 0.65, 0.25)];
+
+    const crowns = [
+      ['the Queen', q.crown_english],
+      ['Prague', q.crown_imperial],
+      ['a road east', q.crown_ottoman],
+    ].sort((a, b) => b[1] - a[1]);
+    const empire =
+      crowns[0][1] < 3
+        ? 'The empire is not resting on anyone yet.'
+        : crowns[0][1] === crowns[1][1]
+          ? `The weight is split between ${crowns[0][0]} and ${crowns[1][0]}.`
+          : `The weight is on ${crowns[0][0]}.`;
+
+    const lines = [channel, instrument, world, empire];
+    if (q.millennium >= 9) lines.push('You have promised the end too often to take it back.');
+    return lines;
+  },
+
+  // Absolute, because GitHub Pages serves a .md file as a download rather than rendering
+  // it -- the design record has to point at the GitHub blob view to be readable.
+  links: {
+    design: 'https://github.com/t3dy/DeeVisualNovel/blob/main/AngelPOV/DESIGN.md',
+    dee: 'https://t3dy.github.io/DeeVisualNovel/',
+    portal: 'https://t3dy.github.io/DeeVisualNovel/portal/',
+  },
+
+  // Shown on the title screen. Mixed audience: a stranger should be able to start
+  // without knowing who Dee was, and a specialist should not feel talked down to.
+  howItWorks: [
+    'You never speak to Dee directly. Everything goes through Edward Kelley, and the ' +
+      'screen after each choice shows what you said beside what Dee\u2019s diary records ' +
+      'Kelley saying you said. The gap between the two columns is the game.',
+    'Every scene is marked for how far the record supports it, and any choice that steps ' +
+      'outside the evidence says so at the moment you make it. Each scene carries an ' +
+      '\u201cevidence\u201d note you can open: the manuscript it rests on, where the record ' +
+      'goes silent, and the context \u2014 courtly, alchemical, apocalyptic \u2014 you would need ' +
+      'to read it properly.',
+    'Nothing is scored in front of you. A short reading under each scene tells you, in ' +
+      'plain language, how intact your speech is arriving, how far Dee will go on your ' +
+      'word, who outside the room is listening, and which throne your empire is currently ' +
+      'resting on.',
+  ],
 
   journalTitle: 'The Account of What Was Said',
   journalGroups: [
