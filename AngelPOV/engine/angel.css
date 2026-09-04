@@ -1,0 +1,208 @@
+/* angel.css — the view from inside the glass.
+   Inverted from the Dee pack's engine.css: there, a lit page in a lit room. Here the
+   room is dark and the writing is the only light in it. Colour lives entirely in tokens
+   so the act ramp can move the whole page without touching layout. */
+
+:root {
+  --ink: #e6dcc6;          /* what is written */
+  --ink-2: #9c917c;        /* what is written, quieter */
+  --said: #cfe0e8;         /* your own speech: cold, clear */
+  --written: #d8b478;      /* his hand: warm, candle-lit, wrong */
+  --ground: #0a0c0f;       /* the room */
+  --card: rgba(16, 19, 24, 0.965);
+  --rule: #3a3f47;
+  --gold: #c9a34a;
+  --measure: 36rem;
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  padding: 2.5rem 1.25rem 4rem;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  transition: background 900ms ease, color 900ms ease;
+  min-height: 100%;
+}
+
+/* --- the act ramp: the room changes as the career does --------------------- */
+body[data-palette="stone"]      { --ground:#0a0c0f; --card:rgba(16,19,24,.965); --ink:#dfe4e8; --written:#b9c6cf; --gold:#8fa4b2; --rule:#333a42; }
+body[data-palette="stone-warm"] { --ground:#0d0b08; --card:rgba(22,18,13,.965); --ink:#e8dcc2; --written:#d8b478; --gold:#c9a34a; --rule:#3f382c; }
+body[data-palette="prague"]     { --ground:#100c07; --card:rgba(28,21,13,.965); --ink:#ecdcbc; --written:#e0a95e; --gold:#c9932f; --rule:#4a3d26; }
+body[data-palette="ember"]      { --ground:#120806; --card:rgba(32,15,11,.965); --ink:#f0d9cd; --written:#e08a5a; --gold:#c96a3a; --rule:#523028; }
+body[data-palette="faded"]      { --ground:#0c0d0d; --card:rgba(20,21,21,.965); --ink:#c9c6bd; --ink-2:#7d7b74; --written:#a99a80; --gold:#8a8171; --rule:#333432; --measure:34rem; }
+
+/* --- the chamber: a canvas behind everything, never in front of the words --- */
+#chamber {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1600ms ease;
+}
+#chamber.ready { opacity: 1; }
+/* No WebGL, or reduced motion: a still ground that still reads as a dark room. */
+body.no-chamber {
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 58%, rgba(201, 163, 74, 0.14), transparent 70%),
+    var(--ground);
+}
+
+#app { position: relative; z-index: 1; display: flex; justify-content: center; }
+
+.card {
+  width: 100%;
+  max-width: var(--measure);
+  background: var(--card);
+  /* Deliberately no backdrop-filter. Near-opaque tokens do the separation instead:
+     the blur bought very little over a dark chamber, and dropping it removes a whole
+     class of compositing risk on a card that runs to ~3000px on the ending screen. */
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
+  animation: rise 480ms ease both;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+h1 { font-size: 2rem; margin: .2rem 0 .6rem; letter-spacing: .01em; font-weight: 500; }
+h2 { font-size: 1.5rem; margin: .2rem 0 .9rem; font-weight: 500; }
+h3 { font-size: 1.05rem; margin: 2rem 0 .5rem; font-weight: 500; }
+h4 { font-size: .82rem; margin: 1.2rem 0 .35rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+
+.eyebrow { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--ink-2); margin: 0 0 .4rem; }
+.tagline { font-style: italic; color: var(--gold); margin: 0 0 1.1rem; }
+.premise, .act-text, .scene, .ending-text { margin: 0 0 1.25rem; }
+.act-text { font-style: italic; }
+.note { font-size: .8rem; color: var(--ink-2); margin: 1.4rem 0 0; border-top: 1px solid var(--rule); padding-top: .8rem; }
+
+/* --- the act mark ---------------------------------------------------------- */
+.act-mark { margin: 0 0 1.4rem; display: flex; justify-content: center; }
+.act-mark svg { width: 7.5rem; height: auto; color: var(--gold); opacity: .8; animation: ink 1100ms ease both; }
+@keyframes ink { from { opacity: 0; transform: scale(.96) rotate(-2deg); } to { opacity: .8; transform: none; } }
+
+/* --- plates ---------------------------------------------------------------- */
+.plate { margin: 0 0 1.3rem; }
+.plate img { display: block; width: 100%; height: auto; border: 1px solid var(--rule);
+  filter: grayscale(.35) contrast(1.05) brightness(.72) sepia(.25); background: #000;
+  /* Tipped in, not pasted over: a tall portrait plate must not push the scene and its
+     options below the fold. Crop rather than dominate. */
+  max-height: 13rem; object-fit: cover; object-position: center 38%; }
+.plate figcaption { font-size: .72rem; font-style: italic; color: var(--ink-2); padding-top: .4rem; line-height: 1.5; }
+.frontispiece { max-width: 13rem; margin: 0 auto 1.5rem; }
+.frontispiece img { border-width: 3px; border-style: double; max-height: 17rem; }
+.coda-plate { max-width: 20rem; margin: 1.6rem auto; }
+.coda-plate img { max-height: 20rem; object-fit: contain; }
+
+/* --- scene header ---------------------------------------------------------- */
+.scene-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  border-bottom: 1px solid var(--rule); padding-bottom: .5rem; margin-bottom: 1.1rem; }
+.scene-head .eyebrow { margin: 0; }
+.mark { margin: 0; font-size: .72rem; font-style: italic; color: var(--gold); opacity: .8; white-space: nowrap; }
+
+/* --- options --------------------------------------------------------------- */
+.options { display: flex; flex-direction: column; gap: .55rem; margin-bottom: 1.5rem; }
+.option {
+  font: inherit; text-align: left; color: var(--ink);
+  background: rgba(255,255,255,.02); border: 1px solid var(--rule); border-radius: 2px;
+  padding: .7rem .9rem; cursor: pointer;
+  transition: background 140ms ease, border-color 140ms ease, transform 90ms ease;
+}
+.option:hover { background: rgba(255,255,255,.06); border-color: var(--gold); }
+.option:active { transform: translateY(1px); }
+.option .key { display: inline-block; min-width: 1.1rem; margin-right: .45rem; font-size: .68rem;
+  color: var(--ink-2); opacity: .6; font-variant-numeric: tabular-nums; }
+
+button.primary { font: inherit; cursor: pointer; color: #14100a; background: var(--gold);
+  border: 1px solid var(--gold); border-radius: 2px; padding: .6rem 1.4rem; }
+button.primary:hover { filter: brightness(1.12); }
+.actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+.actions button:not(.primary) { font: inherit; cursor: pointer; background: transparent; color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 2px; padding: .6rem 1.4rem; }
+.actions button:not(.primary):hover { border-color: var(--gold); }
+
+/* --- the panel: the seven modes, quiet ------------------------------------- */
+.panel { border-top: 1px solid var(--rule); padding-top: .8rem; display: flex;
+  justify-content: space-between; align-items: flex-end; gap: 1rem; }
+.modes { list-style: none; margin: 0; padding: 0; display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .15rem 1.1rem; flex: 1; }
+.modes li { display: grid; grid-template-columns: 4.8rem 1fr 1.1rem; align-items: center; gap: .4rem;
+  font-size: .72rem; color: var(--ink-2); }
+.modes span { font-variant: small-caps; letter-spacing: .04em; }
+.modes i { height: 2px; background: var(--rule); position: relative; }
+.modes i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: calc(var(--n) / 8 * 100%); background: var(--gold); }
+.modes b { font-weight: 500; font-size: .7rem; text-align: right; }
+.progress { margin: 0; font-size: .72rem; color: var(--ink-2); white-space: nowrap; }
+
+/* --- THE TRANSMISSION BEAT -------------------------------------------------
+   The load-bearing screen. What you said, and what he wrote down, side by side,
+   in two inks that never quite agree. See ../DESIGN.md §2. */
+/* Not a bordered card — a pool of dark the two inks float in. It still needs a scrim:
+   over a lit chamber, transparent text is unreadable, which the first build proved. */
+.transmission-card {
+  background: var(--card);
+  border: 0;
+  border-radius: 14px;
+  box-shadow: 0 0 70px 46px var(--card);
+  padding: 2.5rem 2.25rem 2rem;
+}
+
+.channel { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; margin: 0 0 2rem; }
+.channel > div { min-width: 0; }
+.channel h4 { margin: 0 0 .6rem; font-size: .68rem; letter-spacing: .16em; }
+
+.said {
+  color: var(--said); font-size: 1.08rem; line-height: 1.66; margin: 0;
+  border-left: 2px solid var(--said); padding-left: .95rem;
+  animation: fadein 500ms ease both;
+}
+.said.empty { opacity: .45; font-style: italic; }
+.written {
+  color: var(--written); font-size: 1.02rem; line-height: 1.7; margin: 0; font-style: italic;
+  border-left: 2px solid var(--written); padding-left: .95rem;
+  transform: rotate(-.4deg); transform-origin: left center;
+  animation: fadein 500ms ease 320ms both;
+}
+.written.empty { opacity: .4; font-style: normal; }
+@keyframes fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; } }
+
+.drift { margin: -1.2rem 0 2rem; font-size: .72rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--written); opacity: .75; }
+
+.outcome { color: var(--ink); font-size: 1.02rem; line-height: 1.7; margin: 0 0 2rem;
+  border-top: 1px solid var(--rule); padding-top: 1.2rem; }
+
+/* --- ending ---------------------------------------------------------------- */
+.epilogue { border-left: 2px solid var(--rule); padding-left: 1rem; color: var(--ink-2); }
+.reception { font-style: italic; color: var(--gold); }
+.catalogue-title { border-top: 1px solid var(--rule); padding-top: 1.2rem; font-variant: small-caps; letter-spacing: .05em; }
+.shelf ul { list-style: none; margin: 0; padding: 0; }
+.shelf li { font-size: .85rem; padding: .3rem 0; border-bottom: 1px dotted var(--rule);
+  display: grid; grid-template-columns: 9.5rem 1fr; gap: .75rem; align-items: baseline; }
+.shelf .date { color: var(--ink-2); font-size: .72rem; font-variant-numeric: tabular-nums; }
+
+@media (max-width: 40rem) {
+  .channel { grid-template-columns: 1fr; gap: 1.4rem; }
+}
+@media (max-width: 34rem) {
+  body { padding: 1.25rem .85rem 3rem; }
+  .card { padding: 1.4rem 1.25rem; }
+  h1 { font-size: 1.6rem; }
+  .modes { grid-template-columns: 1fr; }
+  .panel { flex-direction: column; align-items: stretch; }
+  .shelf li { grid-template-columns: 1fr; gap: .1rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

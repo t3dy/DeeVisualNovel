@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spoken Backward — the angels of John Dee | Renaissance Magic</title>
+<meta name="description" content="Play the Enochian angels directing John Dee, 1581-1608. You want one empire over the whole earth and you do not care whose. He must never find out. Eight outcomes, including the Ottoman road east.">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./engine/angel.css?v=8">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body data-palette="stone">
+<canvas id="chamber" aria-hidden="true"></canvas>
+<main id="app"></main>
+<noscript>
+  <p style="max-width:34rem;margin:2rem auto;color:#e6dcc6">
+    Spoken Backward is a text game and needs JavaScript. The research it is built on does
+    not: see <a href="https://t3dy.github.io/DeeVisualNovel/portal/" style="color:#c9a34a">the Dee Portal</a>.
+  </p>
+</noscript>
+<script type="module">
+  import { boot } from './engine/main.js?v=8';
+  import { pack } from './content/pack.js?v=8';
+  boot(pack);
+</script>
+</body>
+</html>

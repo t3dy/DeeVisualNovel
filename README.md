@@ -4,6 +4,10 @@
 
 **📜 The Dee Portal (research companion): https://t3dy.github.io/DeeVisualNovel/portal/**
 
+**😇 Play the other side: [Spoken Backward](AngelPOV/) — https://t3dy.github.io/DeeVisualNovel/AngelPOV/
+— the same twenty-seven years from inside the shew-stone, where you are the angels, John
+Dee is the instrument, and the empire you want has no preferred nationality.**
+
 **📚 Deeper reference — [The John Dee Summary Browser](https://t3dy.github.io/JohnDeeSummaries/)
 (1,800+ pages over the full corpus) · [RenaissanceMagicDB](https://t3dy.github.io/RMDB/)
 (337 documents, 48 figures, the whole tradition).**

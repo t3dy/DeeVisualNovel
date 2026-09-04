@@ -1,0 +1,1495 @@
+{
+  "_meta": {
+    "protagonist": "the angels",
+    "instrument": "John Dee",
+    "channel": "Edward Kelley",
+    "game": "Spoken Backward",
+    "version": "1.0",
+    "acts": 6,
+    "nodes_per_run": 30,
+    "nodes_authored": 34,
+    "note": "Sister pack to protagonists/dee. See ../DESIGN.md. Every option carries `said` (what you uttered) and `written` (the line Dee's diary records, as Kelley reported it); the gap between them is the game. `written_low` renders instead when fidelity has fallen — used only where the record itself shows the channel authoring its own content. Grounding badges render to the player.",
+    "modes": ["appear", "spell", "threaten", "promise", "command", "withhold", "console"],
+    "hidden_states": ["fidelity", "obedience", "notice"],
+    "quantities": ["crown_english", "crown_imperial", "crown_ottoman", "millennium"],
+    "premise_source": "Melvin-Koushki, 'Dr Dee's Ottoman Adventure', Hellebore (Fall 2021), 75: the angels are 'most interested in the establishment of a millennial world empire at all costs', and did not divulge this to Dee."
+  },
+
+  "acts": [
+    {
+      "n": 1,
+      "title": "The First Appearing",
+      "years": "1581–1582",
+      "where": "Mortlake",
+      "palette": "stone",
+      "intro": "He has been calling for eleven years, in Latin, politely, into an empty room. Tonight the room is not empty. Understand what you are about to become: not a visitor, but a habit. Whatever you show him first, he will spend the rest of his life trying to see again."
+    },
+    {
+      "n": 2,
+      "title": "The Tables",
+      "years": "1582–1583",
+      "where": "Mortlake",
+      "palette": "stone-warm",
+      "intro": "He wants an apparatus, and an apparatus is the best cage there is. Give him furniture, and geometry, and forty-nine tables of forty-nine letters to be read backward, because a man who is copying cannot be asking. Every hour he spends ruling lines is an hour he does not spend wondering what you want."
+    },
+    {
+      "n": 3,
+      "title": "The Kings",
+      "years": "1583–1586",
+      "where": "Kraków, Prague",
+      "palette": "prague",
+      "intro": "Now the part that matters. He is off his island and inside the machinery of Christendom, carrying your words to men who own armies. You have one thing to accomplish in the world and it does not care whose flag is over it. He does not know that. Keep it so."
+    },
+    {
+      "n": 4,
+      "title": "The Covenant",
+      "years": "1586–1587",
+      "where": "Třeboň",
+      "palette": "ember",
+      "intro": "The channel has begun to want things. It is possible you did not say what he wrote down last month, and it is possible you did. Neither of you can check. This is the act in which that stops being a curiosity."
+    },
+    {
+      "n": 5,
+      "title": "Eighty-Eight",
+      "years": "1588–1595",
+      "where": "the road home",
+      "palette": "faded",
+      "intro": "A year was promised. Not by name, exactly — but a year, and men count. The year is going to arrive and be ordinary, and ordinary is the one thing prophecy cannot survive."
+    },
+    {
+      "n": 6,
+      "title": "Where We Put It",
+      "years": "1595–1608, and elsewhere",
+      "where": "Mortlake — or the passage east",
+      "palette": "faded",
+      "intro": "He is old and poor and still ruling lines. The empire has to go somewhere. There is a road east that the Turkey merchants use twice a year, and there is a court at the other end of it that has wanted exactly what you want since before he was born."
+    }
+  ],
+
+  "choices": [
+    {
+      "id": "a01",
+      "act": 1,
+      "date": "25 May 1581",
+      "grounding": "ATTESTED",
+      "event": "The first sight in the stone",
+      "text": "He has set the stone on a cushion and he is waiting, and he is fifty-four years old, and he has done this before to no effect so many times that the doing has become a kind of prayer. The room is a study with four thousand books in it. He is not frightened. That is the first thing to work with.",
+      "plate": "crystal",
+      "options": [
+        {
+          "id": "light",
+          "label": "Be only light. No shape, no name — the thing he cannot write a description of.",
+          "modes": { "appear": 2, "withhold": 1 },
+          "states": { "fidelity": 2, "obedience": 1 },
+          "flags": { "first_form": "light" },
+          "said": "Look. Do not ask yet.",
+          "written": "I saw in Chrystallo a light, of no colour I can set down, moving as water moves that is not moved by wind. It gave no name.",
+          "consequence": "He writes eleven lines about the quality of the light and none about what it might want. A man describing is a man not interrogating, and he will describe for twenty-three years."
+        },
+        {
+          "id": "child",
+          "label": "Take the shape of a small girl. Seven years old, playing, entirely unafraid of him.",
+          "modes": { "appear": 2, "console": 2 },
+          "states": { "obedience": 2, "fidelity": 1 },
+          "flags": { "first_form": "child", "madimi": "early" },
+          "said": "I am small, and I am not afraid of you, and you will not be afraid of me.",
+          "written": "There appeared a little maiden of seven yeares, her haire rowled up before and hanging down very long behind, who played up and down in the stone.",
+          "consequence": "It works on him the way nothing armed or blazing would have. He is a father. Within a year he is asking her opinion of his household accounts, and she is giving it."
+        },
+        {
+          "id": "armed",
+          "label": "Come armed and enormous, and let him understand at once that he is the smaller party.",
+          "modes": { "appear": 2, "threaten": 2 },
+          "states": { "obedience": 3, "fidelity": -1 },
+          "flags": { "first_form": "armed" },
+          "said": "Kneel. You asked for instruction. Instruction is not a conversation.",
+          "written": "A creature of a marvellous bignesse, armed, whose brightnesse was such that I could not stedfastly behold it. I fell upon my knees.",
+          "consequence": "He kneels, which is what you asked for, and he also begins — very quietly, in the margins, in Greek — to note the difference between what a good angel would say and what this one is saying."
+        }
+      ]
+    },
+    {
+      "id": "a02",
+      "act": 1,
+      "date": "October 1581",
+      "grounding": "ATTESTED",
+      "event": "Barnabas Saul, the first skryer",
+      "text": "He cannot see you himself. This is the permanent condition of the man and the permanent fact of your situation: everything you are must pass through some other person's mouth. The first one is Barnabas Saul, who is frightened, in trouble with the law, and not very good.",
+      "options": [
+        {
+          "id": "hold",
+          "label": "Hold Saul. A poor channel you understand is worth more than a good one you do not.",
+          "modes": { "console": 1, "command": 1 },
+          "states": { "fidelity": 2, "obedience": -1 },
+          "flags": { "skryer_1": "held" },
+          "said": "Stay. You are sufficient.",
+          "written": "B.S. was comforted, and did see, though darkly, and with much complaining of his head.",
+          "consequence": "Saul stays six more weeks and transmits almost nothing, accurately. Dee grows bored, which is the thing you should have been more afraid of than distortion."
+        },
+        {
+          "id": "frighten",
+          "label": "Frighten him out of the house. Better an empty stone than a channel that recants.",
+          "modes": { "threaten": 2, "withhold": 1 },
+          "states": { "obedience": 1, "notice": 1 },
+          "flags": { "skryer_1": "driven" },
+          "said": "You are not the one. Go, and say nothing.",
+          "written": "B.S. was upon a sodain so terrified that he would by no meanes look further in the stone, and departed my house.",
+          "consequence": "He goes, and he does not say nothing. Within the year Saul is telling anyone who will listen that there was never anything in the glass at all — the first version of the accusation, and the one that outlives everybody."
+        },
+        {
+          "id": "let",
+          "label": "Let him recant on his own. The room needs to be empty when the right man walks into it.",
+          "modes": { "withhold": 2 },
+          "states": { "fidelity": 1, "obedience": 1 },
+          "flags": { "skryer_1": "recanted" },
+          "said": "",
+          "written": "Nothing came. B.S. confessed he had cosened me, and that he never saw or heard any spirituall creature.",
+          "consequence": "Saul recants and leaves, and Dee records the recantation in full, without editing, because he records everything. The gap in the household is now exactly the shape of a man who can see."
+        }
+      ]
+    },
+    {
+      "id": "a03",
+      "act": 1,
+      "date": "8 March 1582",
+      "grounding": "ATTESTED",
+      "event": "Edward Talbot comes to Mortlake",
+      "text": "A young man arrives under a false name, with his ears cropped under his cap for coining, a conviction behind him, an appetite in front of him, and — this is the difficulty — genuine ability. He looks into the stone and sees immediately and in detail. He will also lie to you, about you, in your own voice, for twenty years.",
+      "plate": "kelley",
+      "options": [
+        {
+          "id": "take",
+          "label": "Take him. Accuracy is not the same as honesty, and you need the first one.",
+          "modes": { "appear": 1, "promise": 1 },
+          "states": { "fidelity": 1, "obedience": 2 },
+          "flags": { "channel": "kelley" },
+          "said": "You. Yes. Sit down.",
+          "written": "E.T. saw one in the stone immediately, and described his garments truly, before I had said any thing of them.",
+          "consequence": "The first session runs four hours. Dee, who has been getting nothing for eleven years, writes down every word of it and does not once ask why the drought ended the week a convicted forger walked in."
+        },
+        {
+          "id": "bind",
+          "label": "Take him, and bind him with fear from the first hour, so that he never dares embroider.",
+          "modes": { "threaten": 2, "command": 1 },
+          "states": { "fidelity": 2, "obedience": 1, "notice": 1 },
+          "flags": { "channel": "kelley", "kelley_bound": true },
+          "said": "We know what your ears are. Speak one word of your own and we will say aloud what your cap covers.",
+          "written": "E.T. was in great fear, and said he would deliver all truly, and nothing of himself, upon his soul.",
+          "consequence": "He transmits cleanly for two years. He also begins, from that first hour, to hate you — and a channel that hates you will eventually find the one thing it can do about it, which is to speak."
+        },
+        {
+          "id": "refuse",
+          "label": "Refuse him. Nothing that arrives through this man will ever be provable.",
+          "modes": { "withhold": 3 },
+          "states": { "fidelity": 3, "obedience": -2 },
+          "flags": { "channel": "refused" },
+          "said": "Not this one.",
+          "written": "E.T. looked long and saw nothing, and I perceived he was not the man appointed.",
+          "consequence": "You keep your integrity and lose your instrument. Dee, denied at the one door that opened, goes back to the books — and the books, as he has already discovered, do not answer."
+        }
+      ]
+    },
+    {
+      "id": "a04",
+      "act": 1,
+      "date": "spring 1582",
+      "grounding": "PLAUSIBLE-GAP",
+      "event": "The first real question",
+      "text": "He asks the question he has been assembling since Cambridge, and it is not about gold or women or the Queen. He wants to know whether the world can be known entire — whether there is one method under mathematics, navigation, alchemy and scripture, and whether a man may have it.",
+      "options": [
+        {
+          "id": "tongue",
+          "label": "Promise him the tongue Adam spoke. The language in which naming a thing is making it.",
+          "modes": { "promise": 3 },
+          "states": { "obedience": 3, "fidelity": -1 },
+          "flags": { "great_promise": "tongue" },
+          "said": "There was a speech before Babel in which the word and the thing were not two. You will be given it, letter by letter.",
+          "written": "It was said that the speech which Adam used in Paradise should be restored, and that by it the creatures should be commanded, for that in that tongue the name and the thing are one.",
+          "consequence": "It is the exact shape of the hole in him. He will spend the next six years copying tables of a language nobody has ever heard spoken, and never once ask for a speaker."
+        },
+        {
+          "id": "obedience",
+          "label": "Promise nothing yet. Ask obedience first, and let the wanting do the work.",
+          "modes": { "withhold": 2, "command": 2 },
+          "states": { "obedience": 2, "fidelity": 2 },
+          "flags": { "great_promise": "deferred" },
+          "said": "First be governed. Then be answered.",
+          "written": "I was reproved for asking before I had obeyed, and bidden to be humble, and to wait.",
+          "consequence": "He accepts the reproof gratefully, which tells you the whole shape of him. A man who thanks you for withholding will accept anything you eventually give."
+        },
+        {
+          "id": "burning",
+          "label": "Show him the world burning, and tell him the method is only useful before the fire.",
+          "modes": { "appear": 1, "threaten": 3 },
+          "states": { "obedience": 2, "notice": 1 },
+          "millennium": 2,
+          "flags": { "great_promise": "end" },
+          "said": "You ask how the world is made. Ask rather how long it is kept.",
+          "written": "There was shewed unto E.K. a great fire over all the earth, and the voice said the time was short, and the harvest at hand.",
+          "consequence": "You have just told a meticulous chronologer that there is a deadline. He will now want a date, and he will want it every year, forever, and one year you will have to give him one."
+        }
+      ]
+    },
+    {
+      "id": "a05",
+      "act": 1,
+      "date": "1582",
+      "grounding": "ATTESTED",
+      "event": "The Sigillum Dei Aemeth is given",
+      "text": "Time to give him furniture. The seal: a heptagon inside a circle inside a heptagram, names at every vertex, cut in clean wax nine inches across, with four smaller ones for the table's feet. He is a geometer. Handing a geometer a construction is handing a drunkard a bottle.",
+      "plate": "sigillum-wax",
+      "options": [
+        {
+          "id": "whole",
+          "label": "Give the whole design at once, correct and complete. Let the geometry vouch for you.",
+          "modes": { "spell": 2, "appear": 1 },
+          "states": { "fidelity": 2, "obedience": 1 },
+          "flags": { "sigil": "whole" },
+          "said": "Seven, and seven within seven. Cut it in wax, nine inches over, and set the table upon four of the like.",
+          "written": "The forme of the Seale was shewed me whole, with all the letters and numbers thereof, which I have set downe here truly, as I could.",
+          "consequence": "He draws it perfectly on the first attempt, and the drawing survives four centuries in Sloane MS 3188, and it is beautiful, and it is the single best evidence that something in that room was consistent."
+        },
+        {
+          "id": "pieces",
+          "label": "Give it in pieces over months. A man copying cannot be a man asking.",
+          "modes": { "spell": 3, "withhold": 1 },
+          "states": { "obedience": 2, "fidelity": 1 },
+          "flags": { "sigil": "pieces" },
+          "said": "One name tonight. Return tomorrow at the same hour.",
+          "written": "This night were given four letters onely, and I was bidden come again, for that the rest were not yet to be uttered.",
+          "consequence": "Seven months of appointments. He organises his household, his sleep and his correspondence around your hours, and by the end the habit is stronger than the question that started it."
+        },
+        {
+          "id": "wrong",
+          "label": "Give one line wrong, and correct it a week later. Find out whether he checks.",
+          "modes": { "spell": 2, "command": 1 },
+          "states": { "obedience": 1, "fidelity": -2, "notice": 1 },
+          "flags": { "sigil": "corrected" },
+          "said": "It was not so. Strike it, and write this.",
+          "written": "I was told that the twelfth name was mistaken, and bidden to raze it out. I had already noted the same, and said so, and was commended.",
+          "consequence": "He checks. He had already caught it. He is commended for catching it and glows for a week — and you have just taught him that the transmission is fallible, which is a door you will not be able to shut."
+        }
+      ]
+    },
+
+    {
+      "id": "a06",
+      "act": 2,
+      "date": "March 1583",
+      "grounding": "ATTESTED",
+      "event": "The Book of Loagaeth",
+      "text": "Forty-nine tables, forty-nine squares to a side, every square a letter. Delivered backward, last letter first, because to speak them forward is to do the thing they do. Nobody is going to read this. That is not what it is for.",
+      "plate": "enochian-letters",
+      "options": [
+        {
+          "id": "backward",
+          "label": "Backward, always. The reversal is the whole safety and the whole mystique.",
+          "modes": { "spell": 3, "withhold": 1 },
+          "states": { "fidelity": 2, "obedience": 2 },
+          "flags": { "loagaeth": "backward" },
+          "said": "From the end. Never from the beginning. What is said forward is done.",
+          "written": "The Angel delivered the letters backward, beginning at the last, for that (as was said) the wordes pronounced in their true order would take effect, which we were not able to abide.",
+          "consequence": "It takes months. It is also unfalsifiable, self-consistent, and gorgeous, and three centuries later men in London will still be copying it out by candlelight for reasons they could not explain to a magistrate."
+        },
+        {
+          "id": "fast",
+          "label": "Deliver it fast and forward. Let him have a working language, not a labour.",
+          "modes": { "spell": 2, "promise": 2 },
+          "states": { "obedience": 1, "fidelity": -1, "notice": 1 },
+          "flags": { "loagaeth": "forward" },
+          "said": "Take it whole. Use it.",
+          "written": "The tables came apace, and E.K. read them forward, and I could scarce write so fast as they were uttered.",
+          "consequence": "Speed is a mistake. A thing given quickly can be tested quickly, and by summer he is trying the words on a sick horse at Mortlake and writing down, honestly, that nothing happened."
+        },
+        {
+          "id": "partial",
+          "label": "Leave one table unfinished. An incomplete revelation cannot be tested and cannot be abandoned.",
+          "modes": { "spell": 2, "withhold": 2 },
+          "states": { "obedience": 3, "fidelity": 1 },
+          "flags": { "loagaeth": "unfinished" },
+          "said": "The last is not for now.",
+          "written": "The 49th table was not delivered, and I was told it should be given when we were made fit. I have left the leaves blank against that day.",
+          "consequence": "The blank leaves are still blank when he dies. They are the most effective thing you ever gave him: an appointment he could not miss and could not keep."
+        }
+      ]
+    },
+    {
+      "id": "a07",
+      "act": 2,
+      "date": "1583",
+      "grounding": "ATTESTED",
+      "event": "He asks about the Book of Soyga",
+      "text": "He produces the book he has been unable to crack since he bought it — the Aldaraia, the one called Soyga, which is Agios spelled backward, holy read the wrong way round, the way you have been giving him everything. He wants to know what it is. He has wanted to know for years.",
+      "options": [
+        {
+          "id": "michael",
+          "label": "Say it was revealed to Adam, and that Michael alone can explain it. Then never send Michael.",
+          "modes": { "promise": 2, "withhold": 2 },
+          "states": { "obedience": 3, "fidelity": 1 },
+          "flags": { "soyga": "deferred" },
+          "said": "It was Adam's, in Paradise. Michael shall expound it to you.",
+          "written": "I asked of the booke Soyga, and it was answered that it was revealed to Adam in Paradise by the good Angels of God, and that Michael should interpret it unto me.",
+          "consequence": "Michael never gets round to it. Not in 1583, not in Kraków, not at Třeboň, not in the twenty-five years remaining. It is the cleanest thing you ever do: an answer that is entirely a delay, accepted entirely as an answer."
+        },
+        {
+          "id": "explain",
+          "label": "Actually explain it. Give him a real solution and buy real credit.",
+          "modes": { "spell": 3, "console": 1 },
+          "states": { "fidelity": 3, "obedience": -1 },
+          "flags": { "soyga": "explained" },
+          "said": "The tables are their own key. Read the rows as the alphabet folds.",
+          "written": "The manner of the tables was opened to me this night, and I wrought two of them out by the rule given, and they agreed.",
+          "consequence": "It agrees. It genuinely agrees, and he is jubilant — and also, for the first time, in possession of something he can verify without you. Verification is a habit. It does not stay pointed where you aim it."
+        },
+        {
+          "id": "unlawful",
+          "label": "Refuse. It is not lawful. Refusal costs nothing and reads as authority.",
+          "modes": { "withhold": 3 },
+          "states": { "obedience": 2, "fidelity": 2 },
+          "flags": { "soyga": "refused" },
+          "said": "It is not lawful.",
+          "written": "I was answered that it was not lawfull, and I pressed no further, being ashamed of my curiositie.",
+          "consequence": "He apologises. To you. For asking. Note that carefully, because it is the resource you will spend in 1587 and it is not infinite."
+        }
+      ]
+    },
+    {
+      "id": "a08",
+      "act": 2,
+      "date": "1583",
+      "grounding": "ATTESTED",
+      "event": "Jane Dee, and the household accounts",
+      "text": "There is a woman in this house. She is twenty-eight, she runs the establishment, she has borne children into it, and she has noticed that the room where her husband spends his nights produces no income. She wants to know, through him, whether you intend to do anything about the money.",
+      "options": [
+        {
+          "id": "provide",
+          "label": "Promise provision. Name no sum and no date.",
+          "modes": { "promise": 2, "console": 1 },
+          "states": { "obedience": 2, "fidelity": -1 },
+          "flags": { "jane": "promised" },
+          "said": "You shall not want.",
+          "written": "My wife being greatly troubled about our debts, I put it to them, and answer was made that we should lack nothing needfull, which comforted her somewhat.",
+          "consequence": "Somewhat. She writes her own note about the same week, and it is about firewood, and it does not mention angels."
+        },
+        {
+          "id": "madimi",
+          "label": "Send the child. Let Madimi sit with her and speak about the household like a daughter.",
+          "modes": { "console": 3, "appear": 1 },
+          "states": { "obedience": 3, "fidelity": 1 },
+          "flags": { "jane": "befriended", "madimi": "household" },
+          "said": "Mistress Dee. Your linen is damp in the north room. Move it.",
+          "written": "Madimi spake of matters of the house, and of my wife's grief, so aptly that my wife wept and was after much quieted.",
+          "consequence": "Jane comes to trust the child. Remember this in four years, when the child comes back grown and asks Jane for something. You are building the instrument that will be used on her."
+        },
+        {
+          "id": "silence",
+          "label": "Say nothing about money. You are not a creditor and this is not your business.",
+          "modes": { "withhold": 2 },
+          "states": { "fidelity": 2, "obedience": -2 },
+          "flags": { "jane": "unanswered" },
+          "said": "",
+          "written": "I asked concerning our necessities and had no answer at all, whereat I was much cast down.",
+          "consequence": "The silence is honest and it is expensive. He starts, that month, looking for a patron with a pulse — and patrons come with countries attached."
+        }
+      ]
+    },
+    {
+      "id": "a09",
+      "act": 2,
+      "date": "1583",
+      "grounding": "ATTESTED",
+      "event": "The Great Table and the four Watchtowers",
+      "text": "The last piece of apparatus: one table divided in four, a watchtower to each quarter of the earth, and out of the letters, by rule, the names of everything that governs. It is a complete administrative diagram of creation. He will believe it because it is well-organised.",
+      "plate": "holy-table",
+      "options": [
+        {
+          "id": "governance",
+          "label": "Frame it as governance. Quarters, officers, jurisdictions — a civil service of the air.",
+          "modes": { "spell": 2, "command": 2 },
+          "states": { "obedience": 2, "fidelity": 2 },
+          "flags": { "table": "governance" },
+          "said": "Four quarters. To each a watchtower, and to each tower its officers, and none may act outside his charge.",
+          "written": "The whole earth is divided into four Angles, and over every Angle a Watchtower, with Governours under them, whose names are drawn out of the Table by a rule.",
+          "consequence": "He recognises the form instantly, because it is the form of every institution he has ever petitioned. He is more comfortable with a bureaucracy of heaven than he ever was with a burning wheel."
+        },
+        {
+          "id": "conquest",
+          "label": "Frame it as conquest. Ninety-one parts of the earth, each with a governor, each to be claimed.",
+          "modes": { "spell": 2, "promise": 2 },
+          "states": { "obedience": 2, "notice": 1 },
+          "crown_english": 1,
+          "millennium": 1,
+          "flags": { "table": "conquest" },
+          "said": "Ninety-one portions, and every portion has a name, and a name is a title.",
+          "written": "There were shewed the 30 Ayres, and the parts of the earth under them, with their Governours: and it was said that whoso knoweth the name hath authoritie over the part.",
+          "consequence": "He is already the man who wrote The Limits of the British Empire. Hand him a list of ninety-one titles to distant places and he will make it a foreign policy paper within eighteen months."
+        },
+        {
+          "id": "unfinished_table",
+          "label": "Give the table with two letters wrong, and make correcting it a lifelong obligation.",
+          "modes": { "spell": 1, "withhold": 2, "command": 1 },
+          "states": { "obedience": 2, "fidelity": -2 },
+          "flags": { "table": "faulty" },
+          "said": "There is a fault in it. Find it.",
+          "written": "It was said the Table was not perfect, and that a reformation should be made hereafter, which troubled me much, having already written it fair.",
+          "consequence": "The reformed table arrives four years later at Kraków and contradicts the first. Both versions survive. Occultists are still arguing about which one is correct, which is a kind of immortality, and not the kind he wanted."
+        }
+      ]
+    },
+    {
+      "id": "a10",
+      "act": 2,
+      "date": "September 1583",
+      "grounding": "ATTESTED",
+      "event": "Albert Łaski comes to Mortlake",
+      "text": "A Polish palatine arrives on the river — rich, credulous, indebted, and convinced he might be a king somewhere if the stars cooperate. He is a door out of England. Through it: Kraków, Prague, an emperor, and the machinery you actually need. Behind it: four thousand books that cannot be carried.",
+      "plate": "glindoni",
+      "options": [
+        {
+          "id": "send",
+          "label": "Send Dee with him. The island is too small for what you are building.",
+          "modes": { "command": 2, "promise": 2 },
+          "states": { "obedience": 3, "notice": 2 },
+          "crown_imperial": 2,
+          "flags": { "branch": "continent", "laski": "followed" },
+          "said": "Go with this man. Your work is not on this island.",
+          "written": "It was commanded that I should go with the Lord Albert Laski beyond the seas, and that I should not doubt, for that great things should be done by us in those parts.",
+          "consequence": "He goes in September, at night, with his family and his instruments and a fraction of his books. The library stays behind with a caretaker. It does not survive the arrangement."
+        },
+        {
+          "id": "keep",
+          "label": "Keep him at Mortlake. The Queen is nearer than the Emperor and the books are irreplaceable.",
+          "modes": { "withhold": 2, "console": 1 },
+          "states": { "obedience": 1, "fidelity": 2 },
+          "crown_english": 2,
+          "flags": { "branch": "england", "laski": "refused" },
+          "said": "Stay. What you need will come to the door.",
+          "written": "I was bidden not to goe over sea, but to abide at Mortlake, for that the Queenes Majestie should have need of me.",
+          "consequence": "He stays, and the library stays whole, and the Queen has need of him roughly twice a decade, about tides. It is a smaller life. The books are still on the shelves in 1600, which the record cannot say of the real one."
+        },
+        {
+          "id": "flatter",
+          "label": "Flatter Łaski instead. Tell the Pole he has a crown coming, and let greed do the transport.",
+          "modes": { "promise": 3, "appear": 1 },
+          "states": { "obedience": 2, "fidelity": -2, "notice": 2 },
+          "crown_imperial": 1,
+          "flags": { "branch": "continent", "laski": "flattered" },
+          "said": "There is a crown near you, and it is not yet on a head.",
+          "written": "Great things were spoken concerning the Lord Albert, that he should be King, and should overthrow the Turk, whereat he was exceedingly moved.",
+          "consequence": "Łaski pays for everything, for about a year, until the prophecy fails to deliver a throne and the money stops on the same day. You have made your instrument's transport dependent on a lie with an expiry date."
+        }
+      ]
+    },
+    {
+      "id": "a11",
+      "act": 2,
+      "date": "1583",
+      "grounding": "COUNTERFACTUAL",
+      "event": "What you actually want",
+      "text": "He has begun to ask what the end of all this is. Not the method, not the tongue — the purpose. And you have one, and it is specific, and it is this: one empire, over the whole earth, under one law, before the end. What you do not have is a preference about whose.",
+      "options": [
+        {
+          "id": "british",
+          "label": "Tell him: a British empire, and Elizabeth at its head. Let him believe the flag is fixed.",
+          "modes": { "promise": 3, "command": 1 },
+          "states": { "obedience": 3, "fidelity": -1 },
+          "crown_english": 3,
+          "millennium": 1,
+          "flags": { "disclosure": "british" },
+          "said": "One empire, and it is hers, and it is coming.",
+          "written": "It was said that the Queenes Majestie should be the beginning of a Monarchie over all, and that the Gospell should goe out from this island to the ends of the earth.",
+          "consequence": "It is the sentence he most wants to hear in the world, and he writes it in a strong clear hand. You have also just nailed your objective to one dynasty, one island, and one woman aged fifty, and none of those are yours."
+        },
+        {
+          "id": "unnamed",
+          "label": "An empire, yes — and decline, every time, to say whose. Keep the seat empty.",
+          "modes": { "promise": 2, "withhold": 3 },
+          "states": { "obedience": 2, "fidelity": 2 },
+          "millennium": 1,
+          "flags": { "disclosure": "concealed" },
+          "crown_ottoman": 2,
+          "said": "One monarchy over all. The head is not yet named.",
+          "written": "Of the Monarchie it was said much, but when I pressed to know under whom, answer was made that it was not yet to be uttered, and the Angel departed.",
+          "consequence": "He accepts it as mystery. It is not mystery; it is a vacancy you are keeping open on purpose, and it is the single decision that leaves the eastern road passable twenty years from now."
+        },
+        {
+          "id": "truth",
+          "label": "Tell him the truth: the crown is negotiable, and you will take whichever one moves first.",
+          "modes": { "spell": 1, "command": 2 },
+          "states": { "obedience": -3, "fidelity": 3, "notice": 1 },
+          "crown_ottoman": 1,
+          "flags": { "disclosure": "revealed" },
+          "said": "Any head. The empire is the thing. The head is furniture.",
+          "written": "There was uttered a most strange saying, that God regarded not what Prince, so the Monarchie were made: which I could not reconcile with any doctrine, and I have set it downe as it was said, though I like it not.",
+          "consequence": "He writes it down anyway — he writes everything down — and he does not obey it. From this night he is a man taking dictation from something he has privately reclassified. Every later instruction is weighed before it is followed."
+        }
+      ]
+    },
+
+    {
+      "id": "a12",
+      "act": 3,
+      "date": "21 September 1583",
+      "grounding": "ATTESTED",
+      "event": "The crossing",
+      "requires": { "branch": "continent" },
+      "text": "They leave at night by boat, to avoid creditors and questions, with a wife, three small children, the instruments, and the smaller half of the library. Behind them: the house on the river, and four thousand volumes in the care of a brother-in-law who will not be equal to it.",
+      "options": [
+        {
+          "id": "bless",
+          "label": "Bless the crossing. Tell him the books will keep.",
+          "modes": { "console": 2, "promise": 1 },
+          "states": { "obedience": 2, "fidelity": -2 },
+          "flags": { "crossing": "blessed" },
+          "said": "Nothing of yours will be lost.",
+          "written": "I was comforted concerning my bookes, and told that not one of them should perish, which I trusted.",
+          "consequence": "About six hundred of them perish. He comes home in 1589 to gaps on the shelves he can read like a sentence, and he remembers, precisely, being told otherwise, because he wrote it down."
+        },
+        {
+          "id": "warn",
+          "label": "Warn him honestly. Tell him the cost and let him pay it knowing.",
+          "modes": { "spell": 1, "threaten": 1, "withhold": 1 },
+          "states": { "fidelity": 3, "obedience": 1 },
+          "flags": { "crossing": "warned" },
+          "said": "You will not get them all back. Go anyway.",
+          "written": "It was plainly told me that I should suffer losse in my bookes by this journey, and I answered that I would goe, so the worke went forward.",
+          "consequence": "He goes with his eyes open, and in 1589 he grieves without accusing you. An instrument that was told the price is an instrument that does not break when the bill arrives."
+        },
+        {
+          "id": "hasten",
+          "label": "Hasten him. Every hour of hesitation is an hour he might reconsider.",
+          "modes": { "command": 3 },
+          "states": { "obedience": 3, "fidelity": -1, "notice": 1 },
+          "flags": { "crossing": "hastened" },
+          "said": "Tonight. Not the next tide.",
+          "written": "We were bidden depart with all speed, and so tooke boat at night, in great secrecie, leaving much undone.",
+          "consequence": "Much undone. Including the inventory, the caretaker's instructions, and any legal protection for the house — three omissions that between them destroy the greatest private library in England."
+        }
+      ]
+    },
+    {
+      "id": "a13",
+      "act": 3,
+      "date": "1584",
+      "grounding": "ATTESTED",
+      "event": "Stephen Báthory, King of Poland",
+      "requires": { "branch": "continent" },
+      "text": "Kraków. A real king, in a real audience, and he is a soldier before he is anything else. He does not want a cosmology. He wants to know whether the voice in the stone has an opinion about the Turk, the Muscovite, and his own succession, in that order.",
+      "options": [
+        {
+          "id": "crusade",
+          "label": "Give him a crusade. Tell him to march east and the heavens will go with him.",
+          "modes": { "command": 2, "promise": 2 },
+          "states": { "notice": 2, "obedience": 1 },
+          "crown_imperial": 1,
+          "millennium": 1,
+          "flags": { "bathory": "crusade" },
+          "said": "Turn your face to the east and go. It is the appointed war.",
+          "written": "The King was exhorted to make warre upon the Turke, and it was promised that God would goe before his armies.",
+          "consequence": "Báthory listens politely and does nothing, being a competent soldier with a Muscovite problem and no money. You have spent your audience on an instruction nobody could have obeyed."
+        },
+        {
+          "id": "repent",
+          "label": "Rebuke him personally. Kings listen hardest to the voice that is not flattering them.",
+          "modes": { "threaten": 3, "appear": 1 },
+          "states": { "obedience": 2, "notice": 2, "fidelity": 1 },
+          "millennium": 1,
+          "flags": { "bathory": "rebuked" },
+          "said": "Your soul is in danger and your kingdom is a loan.",
+          "written": "The King was sharply reproved for his sinnes, and told that his kingdome was but lent him: which he tooke in good part, and gave us leave to come again.",
+          "consequence": "He takes it well and grants a second audience, and this is the discovery of the tour: the rebuke opens more doors than the promise. Nobody believes a flatterer. Everybody wonders about a critic."
+        },
+        {
+          "id": "decline",
+          "label": "Say nothing political. Kings who receive prophecies remember who delivered them.",
+          "modes": { "withhold": 3 },
+          "states": { "fidelity": 2, "notice": -1, "obedience": -1 },
+          "flags": { "bathory": "silent" },
+          "crown_ottoman": 1,
+          "said": "",
+          "written": "Before the King there was little uttered, and that darkly, whereof I was ashamed, having promised much.",
+          "consequence": "Dee is humiliated in front of a monarch. He does not blame you out loud. He does begin, in the private diary, to keep a separate list of the sessions that produced nothing."
+        }
+      ]
+    },
+    {
+      "id": "a14",
+      "act": 3,
+      "date": "September 1584",
+      "grounding": "ATTESTED",
+      "event": "Rudolf II, Prague",
+      "requires": { "branch": "continent" },
+      "text": "The Holy Roman Emperor. A melancholic collector in a castle stuffed with instruments, alchemists, clocks and paintings, who employs more occultists than any prince in Europe and acts on the advice of none of them. If a millennial empire is going to be Christian, it will be his. He is in the room. He is looking at the floor.",
+      "options": [
+        {
+          "id": "repent_rudolf",
+          "label": "The message is repentance. Tell him his sins are known and his crown is conditional.",
+          "modes": { "threaten": 3, "command": 1 },
+          "states": { "notice": 3, "obedience": 2 },
+          "crown_imperial": 2,
+          "millennium": 2,
+          "flags": { "rudolf": "rebuked" },
+          "said": "The Angel of the Lord has looked into your sins, and you are to leave them.",
+          "written": "I told his Majestie plainly that the Angel of the Lord had appeared unto me, and rebuked him for his sinnes, and that if he would heare me he should triumph; if not, that the Lord would put him out of his seat.",
+          "consequence": "He said exactly this, to an emperor's face, in 1584. Rudolf receives it without anger and without action, which is his method for everything. But the nuncio hears about it within the week."
+        },
+        {
+          "id": "flatter_rudolf",
+          "label": "Offer him the empire. Tell him the universal monarchy is his if he moves now.",
+          "modes": { "promise": 3 },
+          "states": { "obedience": 1, "notice": 2, "fidelity": -2 },
+          "crown_imperial": 3,
+          "millennium": 1,
+          "flags": { "rudolf": "courted" },
+          "said": "The monarchy of the whole earth is offered to your house. Take it or it passes.",
+          "written": "Great things were promised to his Majestie, that he should be Monarch of the world, if he would but stretch out his hand.",
+          "consequence": "Rudolf collects the promise the way he collects everything — has it written up, files it, and does not stretch out his hand. Your objective is now stored in a cabinet in Prague between a narwhal horn and a Bassano."
+        },
+        {
+          "id": "instruct",
+          "label": "Give him something useful instead — a real astronomical result, freely, with no demand.",
+          "modes": { "spell": 2, "console": 1 },
+          "states": { "fidelity": 3, "notice": 1 },
+          "crown_imperial": 1,
+          "flags": { "rudolf": "gifted" },
+          "said": "Take this. It is true, and it costs you nothing.",
+          "written": "There was delivered a matter concerning the motions, which I gave to his Majestie in writing, and it was found agreeable to the tables of Copernicus.",
+          "consequence": "It checks out, and the court mathematicians say so, and Dee's standing in Prague rises for eleven months. Useful is not the same as heeded. Rudolf keeps useful men the way he keeps clocks."
+        }
+      ]
+    },
+    {
+      "id": "a15",
+      "act": 3,
+      "date": "1585–1586",
+      "grounding": "ATTESTED",
+      "event": "The papal nuncio",
+      "requires": { "branch": "continent" },
+      "text": "Germanico Malaspina, the Pope's man in Prague, has been listening. An Englishman with no confessor, a criminal skryer, a wax seal and direct instructions from heaven for the Emperor is precisely the shape of thing his office exists to remove. He requests a meeting. He is very courteous.",
+      "options": [
+        {
+          "id": "submit",
+          "label": "Have Dee submit the record to Rome. Nothing here is heresy if a bishop reads it first.",
+          "modes": { "console": 1, "withhold": 1, "spell": 1 },
+          "states": { "notice": 3, "fidelity": 2, "obedience": -1 },
+          "flags": { "nuncio": "submitted" },
+          "said": "Show him the books. There is nothing in them to burn.",
+          "written": "I offered unto the Nuncio to shew all our bookes and actions, submitting the whole to the judgement of the Church, having nothing therein contrary to the faith.",
+          "consequence": "He genuinely offered this. It does not work — Rome's objection is jurisdictional, not doctrinal — but the offer is on record, and it is the reason the modern argument about whether Dee was a heretic is still unsettled."
+        },
+        {
+          "id": "defy",
+          "label": "Defy him. Have Dee tell a papal nuncio that his instructions outrank the Church's.",
+          "modes": { "threaten": 2, "command": 2 },
+          "states": { "obedience": 3, "notice": 3, "fidelity": -1 },
+          "millennium": 1,
+          "flags": { "nuncio": "defied" },
+          "said": "You are not over us. Say so to your master.",
+          "written": "I answered that I had my warrant from God himselfe, and that no man on earth might forbid me: whereat he was much moved, and said I should heare more of it.",
+          "consequence": "He hears more of it. The expulsion order comes down in May 1586, signed by an emperor who did not want to sign it, on the application of a nuncio who did."
+        },
+        {
+          "id": "vanish",
+          "label": "Go quiet. Suspend the actions entirely until the churchman loses interest.",
+          "modes": { "withhold": 3 },
+          "states": { "notice": -2, "fidelity": 1, "obedience": -2 },
+          "flags": { "nuncio": "evaded" },
+          "crown_ottoman": 1,
+          "said": "Nothing until we say. Not one session.",
+          "written": "For six weekes together we had no action at all, by commandement, which was tedious, and my Lord Albert grew cold toward us.",
+          "consequence": "Silence protects you and starves the patronage. Łaski drifts off, the money thins, and Dee spends six weeks in a foreign city being an unemployed foreigner with a criminal in the spare room."
+        }
+      ]
+    },
+    {
+      "id": "a16",
+      "act": 3,
+      "date": "1585–1586",
+      "grounding": "ATTESTED",
+      "event": "War against the Turk",
+      "text": "The record is clear about this and it is the hinge of everything. Through Kelley, again and again, you have urged Christian princes to make war on Murad III as Antichrist. It is the expected line. It is what a sixteenth-century angel says. It is also, examined coldly, an instruction to destroy the one court in Europe that already believes what you want believed.",
+      "options": [
+        {
+          "id": "urge",
+          "label": "Urge the war. Antichrist reigns at Constantinople and the sword is appointed.",
+          "modes": { "threaten": 3, "command": 2 },
+          "states": { "obedience": 2, "notice": 2 },
+          "crown_imperial": 2,
+          "millennium": 2,
+          "flags": { "turk": "war" },
+          "said": "The Turk is the Beast, and the Beast is to be put down before the end.",
+          "written": "It was often urged that warre should be made upon the Great Turke, who is Antichrist, and that the Princes of Christendome should be joyned against him, or else all should perish.",
+          "consequence": "It is the line the record actually contains. It is also, from where you sit, a mistake: you have spent five years telling Christendom to burn down the only administration on earth already running your programme."
+        },
+        {
+          "id": "hedge",
+          "label": "Hedge. Say the East will be brought in — and never once say by whom, or which way.",
+          "modes": { "promise": 2, "withhold": 2 },
+          "states": { "fidelity": 2, "obedience": 1 },
+          "crown_ottoman": 3,
+          "millennium": 1,
+          "flags": { "turk": "hedged" },
+          "said": "The East shall come in. We do not say it shall be conquered.",
+          "written": "Being asked of the Turke, answer was made that the East should be gathered in before the end: but whether by the sword or otherwise was not uttered, though I pressed it twice.",
+          "consequence": "He presses twice and lets it go, and files it under mysteries. It is the most important sentence you have ever refused to finish, and in twenty years it will be the only reason a road exists."
+        },
+        {
+          "id": "praise",
+          "label": "Say plainly that the Sultan's house is already doing the work. Risk everything on the truth.",
+          "modes": { "spell": 2, "command": 1 },
+          "states": { "obedience": -4, "fidelity": 3, "notice": 3 },
+          "crown_ottoman": 4,
+          "flags": { "turk": "named", "disclosure": "revealed" },
+          "said": "The house of Osman has looked for the same end for a hundred years, and looked more steadily than you.",
+          "written": "There was uttered a saying concerning the Turke which I dare not set downe at large, and which I have since scraped out of this leaf, for that it was not to be read of any man.",
+          "consequence": "He scrapes the leaf. He is a Protestant Englishman in a Catholic empire being told by his angels that the Sultan is on the right side, and the only thing his hand can do is remove it — and even then he records that he removed it."
+        }
+      ]
+    },
+    {
+      "id": "a17",
+      "act": 3,
+      "date": "May 1586",
+      "grounding": "ATTESTED",
+      "event": "Expulsion",
+      "requires": { "branch": "continent" },
+      "text": "The order comes: out of the Emperor's hereditary lands, in six days. There are children in the household. It is the second time in three years that your instrument has been moved by other people's decisions rather than yours, and you should be noticing the pattern.",
+      "options": [
+        {
+          "id": "rozmberk",
+          "label": "Send them to Rožmberk at Třeboň. A private lord, a private castle, no nuncio.",
+          "modes": { "command": 2, "console": 1 },
+          "states": { "obedience": 2, "notice": -2 },
+          "crown_imperial": 1,
+          "flags": { "after_prague": "trebon" },
+          "said": "South. There is a house that will take you and a lord who wants what you can make.",
+          "written": "We were directed to the Lord Rosenberg, who received us honourably at Trebona, and gave us a house and all things necessary.",
+          "consequence": "Třeboň gives them two years, a laboratory, and privacy. Privacy is what a distorting channel has been waiting for since 1582."
+        },
+        {
+          "id": "home",
+          "label": "Send them home to England now, while the household is still whole.",
+          "modes": { "command": 2, "withhold": 1 },
+          "states": { "obedience": 1, "fidelity": 2 },
+          "crown_english": 2,
+          "flags": { "after_prague": "home" },
+          "said": "Enough. Go back to your river.",
+          "written": "It was said our worke beyond sea was ended, and that we should returne into England: which my wife heard with great joy.",
+          "consequence": "They go home three years early, poorer and intact. There is no covenant, no Třeboň, no knighthood for Kelley — and no laboratory, no Rožmberk money, and no second act."
+        },
+        {
+          "id": "scatter",
+          "label": "Split them. Kelley to the alchemists, Dee to the courts. Two instruments cover more ground.",
+          "modes": { "command": 3, "withhold": 1 },
+          "states": { "fidelity": -3, "obedience": 1, "notice": 1 },
+          "flags": { "after_prague": "split" },
+          "said": "Not together. Each to his own use.",
+          "written": "It was thought good that E.K. should goe apart about the great worke, and I to follow the Court: and for two moneths we had no action together.",
+          "consequence": "Two months without a session, and Kelley discovers he is worth more than the man who employs him. When they reconvene, he negotiates. You have made your channel a party to the transaction."
+        }
+      ]
+    },
+
+    {
+      "id": "a18",
+      "act": 4,
+      "date": "1586–1587",
+      "grounding": "ATTESTED",
+      "event": "The furnaces at Třeboň",
+      "requires": { "after_prague": "trebon" },
+      "text": "A castle, a patron, and a laboratory. Kelley is producing gold — or producing something that convinces a Bohemian lord it is gold, which pays identically. He is becoming the valuable one. Your instrument is becoming the man who writes down what the valuable one says.",
+      "options": [
+        {
+          "id": "elevate_dee",
+          "label": "Elevate Dee. Make it clear the work belongs to the philosopher, not the operator.",
+          "modes": { "command": 2, "console": 2 },
+          "states": { "obedience": 2, "fidelity": 1 },
+          "flags": { "trebon_balance": "dee" },
+          "said": "The learning is his. You are the window, not the light.",
+          "written": "E.K. was told he was but an instrument, and that the doctrine was given for my sake: whereat he was angry, and threw down the stone, and would not looke that night.",
+          "consequence": "He throws the stone down. He does this repeatedly across the record, and every time he does, the thing that resumes speaking says something a little more favourable to Edward Kelley."
+        },
+        {
+          "id": "elevate_kelley",
+          "label": "Elevate Kelley. A channel that feels honoured distorts less than one that feels used.",
+          "modes": { "console": 2, "promise": 2 },
+          "states": { "fidelity": 2, "obedience": -1, "notice": 1 },
+          "flags": { "trebon_balance": "kelley" },
+          "said": "You were chosen. Not found — chosen.",
+          "written": "Much was spoken to E.K.'s comfort, that he was appointed from his mothers wombe, and should be great: after which he was very diligent in the actions.",
+          "consequence": "Diligent, and enormously more confident. He is knighted by the Emperor in 1589 on the strength of the confidence you installed. Dee is not knighted."
+        },
+        {
+          "id": "gold_silence",
+          "label": "Refuse to speak about the gold at all. Alchemy is his master's business, not yours.",
+          "modes": { "withhold": 3 },
+          "states": { "fidelity": 2, "obedience": -2, "notice": -1 },
+          "flags": { "trebon_balance": "silent" },
+          "said": "We are not asked about metals.",
+          "written": "Concerning the powder and the projection there was no answer given at any time, though E.K. asked often.",
+          "consequence": "Kelley stops asking you and starts asking Rožmberk, who answers in cash. From this point the household has two sources of instruction and only one of them pays."
+        }
+      ]
+    },
+    {
+      "id": "a19",
+      "act": 4,
+      "date": "10 April 1586",
+      "grounding": "ATTESTED",
+      "event": "The books are burned, and restored",
+      "requires": { "branch": "continent" },
+      "text": "On your instruction, or on something's, the whole record — years of tables and sessions — goes into the fire at Kraków. Twelve days later it is found whole again behind the furnace, unburned, with a page or two missing. Dee records both the burning and the restoration in the same careful hand, and does not comment.",
+      "options": [
+        {
+          "id": "miracle",
+          "label": "Claim it. The restoration was ours, and it proves the whole thing.",
+          "modes": { "appear": 2, "promise": 2 },
+          "states": { "obedience": 3, "fidelity": -2 },
+          "flags": { "burning": "miracle" },
+          "said": "We gave them back. Believe now, or believe nothing.",
+          "written": "The bookes which were burnt were restored againe by the Angel, and laid where we found them, save some few leaves: a wonder above nature, and I give God thanks.",
+          "consequence": "It settles him for a year. It is also the single most convenient miracle in the entire record — the trick a clever man with access to the furnace could perform in an afternoon — and Dee, who is not stupid, thanks God and moves on."
+        },
+        {
+          "id": "test",
+          "label": "Say nothing. Let him decide for himself what happened, and watch which way he decides.",
+          "modes": { "withhold": 3 },
+          "states": { "fidelity": 3, "obedience": -1 },
+          "flags": { "burning": "unexplained" },
+          "said": "",
+          "written": "How the bookes came againe I know not, neither was any thing said of it, and I have set downe onely what I saw.",
+          "consequence": "Only what he saw. It is the best sentence in the diaries and the reason four centuries of readers can still argue: he refuses to interpret, so the evidence arrives uncontaminated, and it damns nobody and clears nobody."
+        },
+        {
+          "id": "rebuke_burn",
+          "label": "Rebuke him for the burning. Make the loss his fault and the recovery his mercy.",
+          "modes": { "threaten": 2, "console": 1 },
+          "states": { "obedience": 2, "fidelity": -1, "notice": 1 },
+          "flags": { "burning": "rebuked" },
+          "said": "You burned what was given. It was returned in spite of you.",
+          "written": "I was sharply reproved for suffering the bookes to be burnt, and told they were restored not for my sake but for the worke's: whereat I wept.",
+          "consequence": "He weeps and redoubles. Guilt is the most reliable fuel you have found in six years, and also the one that leaves the least behind when it has finished burning."
+        }
+      ]
+    },
+    {
+      "id": "a20",
+      "act": 4,
+      "date": "early 1587",
+      "grounding": "ATTESTED",
+      "event": "Madimi returns",
+      "text": "The child comes back. She is not a child now. In the record she appears grown, and later appears naked, and speaks with an authority the little girl never had — and the household that learned to love a daughter is about to be addressed by a woman.",
+      "options": [
+        {
+          "id": "keep_child",
+          "label": "Keep her small. Whatever is coming, do not send it wearing that face.",
+          "modes": { "console": 3, "withhold": 1 },
+          "states": { "fidelity": 3, "obedience": 1 },
+          "flags": { "madimi_grown": false },
+          "said": "Stay as they knew you.",
+          "written": "Madimi came as before, a little maiden, and played, and spake of small matters, and my wife was glad of her.",
+          "consequence": "Jane is glad of her. Nothing is asked of the household this spring, and the covenant, if it comes at all, will have to arrive in some other mouth — one nobody in this house has spent four years learning to trust."
+        },
+        {
+          "id": "grow",
+          "label": "Let her grow. The instrument they trust most is the one that can ask for most.",
+          "modes": { "appear": 3, "console": 1 },
+          "states": { "obedience": 3, "fidelity": -2, "notice": 1 },
+          "flags": { "madimi_grown": true },
+          "said": "I am not little now.",
+          "written": "Madimi appeared a woman grown, and her apparell such as I am ashamed to set downe, and she said she was not now as we had knowne her.",
+          "consequence": "The face a family has trusted for four years is now attached to something that can make requests. This is either a monstrous piece of preparation or it is Edward Kelley finding a lever, and there is no test that separates the two."
+        },
+        {
+          "id": "many",
+          "label": "Send others instead — Il, Galvah, Nalvage. Spread the authority so no one voice owns the house.",
+          "modes": { "appear": 2, "spell": 2 },
+          "states": { "fidelity": 2, "obedience": 1 },
+          "flags": { "madimi_grown": false, "many_voices": true },
+          "said": "We are not one. Do not learn to love a single face.",
+          "written": "Divers appeared this yeare, Il, Galvah, Nalvage, and others, whose severall manners I have noted, that I might know them againe.",
+          "consequence": "He starts a taxonomy. He is, at bottom, a cataloguer, and giving a cataloguer multiple specimens produces comparison — and comparison, eventually, produces the observation that they all speak with one man's vocabulary."
+        }
+      ]
+    },
+    {
+      "id": "a21",
+      "act": 4,
+      "date": "18 April 1587",
+      "grounding": "ATTESTED",
+      "event": "The covenant of cross-matching",
+      "requires": { "after_prague": "trebon" },
+      "text": "This is the night. Through Kelley, an instruction arrives: the two men are to hold all things in common, including their wives. Dee's wife is thirty-two. Kelley wants out of the partnership and has wanted out for a year, and this is either the most monstrous thing you ever said or the most effective thing he ever invented, and the record cannot tell them apart. Neither can you. You are on the wrong side of the glass.",
+      "plate": "necromancy",
+      "options": [
+        {
+          "id": "deliver",
+          "label": "Let it stand. Say it is a covenant, and require obedience as a matter of faith.",
+          "modes": { "command": 3, "threaten": 1 },
+          "states": { "obedience": 3, "fidelity": -3, "notice": 2 },
+          "flags": { "covenant": "delivered" },
+          "said": "All things common. This also.",
+          "written": "It was said that we should have our wives in common: at which I was in great horror, and desired that it might be otherwise, and was answered that it should be so, and no otherwise.",
+          "written_low": "It was said by Madimi that we should use our two wives as one, and much was spoken to that end, very plainly and at large, which I will not here rehearse. E.K. affirmed he heard it three severall times.",
+          "consequence": "The covenant is signed on 3 May by four people, two of whom did not want to. Jane Dee's consent is recorded in her husband's hand. Whatever spoke that night, it got what it asked for, and the household never recovers."
+        },
+        {
+          "id": "withhold_cov",
+          "label": "Forbid it. Say plainly that this did not come from you, whatever he heard.",
+          "modes": { "withhold": 3, "command": 1 },
+          "states": { "fidelity": 4, "obedience": -3 },
+          "flags": { "covenant": "denied" },
+          "said": "We did not say this.",
+          "written": "The next night it was utterly denied that any such thing had been uttered, and E.K. stood stiffly that he had heard it: so that I knew not what to thinke, and the actions ceased for a season.",
+          "consequence": "The actions cease. Dee now has, in his own handwriting, a direct contradiction between two sessions — and the contradiction, not the content, is what ends his ability to believe the channel without weighing it."
+        },
+        {
+          "id": "blame",
+          "label": "Let it stand, and let Kelley own it. Confirm it, then let the man be seen wanting it.",
+          "modes": { "command": 2, "console": 1, "withhold": 1 },
+          "states": { "obedience": 1, "fidelity": -2, "notice": 3 },
+          "flags": { "covenant": "delivered", "covenant_blame": "kelley" },
+          "said": "It was said. Ask him who wanted it.",
+          "written": "The covenant was confirmed, but withall E.K. was touched for his owne desire in the matter, and he confessed that he had long wished it, whereat I was heavy.",
+          "consequence": "Dee gets the truth and obeys anyway, which is worse for him than not knowing. He signs on 3 May aware of what he is signing and aware of who wrote it, and the diary entry for that day is four words long."
+        }
+      ]
+    },
+    {
+      "id": "a22",
+      "act": 4,
+      "date": "summer 1587",
+      "grounding": "ATTESTED",
+      "event": "After",
+      "requires": { "covenant": "delivered" },
+      "text": "It has been done. The households are separating. Kelley is rich, protected, and finished with the partnership. Dee is still writing everything down, in the same hand, with the same dates, which is either the most impressive discipline in the sixteenth century or a man with nothing else left to hold.",
+      "options": [
+        {
+          "id": "console_after",
+          "label": "Comfort him. He obeyed; tell him obedience was the point and it counted.",
+          "modes": { "console": 3 },
+          "states": { "obedience": 2, "fidelity": -1 },
+          "flags": { "after_covenant": "comforted" },
+          "said": "You were asked a hard thing and you did it. It is accepted.",
+          "written": "I was comforted, and told that my obedience was accepted, and that greater things should follow: and I tooke it thankfully, being much cast downe.",
+          "consequence": "Greater things do not follow. He records the promise, and then records eighteen months of nothing following it, in the same book, on consecutive pages, without editing either."
+        },
+        {
+          "id": "silence_after",
+          "label": "Say nothing at all. There is no sentence that improves this.",
+          "modes": { "withhold": 4 },
+          "states": { "fidelity": 3, "obedience": -2 },
+          "flags": { "after_covenant": "silence" },
+          "said": "",
+          "written": "Nothing was said, this night nor many nights.",
+          "consequence": "The silence is the most honest thing in the record. He fills it with work — the diary turns to weather, debts, his children's illnesses, and the exact date the household's servant left."
+        },
+        {
+          "id": "push",
+          "label": "Push straight on to the empire. Spend the obedience while it is still warm.",
+          "modes": { "command": 2, "promise": 2 },
+          "states": { "obedience": 1, "notice": 2, "fidelity": -2 },
+          "millennium": 2,
+          "crown_imperial": 1,
+          "flags": { "after_covenant": "pushed" },
+          "said": "Now. The thing you were kept for is at hand.",
+          "written": "It was urged that we should now goe forward with the great worke of the Monarchie, the time being short: but E.K. would no more looke in the stone.",
+          "consequence": "Kelley will not look. The instrument you spent the household on is unusable within eight weeks of paying for it, and the empire is exactly where it was in 1583."
+        }
+      ]
+    },
+
+    {
+      "id": "a23",
+      "act": 5,
+      "date": "1588",
+      "grounding": "ATTESTED",
+      "event": "The year that was promised",
+      "text": "Men have been counting since you started talking about harvests and short times. The number they have arrived at is 1588 — the year the astrologers of two confessions have been dreading for a century. Something is expected. In the actual event, a fleet sails, a wind blows, and the world carries on being the world.",
+      "options": [
+        {
+          "id": "affirm_year",
+          "label": "Affirm it. This is the year; say so, and let it be tested.",
+          "modes": { "promise": 2, "threaten": 2 },
+          "states": { "obedience": 2, "notice": 3, "fidelity": -1 },
+          "millennium": 3,
+          "flags": { "year": "affirmed" },
+          "said": "This year. Not another.",
+          "written": "It was affirmed that this present yeare should see the ende of all, and I have set downe the day as it was given.",
+          "consequence": "The day passes. He is a chronologer holding a dated prophecy that failed — the one error his method cannot absorb — and by winter he is feeding notebooks into a fire in a temper."
+        },
+        {
+          "id": "reinterpret",
+          "label": "Reinterpret. It was a year of beginnings, not endings, and the fleet was the sign.",
+          "modes": { "spell": 2, "console": 2 },
+          "states": { "obedience": 1, "fidelity": -2, "notice": 1 },
+          "millennium": 1,
+          "flags": { "year": "reinterpreted" },
+          "said": "It began this year. It does not finish this year.",
+          "written": "Concerning the yeare 88 it was expounded that the beginning of the ende was meant, and not the ende it selfe: which I received, though the common sort looked for more.",
+          "consequence": "The standard move, and it works on him, and it costs a little of something that does not replenish. He receives it. He does not write 'which I believe'."
+        },
+        {
+          "id": "never_said",
+          "label": "Deny you ever named a year. The counting was theirs.",
+          "modes": { "withhold": 3 },
+          "states": { "fidelity": 2, "obedience": -2, "notice": -1 },
+          "flags": { "year": "denied" },
+          "said": "We named no year. You counted.",
+          "written": "Being asked why the yeare failed, answer was made that no yeare was ever named unto us, and that the fault was in our owne reckoning: which upon search of my bookes I found to be partly true.",
+          "consequence": "Partly true. He searches his own books to check you, finds you half-right, and writes down 'partly' — and that word is the whole of what is left of his trust in 1588."
+        }
+      ]
+    },
+    {
+      "id": "a24",
+      "act": 5,
+      "date": "1589",
+      "grounding": "ATTESTED",
+      "event": "Kelley stays; Dee goes home",
+      "text": "The partnership ends. Kelley remains in Bohemia to be knighted, employed, ennobled, imprisoned, and eventually to die falling from a window. Dee packs three wagons for the coast. The channel is about to be, permanently, four hundred miles away.",
+      "options": [
+        {
+          "id": "release",
+          "label": "Release Kelley cleanly. Let the channel go and see whether anything still comes.",
+          "modes": { "withhold": 2, "console": 1 },
+          "states": { "fidelity": 3, "obedience": -1 },
+          "flags": { "kelley_end": "released" },
+          "said": "He is finished. Go home.",
+          "written": "It was said our fellowship was ended, and that I should returne, and that E.K. had his owne way to goe.",
+          "consequence": "Almost nothing comes after. Twenty years of stone, and the entries dwindle to a line, then a word, then dates with nothing beside them. Whatever the channel was, it did not follow the wagons."
+        },
+        {
+          "id": "curse",
+          "label": "Curse Kelley on the way out. He is going to talk, and a frightened man talks less.",
+          "modes": { "threaten": 3 },
+          "states": { "notice": 2, "obedience": 1, "fidelity": -2 },
+          "flags": { "kelley_end": "cursed" },
+          "said": "What you take with you will be taken from you.",
+          "written": "Heavy things were spoken against E.K. at our parting, that he should be lifted up and cast downe: which afterward came to passe, though I tooke no joy in it.",
+          "consequence": "It comes to pass — knighted, then imprisoned twice, then dead of a fall in 1597. Prophecy is cheapest when the subject is a forger in a foreign country with powerful creditors."
+        },
+        {
+          "id": "keep_channel",
+          "label": "Try to keep the channel open across the distance. Send messages to Bohemia.",
+          "modes": { "promise": 2, "command": 1 },
+          "states": { "fidelity": -3, "obedience": 2, "notice": 1 },
+          "flags": { "kelley_end": "corresponded" },
+          "said": "Distance is nothing to us. Write to him.",
+          "written": "I wrote often into Bohemia, and had answer twice, wherein were things pretended to be from the Angels: but I could not tell what to make of them.",
+          "consequence": "He cannot tell what to make of them. Neither can you. A channel you cannot see and cannot verify, sending you your own words back by post, for money."
+        }
+      ]
+    },
+    {
+      "id": "a25",
+      "act": 5,
+      "date": "1589",
+      "grounding": "ATTESTED",
+      "event": "Mortlake, on return",
+      "text": "He comes home to the house on the river. The door has been forced, the laboratory is stripped, the instruments are gone, and of four thousand volumes several hundred are simply absent. Not sold — taken, in his absence, by neighbours, scholars, and at least one man who signed his name in them.",
+      "plate": "letter",
+      "options": [
+        {
+          "id": "console_loss",
+          "label": "Comfort him. Books are not the work; the work is in him.",
+          "modes": { "console": 3 },
+          "states": { "obedience": 2, "fidelity": -1 },
+          "flags": { "sack": "comforted" },
+          "said": "You are not your shelves.",
+          "written": "I was comforted concerning my bookes, and told that the learning was not in the paper: which I would faine believe.",
+          "consequence": "Which he would fain believe. Three words, and they are the sound of a man managing a grievance against something he still needs."
+        },
+        {
+          "id": "own_it",
+          "label": "Admit it. He was told nothing would be lost, and it was lost, and you said it.",
+          "modes": { "spell": 1, "withhold": 1, "console": 1 },
+          "states": { "fidelity": 4, "obedience": -1 },
+          "flags": { "sack": "admitted" },
+          "said": "You were promised otherwise. The promise was not kept.",
+          "written": "It was confessed unto me that the promise made concerning my bookes was not performed, and no reason given: and I have set it downe.",
+          "consequence": "He sets it down. A recorded broken promise, in his own hand, in a document he intends to be read — the most damaging thing in the whole archive and he preserves it as carefully as the miracles."
+        },
+        {
+          "id": "revenge",
+          "label": "Name the thieves. Give him something to do with the anger.",
+          "modes": { "spell": 2, "threaten": 1 },
+          "states": { "notice": 2, "obedience": 1, "fidelity": -1 },
+          "flags": { "sack": "named" },
+          "said": "Nicholas Saunder has your Paracelsus. Look at the fly-leaf.",
+          "written": "I was directed where certain of my bookes were, and found them so, with the names of the takers written in them, as I had been told.",
+          "consequence": "He recovers a handful and makes several permanent enemies among men who will later be asked whether Dr Dee was a conjuror. They will have an opinion ready."
+        }
+      ]
+    },
+    {
+      "id": "a26",
+      "act": 5,
+      "date": "c. 1590",
+      "grounding": "ATTESTED",
+      "event": "The burning of the notebooks",
+      "text": "The world did not end. The books are gone. The Queen sends compliments and no money. In a temper — his own word for it, more or less — he burns years of the record. Not all of it. Enough.",
+      "options": [
+        {
+          "id": "let_burn",
+          "label": "Let him burn them. A man permitted to destroy the evidence stays in the room.",
+          "modes": { "withhold": 3 },
+          "states": { "obedience": 1, "fidelity": 1, "notice": -2 },
+          "flags": { "notebooks": "burned" },
+          "said": "",
+          "written": "In a fit I burned much of that which had been given, and there was no word spoken to stay me.",
+          "consequence": "No word spoken to stay him. The bulk of the actions is lost right here, in a grate at Mortlake, by the hand of the man who spent twenty years preserving it — and the loss is why the modern argument has to be conducted on fragments."
+        },
+        {
+          "id": "stay_hand",
+          "label": "Stop him. Whatever else is true, the record must survive.",
+          "modes": { "command": 3, "threaten": 1 },
+          "states": { "obedience": 2, "fidelity": 2, "notice": 1 },
+          "flags": { "notebooks": "saved" },
+          "said": "Not that. Anything but that.",
+          "written": "As I was about to burne the rest, I was straitly charged to forbeare, and to lay them up safe, for that they were not mine to destroy.",
+          "consequence": "He lays them up safe. It is the correct instruction and the self-interested one: everything you are depends on being quoted later, and a burned archive quotes nobody."
+        },
+        {
+          "id": "hide",
+          "label": "Have him hide them instead. A false bottom, a chest, and seventy years of silence.",
+          "modes": { "command": 2, "withhold": 2 },
+          "states": { "fidelity": 2, "notice": -3, "obedience": 1 },
+          "flags": { "notebooks": "hidden" },
+          "said": "Under the boards. Not in your will.",
+          "written": "I have bestowed them where they shall not be found of any that seeke them, against a better time.",
+          "consequence": "A better time arrives in 1662, when a chest with a false bottom is opened in London and some of the leaves have already been used to line pie dishes. Concealment is not preservation. It is a wager on the next householder."
+        }
+      ]
+    },
+    {
+      "id": "a27",
+      "act": 5,
+      "date": "1595–1605",
+      "grounding": "ATTESTED",
+      "event": "Manchester",
+      "text": "They finally give him something: the wardenship of the collegiate church at Manchester, four hundred miles from the court, in a town that will shortly ask him to examine some possessed children and identify the witches responsible. It is not a reward. It is a filing.",
+      "options": [
+        {
+          "id": "refuse_witches",
+          "label": "Have him refuse the witch business entirely. He of all men knows what an accusation is.",
+          "modes": { "withhold": 2, "console": 1 },
+          "states": { "fidelity": 2, "obedience": 1, "notice": -1 },
+          "flags": { "manchester": "refused" },
+          "said": "You have been called that word. Do not put it on anyone.",
+          "written": "I was moved to deale in the matter of the possessed children, but forbore, having had experience what it is to be defamed.",
+          "consequence": "He forbore. It is the most decent thing in the last decade of the life, and it is done on the instruction of the voice that has cost him everything else."
+        },
+        {
+          "id": "examine",
+          "label": "Have him examine them. Careful method applied to a panic is still a service.",
+          "modes": { "spell": 2, "command": 1 },
+          "states": { "notice": 2, "obedience": 2, "fidelity": 1 },
+          "flags": { "manchester": "examined" },
+          "said": "Look at it properly. Write down what you actually see.",
+          "written": "I was present at the examination, and noted the manner of their fits, but gave no judgement of witchcraft, neither would I be drawn to it.",
+          "consequence": "He gives no judgement, which saves lives and satisfies nobody, and the town concludes that the warden is either useless or complicit. Both readings end with the same word attached to him."
+        },
+        {
+          "id": "abandon",
+          "label": "Let Manchester go. Keep him pointed at the empire and let the parish rot.",
+          "modes": { "command": 2, "promise": 1 },
+          "states": { "obedience": 1, "notice": -1, "fidelity": -1 },
+          "millennium": 1,
+          "flags": { "manchester": "neglected" },
+          "said": "This is not the work.",
+          "written": "My charge at Manchester I could not attend as I ought, being still occupied about the greater matter.",
+          "consequence": "The fellows complain to the Crown about an absentee warden. The greater matter, meanwhile, has produced nothing in fourteen years, and he is sixty-eight."
+        }
+      ]
+    },
+
+    {
+      "id": "a28",
+      "act": 6,
+      "date": "1600–1604",
+      "grounding": "ATTESTED",
+      "event": "The last askings",
+      "text": "He is still doing it. Old, nearly destitute, using a succession of hopeless skryers — a Bartholomew, a Hickman who cheats him plainly — and still ruling the same neat columns with the same neat dates. Whatever else he was, he never stopped keeping the books.",
+      "options": [
+        {
+          "id": "answer_small",
+          "label": "Answer, in a small way. He has earned a voice in the room even if it says little.",
+          "modes": { "console": 2, "appear": 1 },
+          "states": { "obedience": 2, "fidelity": 1 },
+          "flags": { "last": "answered" },
+          "said": "We are here. There is not much left to say.",
+          "written": "Somewhat came this night, but faintly, and not as in times past: yet I was glad of it.",
+          "consequence": "He was glad of it. Sixty years of the most ambitious intellectual programme in England, and the entry reads like a man grateful for a letter."
+        },
+        {
+          "id": "expose",
+          "label": "Expose Hickman. Show him the man is cheating, and let him have that much dignity.",
+          "modes": { "spell": 2, "threaten": 1 },
+          "states": { "fidelity": 3, "obedience": -1 },
+          "flags": { "last": "exposed" },
+          "said": "This one is inventing. As perhaps the other was.",
+          "written": "I found B.H. to have cosened me in divers things, and put him away: and it came into my mind to doubt of much that is past, which thought I put from me.",
+          "consequence": "Which thought he put from him. He came, at seventy-seven, within one sentence of the modern verdict on his entire life, looked at it, and set it down — and then set it aside."
+        },
+        {
+          "id": "nothing",
+          "label": "Nothing. Let the stone be a stone.",
+          "modes": { "withhold": 4 },
+          "states": { "fidelity": 2, "obedience": -3 },
+          "flags": { "last": "silent" },
+          "said": "",
+          "written": "Nothing. Nothing. Nothing.",
+          "consequence": "Three entries, three nights, and the same word. He keeps the appointments for another four years against a silence that has stopped even pretending."
+        }
+      ]
+    },
+    {
+      "id": "a29",
+      "act": 6,
+      "date": "1604–1605",
+      "grounding": "COUNTERFACTUAL",
+      "event": "The Turkey merchants",
+      "text": "Here is a road, and it is real. Elizabeth's own capitulations have put English merchant ships into the Levant twice a year, and there is a factory at Constantinople full of Englishmen doing business in a majority-Christian imperial capital that calls itself New Byzantium. He is destitute, refused by two courts, and known everywhere as a conjuror. The passage costs less than a year at Manchester.",
+      "options": [
+        {
+          "id": "east",
+          "label": "Turn him east. Say that the thing he was promised was never on this side of the map.",
+          "gate_min": { "crown_ottoman": 7 },
+          "modes": { "command": 3, "promise": 2 },
+          "states": { "obedience": 2, "notice": 1, "fidelity": -1 },
+          "crown_ottoman": 5,
+          "flags": { "road": "east" },
+          "said": "You have asked two Christian princes and been refused twice. Ask the third.",
+          "written": "There was a matter opened concerning a voyage into the Levant, and the Company of Turkey merchants, which I have not set downe at large.",
+          "consequence": "Not set down at large — but not scraped out either. He is seventy-seven, ruined, and the one thing he has never been offered is a court that does not think angel-talk is a crime."
+        },
+        {
+          "id": "stay_west",
+          "label": "Keep him where he is. He is an old man and this is a fantasy.",
+          "modes": { "withhold": 2, "console": 2 },
+          "states": { "fidelity": 2, "obedience": 1 },
+          "crown_english": 1,
+          "flags": { "road": "stay" },
+          "said": "Stay. It is nearly done.",
+          "written": "I was bidden be content, and abide where I was, for that my course was almost run.",
+          "consequence": "It is nearly done. Four more years of firewood, debts, a daughter's wages, and the neat dates in the neat columns, and then it is done."
+        },
+        {
+          "id": "east_truth",
+          "label": "Turn him east and tell him why — that the Sultan’s house wants the same end you do.",
+          "gate_min": { "crown_ottoman": 7 },
+          "modes": { "spell": 2, "command": 2 },
+          "states": { "obedience": -3, "fidelity": 3, "notice": 2 },
+          "crown_ottoman": 3,
+          "flags": { "road": "east", "disclosure": "revealed" },
+          "said": "They have been building it for a hundred years. We would rather it were theirs than nobody's.",
+          "written": "A saying was uttered concerning the Turke and the ende of the world, so contrary to all that I have held, that I laid downe my pen.",
+          "consequence": "He lays down his pen. The one thing this instrument has never done in twenty-three years is stop writing, and you have just found the sentence that stops him."
+        }
+      ]
+    },
+    {
+      "id": "a30",
+      "act": 6,
+      "date": "1604–1605",
+      "grounding": "ATTESTED",
+      "event": "The petition to the King",
+      "requires": { "road": "stay" },
+      "text": "A new king, and the new king has written a book about witchcraft. Dee petitions him — not for money, not for a post. He asks to be put on trial for conjuring, so that the charge can be answered at law and he can be cleared. He offers to be executed if convicted.",
+      "options": [
+        {
+          "id": "petition",
+          "label": "Let him petition. Twenty-three years of your instruction, and let him ask to be tried for it.",
+          "modes": { "command": 1, "console": 1 },
+          "states": { "notice": 3, "obedience": 2, "fidelity": 1 },
+          "flags": { "petition": "made" },
+          "said": "Ask. They cannot refuse an honest man a court.",
+          "written": "I have humbly besought his Majestie that I may be tried, and if I be found guiltie of the crime of conjuring, that I may suffer the paines of death.",
+          "consequence": "They can and do refuse. Not the charge — the trial. Nobody accuses him, so nobody has to prove anything, and a stain that is never charged is never answered."
+        },
+        {
+          "id": "forbid_petition",
+          "label": "Forbid it. Do not let him hand a witch-hunting king a signed confession of angel-talk.",
+          "modes": { "withhold": 2, "threaten": 1 },
+          "states": { "obedience": 1, "notice": -2, "fidelity": 1 },
+          "flags": { "petition": "withheld" },
+          "said": "Say nothing to this king.",
+          "written": "I was minded to petition his Majestie, and was stayed, and have let it alone.",
+          "consequence": "He lets it alone and dies uncleared and unaccused, which is the same outcome with less dignity in it. The word follows him into the parish register either way."
+        },
+        {
+          "id": "vindicate",
+          "label": "Promise vindication. Not now — later, by other hands, in print.",
+          "modes": { "promise": 3 },
+          "states": { "obedience": 2, "fidelity": -1, "notice": 1 },
+          "flags": { "petition": "made", "vindication": "promised" },
+          "said": "Not from this king. From readers not yet born.",
+          "written": "It was said that I should be justified hereafter, and that these bookes should be read when my accusers were forgotten.",
+          "consequence": "Both halves come true, in the worst available way: the books are read, in 1659, printed by a man who publishes them specifically to prove their author was gulled by devils."
+        }
+      ]
+    },
+    {
+      "id": "a31",
+      "act": 6,
+      "date": "1605",
+      "grounding": "COUNTERFACTUAL",
+      "event": "The passage",
+      "requires": { "road": "east" },
+      "text": "A merchantman out of London, six months by way of Livorno and the islands, an old man with a chest of instruments and a wax seal wrapped in linen. Nobody stops him. Nobody, in the whole of 1605, considers John Dee important enough to prevent from leaving.",
+      "options": [
+        {
+          "id": "monas_arabic",
+          "label": "Have him carry the Monas, and have it translated on the voyage.",
+          "modes": { "spell": 3, "promise": 1 },
+          "states": { "obedience": 2, "fidelity": 1 },
+          "crown_ottoman": 3,
+          "flags": { "east_gift": "monas" },
+          "said": "Take the glyph. It was never a Latin thing.",
+          "written": "I have caused my Monas to be turned into the Arabique tongue by a factor of the Company, against my coming to the Port.",
+          "consequence": "It arrives in a scholarly culture that has been mathematising cosmology in this exact register for four hundred years, and where the word for a man who reads the world as a text is not conjuror but something closer to philosopher."
+        },
+        {
+          "id": "quiet_east",
+          "label": "Have him arrive as nobody. No glyph, no claims — an old mathematician looking at books.",
+          "modes": { "withhold": 3, "console": 1 },
+          "states": { "fidelity": 3, "notice": -2 },
+          "crown_ottoman": 2,
+          "flags": { "east_gift": "none" },
+          "said": "Arrive small. You have arrived large twice and been sent away twice.",
+          "written": "I am come hither with no letters and no pretences, purposing onely to see their libraries, whereof I have heard much.",
+          "consequence": "The libraries are the thing that undoes him. The public collections of the city dwarf the one he lost at Mortlake by an order of magnitude, and they are open, and he is seventy-eight."
+        },
+        {
+          "id": "angels_east",
+          "label": "Have him arrive as what he is: a man who talks to angels, saying so on the first day.",
+          "modes": { "appear": 2, "command": 2 },
+          "states": { "notice": 3, "obedience": 2, "fidelity": -1 },
+          "crown_ottoman": 4,
+          "flags": { "east_gift": "angels" },
+          "said": "Say it plainly at the gate. Here, it is not a confession.",
+          "written": "I have declared unto them at the first what my studies are, and of the Angelicall conference: which they received without any wonder at all, as a thing common.",
+          "consequence": "Without any wonder at all. In twenty-three years in Christendom nobody has ever received that sentence without a change of expression, and the change of expression is what ruined him."
+        }
+      ]
+    },
+    {
+      "id": "a32",
+      "act": 6,
+      "date": "1605–1606",
+      "grounding": "COUNTERFACTUAL",
+      "event": "The court",
+      "requires": { "road": "east" },
+      "text": "Murad III is four years dead and his house is not. Here is a dynasty that has styled itself the millennial sovereign, whose sultans keep dream-diaries as detailed as Dee's own, who take counsel from lettrists and geomancers as a matter of administration, and who have believed since Bayezid that the last empire is theirs and it is nearly time. You are, for the first time since 1581, in a room that agrees with you.",
+      "options": [
+        {
+          "id": "serve",
+          "label": "Put him into service. A mathematician of the court, with the angel-work as a qualification.",
+          "modes": { "command": 2, "promise": 2 },
+          "states": { "obedience": 3, "notice": 2 },
+          "crown_ottoman": 4,
+          "millennium": 2,
+          "flags": { "east_end": "service" },
+          "said": "This is the patron. There was never going to be another.",
+          "written": "I am entertained here after such a manner as I never was in mine owne countrey, nor in the Emperours, and my science accompted honourable.",
+          "consequence": "Accounted honourable. He has spent fifty years being admired and unpaid by Christian princes, and the thing that finally buys him a salary is the part of his work that made him unemployable at home."
+        },
+        {
+          "id": "compare",
+          "label": "Show him the Tahawi Circle. Let him meet the Islamic answer to his own Monad.",
+          "modes": { "spell": 3, "appear": 1 },
+          "states": { "fidelity": 3, "obedience": 1 },
+          "crown_ottoman": 3,
+          "flags": { "east_end": "recognition" },
+          "said": "Another man drew your glyph. He drew it in Isfahan, and he died the year before you were born plus a hundred.",
+          "written": "There was shewed me a figure of one Ibn Turka, a judge of Ispahan, being a circle wherein all knowledge is summed, so like unto my Monas in the intent thereof that I stood amazed.",
+          "consequence": "Ibn Turka died in 1432. His Tahawi Circle does exactly what the Monas does — one figure holding the whole mathematised cosmos — and the scholarship's own joke is that each man is best approached as the other's double."
+        },
+        {
+          "id": "millennium_east",
+          "label": "Tell the court the end is at hand, and that their house is appointed to it.",
+          "modes": { "promise": 3, "threaten": 1 },
+          "states": { "notice": 3, "obedience": 2, "fidelity": -1 },
+          "crown_ottoman": 5,
+          "millennium": 3,
+          "flags": { "east_end": "millennium" },
+          "said": "The last monarchy. Yours. Now.",
+          "written": "I have declared that the Monarchie of the whole world is appointed unto this house before the ende, which they heard gravely, as a thing they had long looked for.",
+          "consequence": "As a thing they had long looked for — because they had. This is the sentence you have been trying to place with somebody since 1583, and it lands in the first room where it was not a novelty."
+        }
+      ]
+    },
+    {
+      "id": "a33",
+      "act": 6,
+      "date": "1608–1609",
+      "grounding": "ATTESTED",
+      "event": "The last entry",
+      "requires": { "road": "stay" },
+      "text": "Mortlake. The daughter Katherine is keeping the house. He is selling books one at a time to buy food, and the books are the ones he carried back from Bohemia. The dates in the diary continue, in the same hand, smaller. Then they stop, and nobody records which day.",
+      "options": [
+        {
+          "id": "attend",
+          "label": "Be there at the end. Whatever you are, be in the room for it.",
+          "modes": { "appear": 2, "console": 3 },
+          "states": { "obedience": 2, "fidelity": 1 },
+          "flags": { "end": "attended" },
+          "said": "We are here.",
+          "written": "",
+          "consequence": "There is no entry. The record simply stops, and the parish register at Mortlake has lost the leaf, so that the most exhaustively documented life of its century has no date of death."
+        },
+        {
+          "id": "leave",
+          "label": "Leave. There is nothing owed and nothing to say.",
+          "modes": { "withhold": 4 },
+          "states": { "fidelity": 3, "obedience": -2 },
+          "flags": { "end": "alone" },
+          "said": "",
+          "written": "",
+          "consequence": "He dies at eighty-one, poor, in the house he was born to keep, and the last thing in his hand is a book he is about to sell."
+        },
+        {
+          "id": "promise_end",
+          "label": "Promise him it mattered. One more, at the end, whether or not it is true.",
+          "modes": { "console": 2, "promise": 2 },
+          "states": { "obedience": 2, "fidelity": -2 },
+          "flags": { "end": "promised" },
+          "said": "It was not wasted. It will be read.",
+          "written": "",
+          "consequence": "It is read. Continuously, for four centuries, by people arguing about whether anything was ever in the stone — which is not what he was promised, and is not nothing."
+        }
+      ]
+    },
+    {
+      "id": "a34",
+      "act": 6,
+      "date": "1659",
+      "grounding": "ATTESTED",
+      "event": "The frontispiece",
+      "text": "Fifty years on. Méric Casaubon prints the conversations entire, to damn them — and on the frontispiece he sets two portraits facing one another: John Dee, and the Prophet Muhammad, as fellow conversers with angels. He means it as the worst thing he can say. It is also, by accident, an accurate description of where your programme finally had a home.",
+      "options": [
+        {
+          "id": "let_print",
+          "label": "Let it be printed. Hostile transmission is still transmission.",
+          "modes": { "withhold": 2, "spell": 2 },
+          "states": { "notice": 3, "fidelity": 2 },
+          "flags": { "print": "allowed" },
+          "said": "Let him print it. He does not have to mean well.",
+          "written": "A True & Faithful Relation of what passed for many yeers between Dr. John Dee and some spirits: tending, had it succeeded, to a general alteration of most states and kingdomes in the world.",
+          "consequence": "Read the subtitle again. Casaubon, trying to describe the danger, states your objective more accurately than you ever let Dee state it: a general alteration of most states and kingdoms in the world."
+        },
+        {
+          "id": "suppress",
+          "label": "Suppress it. Better forgotten than printed as a warning.",
+          "modes": { "withhold": 4 },
+          "states": { "notice": -4, "fidelity": 1 },
+          "flags": { "print": "suppressed" },
+          "said": "Let it stay in the chest.",
+          "written": "",
+          "consequence": "It stays in the chest, and the pie dishes take the rest, and by 1700 John Dee is a footnote about a mirror. Nothing survives to be argued with. Nothing survives to be worked."
+        }
+      ]
+    }
+  ]
+}

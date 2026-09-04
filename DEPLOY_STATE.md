@@ -38,3 +38,22 @@ cd C:/Dev/DeeVisualNovel && git add -A && git commit -m "Export from VisualNovel
 - The portal generator reads `C:\Dev\renaissance magic\db\renmagic.db` read-only at
   BUILD time; the deployed portal is fully static and has no runtime dependency on it.
 - `.nojekyll` is required (paths contain no underscores today, but keep it anyway).
+
+## AngelPOV (added 2026-09-04)
+
+`AngelPOV/` is the sister game, "Spoken Backward" — https://t3dy.github.io/DeeVisualNovel/AngelPOV/
+
+Like everything else in this repo it is **generated**: canonical source is
+`C:\Dev\VisualNovelsngelpov\`, and `build_deploy.py` copies it to `AngelPOV/`.
+Do not edit it here.
+
+It is self-contained (own engine, content, assets, tools) and shares nothing with the Dee
+game at runtime, so changing one cannot break the other. Its 2.8 MB of plates are a
+deliberate copy of the Dee plates rather than a `../assets/` reference, so the same
+relative paths work in the canonical tree and here.
+
+**Gotcha fixed the same day:** `clean_target()` in `build_deploy.py` deletes everything in
+this repo except its `KEEP` set, and `KEEP` was `{".git"}`. Since the script never
+generates `README.md` or `DEPLOY_STATE.md`, every export was quietly deleting both. `KEEP`
+is now `{".git", "README.md", "DEPLOY_STATE.md", ".nojekyll"}`. Anything else you
+hand-maintain in this repo must be added to `KEEP` too.

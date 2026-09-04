@@ -1,0 +1,166 @@
+{
+  "_meta": {
+    "generated": "2026-08-31",
+    "generator": "research/build_plates.py",
+    "source": "C:/Dev/OCCULTIMGDB (rights-cleared catalog); resized for web",
+    "rule": "Every plate here must have title, date, rights and provenance_url. Do not add images by hand-editing this file; extend PLATES in the generator and re-run it."
+  },
+  "plates": {
+    "ashmolean": {
+      "file": "assets/plates/ashmolean.jpg",
+      "caption": "John Dee, by an unknown artist, c. 1594. Ashmolean Museum, Oxford.",
+      "title": "Portrait of John Dee (Ashmolean Museum)",
+      "date": "c. 1594 (16th century)",
+      "rights": "Public domain. Via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/File:John_Dee_Ashmolean.jpg",
+      "occultimgdb_id": "enochian_dee__dee-ashmolean",
+      "px": [
+        1200,
+        1200
+      ]
+    },
+    "glindoni": {
+      "file": "assets/plates/glindoni.jpg",
+      "caption": "Dee performing before Elizabeth at Mortlake — as the nineteenth century imagined it. Henry Gillard Glindoni.",
+      "title": "John Dee Performing an Experiment before Queen Elizabeth I",
+      "date": "late 19th c.",
+      "rights": "Public domain. Via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/File:Henry_Gillard_Glindoni_-_John_Dee_performing_an_experiment_before_Queen_Elizabeth_I.jpg",
+      "occultimgdb_id": "magicians_at_work__dee-before-elizabeth",
+      "px": [
+        1200,
+        739
+      ]
+    },
+    "monas-title": {
+      "file": "assets/plates/monas-title.jpg",
+      "caption": "The Monas Hieroglyphica, as set in metal at Antwerp, 1564.",
+      "title": "The Monas Hieroglyphica (John Dee)",
+      "date": "1564",
+      "rights": "Public domain. Via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/Category:Monas_Hieroglyphica",
+      "occultimgdb_id": "enochian__dee-monas-glyph",
+      "px": [
+        500,
+        657
+      ]
+    },
+    "mirror": {
+      "file": "assets/plates/mirror.jpg",
+      "caption": "The obsidian mirror — Aztec work, in Dee's use by the 1580s. British Museum.",
+      "title": "John Dee's obsidian scrying mirror (case), British Museum",
+      "date": "Aztec, 15th–16th c.; in Dee's use c. 1580s",
+      "rights": "Public domain (CC0, photo: Vassil). British Museum, via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/File:John_Dee%27s_mirror_case_British_Museum_26_07_2013.jpg",
+      "occultimgdb_id": "magical_objects__dee-obsidian-mirror",
+      "px": [
+        1200,
+        1320
+      ]
+    },
+    "crystal": {
+      "file": "assets/plates/crystal.jpg",
+      "caption": "The shew-stone. British Museum.",
+      "title": "John Dee's crystal (shew-stone), British Museum",
+      "date": "16th c. (Elizabethan)",
+      "rights": "Public domain (CC0, photo: Vassil). British Museum, via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/File:John_Dee%27s_crystal_ball_British_Museum_26_07_2013.jpg",
+      "occultimgdb_id": "magical_objects__dee-crystal",
+      "px": [
+        1200,
+        1511
+      ]
+    },
+    "kelley": {
+      "file": "assets/plates/kelley.jpg",
+      "caption": "No true portrait of Edward Kelley survives. The eighteenth century drew him like this.",
+      "title": "Edward Kelley Raising the Dead (Sibly engraving)",
+      "date": "c. 1790s (18th century)",
+      "rights": "Public domain. Via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/File:Edward_Kelley_%E2%80%93_Totenbeschw%C3%B6rung.jpg",
+      "occultimgdb_id": "enochian_dee__kelley-portrait",
+      "px": [
+        1200,
+        1475
+      ]
+    },
+    "sigillum-wax": {
+      "file": "assets/plates/sigillum-wax.jpg",
+      "caption": "The Sigillum Dei Aemeth, drawn in Dee's own hand. Sloane MS 3188, British Library.",
+      "title": "Sigillum Dei Aemeth, Sloane MS 3188 (John Dee)",
+      "date": "1581–83 (manuscript)",
+      "rights": "Public domain. Via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/File:Sloane3188-john_dee.png",
+      "occultimgdb_id": "renaissance_magic__dee-sigillum-aemeth-wax",
+      "px": [
+        447,
+        507
+      ]
+    },
+    "enochian-letters": {
+      "file": "assets/plates/enochian-letters.jpg",
+      "caption": "The letters, as delivered and recorded, 1583.",
+      "title": "The Enochian Letters (John Dee's manuscript, 1583)",
+      "date": "1583 (manuscript)",
+      "rights": "Public domain. Via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/File:Enochian_letters_(1583_manuscript).png",
+      "occultimgdb_id": "golden_dawn__enochian-letters-1583",
+      "px": [
+        1200,
+        447
+      ]
+    },
+    "golden-disc": {
+      "file": "assets/plates/golden-disc.jpg",
+      "caption": "The gold disc of the Vision of the Four Castles, Kraków, 1584. British Museum.",
+      "title": "John Dee's gold disc (Sigillum Aemeth fitting), British Museum",
+      "date": "late 16th century",
+      "rights": "CC0. Photograph by Vassil, British Museum. Via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/File:John_Dee%27s_golden_disc_British_Museum_27_07_2013.jpg",
+      "occultimgdb_id": "enochian_dee__dee-golden-disc",
+      "px": [
+        1200,
+        834
+      ]
+    },
+    "letter": {
+      "file": "assets/plates/letter.jpg",
+      "caption": "A letter in Dee's own hand, 1588.",
+      "title": "Letter in the hand of John Dee, 1588",
+      "date": "1588",
+      "rights": "Public domain. Via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/File:John_Dee,_letter,_1588.jpg",
+      "occultimgdb_id": "enochian_dee__dee-letter",
+      "px": [
+        1200,
+        1725
+      ]
+    },
+    "necromancy": {
+      "file": "assets/plates/necromancy.jpg",
+      "caption": "Dee and Kelley raising the dead — the slander, as the nineteenth century engraved it.",
+      "title": "Edward Kelley Raising a Ghost (Dee and Kelley necromancy)",
+      "date": "1825 (engraving)",
+      "rights": "Public domain. Via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/File:Edward_Kelly_raising_a_ghost.jpg",
+      "occultimgdb_id": "magicians_at_work__dee-kelley-necromancy",
+      "px": [
+        775,
+        1101
+      ]
+    },
+    "holy-table": {
+      "file": "assets/plates/holy-table.jpg",
+      "caption": "The Holy Table, as printed by Casaubon in 1659 — to damn the record, and so to keep it.",
+      "title": "The Holy Table (*Mensa Sancta*), *A True & Faithful Relation*",
+      "date": "1659 (recording designs of 1582–83)",
+      "rights": "Public domain. Via Wikimedia Commons.",
+      "provenance_url": "https://commons.wikimedia.org/wiki/File:John_Dee_and_Some_Spirits_-_The_Holy_Table.png",
+      "occultimgdb_id": "enochian_dee__holy-table-tfr",
+      "px": [
+        1200,
+        1206
+      ]
+    }
+  }
+}
