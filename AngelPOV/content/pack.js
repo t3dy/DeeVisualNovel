@@ -1,4 +1,4 @@
-import { SIGILS } from './sigils.js?v=21';
+import { SIGILS } from './sigils.js?v=22';
 
 // pack.js — the angelic content pack for "Spoken Backward".
 // Sister to protagonists/dee/content/pack.js: same century, same room, inverted POV.
@@ -71,7 +71,21 @@ export const pack = {
   // min-max. Everything is normalised per choice made, so it reads the same at node 3
   // as at node 28. Bands sit around the means measured by tools/dist.mjs.
   stateReading(s) {
-    const n = Math.max(1, s.history.length);
+    // Before a word has been said there is nothing to report, and the banded reading
+    // would otherwise open the game by accusing Kelley of distorting speech that has
+    // not happened yet. Observed live on the first choice screen.
+    if (!s.history.length) {
+      return [
+        'Nothing has been said yet.',
+        'He has been asking for eleven years, politely, in Latin.',
+        'Nobody outside this room is listening.',
+        'The empire is not resting on anyone yet.',
+      ];
+    }
+    // Damped denominator for the opening handful of choices: with n of 1 or 2 a single
+    // negative option swings the reading to its extreme, which misreports a channel that
+    // has barely been used. Settles to the true rate by the fourth choice.
+    const n = Math.max(s.history.length, 4);
     const f = s.states.fidelity / n;
     const o = s.states.obedience / n;
     const w = s.states.notice / n;
@@ -79,11 +93,21 @@ export const pack = {
 
     const band = (v, hi, mid) => (v >= hi ? 2 : v >= mid ? 1 : 0);
 
-    const channel = [
-      'The channel is putting words in your mouth.',
-      'He writes down most of what you say.',
-      'Your words are reaching him whole.',
-    ][band(f, 1.0, 0.45)];
+    // The channel line is the one the player leans on most, so it should not claim more
+    // than the evidence supports. Two or three sessions in, a rate is not yet a rate:
+    // report the raw direction, or admit there is not enough to go on.
+    const channel =
+      s.history.length < 3
+        ? s.states.fidelity >= 2
+          ? 'So far he writes down what you say.'
+          : s.states.fidelity <= -2
+            ? 'Already he is adding things you did not say.'
+            : 'Too early to tell how well he hears you.'
+        : [
+            'The channel is putting words in your mouth.',
+            'He writes down most of what you say.',
+            'Your words are reaching him whole.',
+          ][band(f, 1.0, 0.45)];
 
     const instrument = [
       'He weighs everything you say before he moves.',
