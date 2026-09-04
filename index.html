@@ -7,9 +7,23 @@
 <meta name="description" content="A historically grounded visual novel about John Dee (1527-1608): mathematics, empire, angels, and a slander no argument could reach.">
 <link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="./engine/engine.css?v=3">
+<style>
+  /* Sibling link. Kept here rather than in the shared engine.css so that nothing about
+     the other games in the series can be affected by it. */
+  .sibling { max-width: 34rem; margin: 2.5rem auto 0; padding: 0 1.25rem; text-align: center;
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    font-size: .8rem; line-height: 1.6; color: #6b5847; }
+  .sibling a { color: #8c3a2b; }
+  .sibling em { font-style: italic; }
+</style>
 </head>
 <body data-palette="vellum">
 <main id="app"></main>
+<footer class="sibling">
+  The same twenty-seven years from the other side of the glass:
+  <a href="https://t3dy.github.io/DeeVisualNovel/AngelPOV/"><em>Spoken Backward</em></a>,
+  in which you are the angels and Dee is the instrument.
+</footer>
 <script type="module">
   import { boot } from './engine/main.js?v=3';
   import { pack } from './content/pack.js?v=3';

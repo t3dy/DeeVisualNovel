@@ -1,4 +1,4 @@
-import { SIGILS } from './sigils.js?v=18';
+import { SIGILS } from './sigils.js?v=21';
 
 // pack.js — the angelic content pack for "Spoken Backward".
 // Sister to protagonists/dee/content/pack.js: same century, same room, inverted POV.

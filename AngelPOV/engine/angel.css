@@ -98,7 +98,7 @@ body.no-chamber {
   box-shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
   animation: rise 480ms ease both;
 }
-@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes rise { from { transform: translateY(8px); } to { transform: none; } }
 
 h1 { font-size: 2rem; margin: .2rem 0 .6rem; letter-spacing: .01em; font-weight: 500; }
 h2 { font-size: 1.5rem; margin: .2rem 0 .9rem; font-weight: 500; }
@@ -121,7 +121,7 @@ h4 { font-size: .82rem; margin: 1.2rem 0 .35rem; letter-spacing: .14em; text-tra
 /* --- the act mark ---------------------------------------------------------- */
 .act-mark { margin: 0 0 1.4rem; display: flex; justify-content: center; }
 .act-mark svg { width: 7.5rem; height: auto; color: var(--gold); opacity: .8; animation: ink 1100ms ease both; }
-@keyframes ink { from { opacity: 0; transform: scale(.96) rotate(-2deg); } to { opacity: .8; transform: none; } }
+@keyframes ink { from { transform: scale(.96) rotate(-2deg); } to { transform: none; } }
 
 /* --- plates ---------------------------------------------------------------- */
 .plate { margin: 0 0 1.3rem; }
@@ -188,6 +188,10 @@ button.primary:hover { filter: brightness(1.12); }
 .modes b { font-weight: 500; font-size: .7rem; text-align: right; }
 .progress { margin: 0; font-size: .72rem; color: var(--ink-2); white-space: nowrap; text-align: right; }
 .progress .hint { display: block; opacity: .55; font-size: .66rem; letter-spacing: .06em; }
+/* There are no number keys on a phone. Ask the pointer, not the width. */
+@media (hover: none) and (pointer: coarse) {
+  .progress .hint { display: none; }
+}
 
 /* --- THE TRANSMISSION BEAT -------------------------------------------------
    The load-bearing screen. What you said, and what he wrote down, side by side,
@@ -216,10 +220,10 @@ button.primary:hover { filter: brightness(1.12); }
   color: var(--written); font-size: 1.02rem; line-height: 1.7; margin: 0; font-style: italic;
   border-left: 2px solid var(--written); padding-left: .95rem;
   transform: rotate(-.4deg); transform-origin: left center;
-  animation: fadein 500ms ease 320ms both;
+  animation: fadein 780ms ease both;
 }
 .written.empty { opacity: .4; font-style: normal; }
-@keyframes fadein { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; } }
+@keyframes fadein { from { transform: translateY(5px); } to { transform: none; } }
 
 .drift { margin: -1.2rem 0 2rem; font-size: .72rem; letter-spacing: .1em;
   text-transform: uppercase; color: var(--written); opacity: .75; }
@@ -258,6 +262,21 @@ button.primary:hover { filter: brightness(1.12); }
 
 @media (max-width: 40rem) {
   .channel { grid-template-columns: 1fr; gap: 1.4rem; }
+
+  /* No room for a centre column, so the scrim covers the whole width. */
+  body::after {
+    background:
+      linear-gradient(to bottom,
+        rgba(6, 7, 10, 0.70) 0%,
+        rgba(6, 7, 10, 0.58) 40%,
+        rgba(6, 7, 10, 0.80) 100%);
+  }
+  /* The floating pool of dark does not survive a narrow screen; give it a card. */
+  .transmission-card {
+    background: var(--card);
+    box-shadow: 0 0 40px 20px var(--card);
+    padding: 1.6rem 1.25rem 1.4rem;
+  }
 }
 @media (max-width: 34rem) {
   body { padding: 1.25rem .85rem 3rem; }
