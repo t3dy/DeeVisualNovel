@@ -150,6 +150,20 @@ older than the content it was built from.
   the ending palette at 4.33:1 against a 4.5 requirement; lifted to 4.90:1.
 - No entrance animation animates opacity, so no text depends on an animation running.
 
+## 3e. Replay legibility
+
+The ending screen reports outcomes reached (`N of endingCount`) and names only those the
+player has actually seen. Two rules held the design:
+
+1. **Never name an unseen ending.** A completion list that spells out eight titles trades
+   eight endings for one replay. The stored record is `id -> title`, written when an
+   ending is reached, so the screen can only ever display what has been earned.
+2. **Never let the count drift.** `pack.endingCount` is declared, and `lint` fails if the
+   eight ending probes do not reach exactly that many distinct outcomes.
+
+The record lives under `rm_vn_<pack>_found_v1`, deliberately separate from the run save,
+which `State.clear()` wipes on every restart.
+
 ## 4. Acts
 
 | # | Title | Years | Where |

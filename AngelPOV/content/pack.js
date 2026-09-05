@@ -1,4 +1,4 @@
-import { SIGILS } from './sigils.js?v=26';
+import { SIGILS } from './sigils.js?v=27';
 
 // pack.js — the angelic content pack for "Spoken Backward".
 // Sister to protagonists/dee/content/pack.js: same century, same room, inverted POV.
@@ -37,6 +37,10 @@ export const pack = {
   quantities: ['crown_english', 'crown_imperial', 'crown_ottoman', 'millennium'],
   palettes: ['stone', 'stone-warm', 'prague', 'ember', 'faded'],
   endPalette: 'faded',
+  // Declared, not derived: the ending screen counts what the player has reached against
+  // this. lint asserts the probes reach exactly this many distinct endings, so the number
+  // cannot drift away from computeEnding().
+  endingCount: 8,
 
   // The chamber state per act — read by engine/chamber.js. See DESIGN.md §6.
   chamberFor(act) {

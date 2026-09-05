@@ -273,6 +273,15 @@ button.primary:hover { filter: brightness(1.12); }
   display: grid; grid-template-columns: 9.5rem 1fr; gap: .75rem; align-items: baseline; }
 .shelf .date { color: var(--ink-2); font-size: .72rem; font-variant-numeric: tabular-nums; }
 
+/* Outcomes reached, across every run in this browser. A replay driver that spoils
+   nothing: only endings actually seen are ever named. */
+.found { border-top: 1px solid var(--rule); margin-top: 2rem; padding-top: .4rem; }
+.found ul { list-style: none; margin: 0 0 .7rem; padding: 0; }
+.found li { font-size: .85rem; color: var(--ink-2); padding: .18rem 0 .18rem .9rem;
+  border-left: 2px solid var(--rule); }
+.found li.now { color: var(--gold); border-left-color: var(--gold); }
+.found p { font-size: .8rem; color: var(--ink-2); margin: 0; }
+
 @media (max-width: 40rem) {
   .channel { grid-template-columns: 1fr; gap: 1.4rem; }
 

@@ -182,6 +182,23 @@ scenes, and all twelve plates are now in use:
   and says the question cannot be resolved, because a player who has just been through
   the covenant scene is owed the date rather than left to find it.
 
+## The fifth pass: replay, and the portal
+
+**The ending now says how many outcomes you have found.** "Outcomes you have reached —
+3 of 8", listing the ones this browser has actually seen and highlighting the current
+run, with a line saying how many remain. It never names an ending you have not reached:
+listing eight titles to sell a replay would spoil eight endings. The record is kept under
+its own storage key, separate from the run save, because the run save is cleared on every
+restart and this is the one thing that should survive it. `endingCount` is declared in the
+pack and `lint` asserts the probes reach exactly that many distinct endings, so the
+number on screen cannot drift from `computeEnding()`.
+
+**The Dee Portal now knows this game exists.** `build_portal.py` gained AngelPOV in its
+links table, in the nav on every page, in the overview lede — the portal is now the
+research companion to *both* games — and as an entry under "Going deeper" pointing at
+[The Evidence](notes.html). Anyone who arrives at the scholarship first can now find the
+angels' side of it.
+
 ## The chamber
 
 Behind the text, a three.js scrying chamber rendered **from inside the shew-stone,

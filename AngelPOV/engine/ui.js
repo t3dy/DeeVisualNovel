@@ -241,7 +241,33 @@ function feedbackUrl(pack, ending, state) {
   );
 }
 
-export function renderEnding(pack, ending, state, { onRestart, plate }) {
+// Which outcomes this browser has reached. Only ever names endings actually seen --
+// listing the unseen ones by title would spoil eight endings to sell a replay.
+function foundHtml(pack, found, current) {
+  if (!found || !pack.endingCount) return '';
+  const ids = Object.keys(found);
+  const seen = ids
+    .map((id) => {
+      const now = id === current.id ? ' class="now"' : '';
+      return `<li${now}>${esc(found[id])}</li>`;
+    })
+    .join('');
+  const left = pack.endingCount - ids.length;
+  return `
+    <div class="found">
+      <h4>Outcomes you have reached &mdash; ${ids.length} of ${pack.endingCount}</h4>
+      <ul>${seen}</ul>
+      ${
+        left > 0
+          ? `<p>${left} ${left === 1 ? 'other outcome is' : 'others are'} reachable. They are
+             not alternative endings to the same story &mdash; each is a different account of
+             what the twenty-seven years were for.</p>`
+          : '<p>You have reached all of them. The documented one was never the privileged one.</p>'
+      }
+    </div>`;
+}
+
+export function renderEnding(pack, ending, state, { onRestart, plate, found }) {
   setPalette(pack.endPalette);
   const groups = pack.journalGroups
     .map((g) => {
@@ -265,6 +291,7 @@ export function renderEnding(pack, ending, state, { onRestart, plate }) {
       ${evidenceHtml(ending)}
       <h3 class="catalogue-title">${esc(pack.journalTitle)}</h3>
       ${groups}
+      ${foundHtml(pack, found, ending)}
       <div class="actions">
         <button class="primary" id="again">Say it differently</button>
         <a class="button-link" href="${esc(feedbackUrl(pack, ending, state))}"

@@ -178,7 +178,8 @@ for (const k of ['design', 'dee', 'portal', 'feedback']) {
     for (const k of ['mark', 'title', 'text', 'epilogue', 'reception'])
       if (!e[k]) E(`ending ${e.id}: missing ${k}`);
   }
-  if (seen.size < 8) W(`only ${seen.size} distinct endings reached by the lint probes`);
+  if (seen.size !== pack.endingCount)
+    E(`pack.endingCount is ${pack.endingCount} but the probes reach ${seen.size} distinct endings`);
 }
 
 // --- report ---------------------------------------------------------------------------

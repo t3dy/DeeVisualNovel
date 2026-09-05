@@ -157,4 +157,34 @@ export class State {
       /* ignore */
     }
   }
+
+  // --- endings seen ---------------------------------------------------------
+  // Deliberately a SEPARATE key from the run save, because clear() runs on every
+  // restart and this is the one thing that should survive it. Stores id -> title, so
+  // the ending screen can only ever name outcomes the player has actually reached --
+  // no list of unseen titles to spoil, and no way for the display to drift from
+  // computeEnding().
+
+  static foundKey(packId) {
+    return `rm_vn_${packId}_found_v1`;
+  }
+
+  static found(packId) {
+    try {
+      return JSON.parse(localStorage.getItem(State.foundKey(packId)) || '{}');
+    } catch (e) {
+      return {};
+    }
+  }
+
+  static recordEnding(packId, ending) {
+    try {
+      const all = State.found(packId);
+      all[ending.id] = ending.title;
+      localStorage.setItem(State.foundKey(packId), JSON.stringify(all));
+      return all;
+    } catch (e) {
+      return { [ending.id]: ending.title };
+    }
+  }
 }
