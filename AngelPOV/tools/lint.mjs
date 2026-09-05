@@ -1,6 +1,6 @@
 // lint.mjs — content checks. Nothing unverified or malformed ships.
 // Usage: node tools/lint.mjs        (from angelpov/)
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, statSync } from 'node:fs';
 
 const base = new URL('../', import.meta.url);
 const { pack } = await import(new URL('content/pack.js', base));
@@ -128,10 +128,57 @@ else {
   }
 }
 if (!Array.isArray(pack.howItWorks) || !pack.howItWorks.length) W('pack has no howItWorks');
+if (!pack.links || !pack.links.notes) E('pack.links.notes missing');
+else if (!existsSync(new URL(pack.links.notes.replace(/^\.\//, ''), base)))
+  E('notes.html missing - run `node tools/build_notes.mjs`');
+else {
+  // A generated page that silently drifts from its source is worse than no page.
+  const notes = statSync(new URL('notes.html', base)).mtimeMs;
+  for (const src of ['content/choices.json', 'content/pack.js']) {
+    if (statSync(new URL(src, base)).mtimeMs > notes)
+      E(`notes.html is older than ${src} - run \`node tools/build_notes.mjs\``);
+  }
+}
 for (const k of ['design', 'dee', 'portal', 'feedback']) {
   const u = pack.links && pack.links[k];
   if (!u) E(`pack.links.${k} missing`);
   else if (!/^https?:\/\//.test(u)) E(`pack.links.${k} must be absolute (GitHub Pages serves .md as a download)`);
+}
+
+// --- endings carry the same apparatus as the scenes -------------------------------------
+// These are the strongest historical claims in the game -- the Golden Dawn, Casaubon,
+// Rudolf losing his seat, the Ottoman counterfactual -- so they must be sourced.
+{
+  const S = (f, q, st) => ({
+    flags: f,
+    quantities: Object.assign({ crown_english: 0, crown_imperial: 0, crown_ottoman: 0, millennium: 0 }, q),
+    states: Object.assign({ fidelity: 20, obedience: 25, notice: 12 }, st),
+    history: new Array(30),
+  });
+  const probes = {
+    sultans_angels: S({ road: 'east' }, { crown_ottoman: 14 }),
+    stone_goes_dark: S({}, {}, { obedience: 1 }),
+    the_covenant: S({ covenant: 'delivered' }, { crown_english: 5 }, { obedience: 30 }),
+    the_year_that_came: S({ year: 'affirmed' }, { millennium: 12, crown_english: 5 }),
+    true_and_faithful: S({ print: 'allowed' }, { crown_english: 5 }, { notice: 20, fidelity: 26 }),
+    habsburg_silence: S({}, { crown_imperial: 9 }),
+    tides_and_title: S({}, { crown_english: 9 }),
+    long_way_round: S({}, {}),
+  };
+  const seen = new Set();
+  for (const [want, st] of Object.entries(probes)) {
+    const e = pack.computeEnding(st);
+    seen.add(e.id);
+    if (e.id !== want) W(`ending probe for ${want} produced ${e.id} — probe may be stale`);
+    if (!e.evidence) E(`ending ${e.id}: no evidence note`);
+    else {
+      if (!e.evidence.source) E(`ending ${e.id}: evidence has no source`);
+      if (words(e.evidence.text) < 45) W(`ending ${e.id}: evidence is thin (${words(e.evidence.text)} words)`);
+    }
+    for (const k of ['mark', 'title', 'text', 'epilogue', 'reception'])
+      if (!e[k]) E(`ending ${e.id}: missing ${k}`);
+  }
+  if (seen.size < 8) W(`only ${seen.size} distinct endings reached by the lint probes`);
 }
 
 // --- report ---------------------------------------------------------------------------

@@ -129,6 +129,32 @@ and the orientation line, so they can never disagree about who the empire is res
 prefilled with the run's fingerprint — the outcome, the number of choices, the mode you
 leaned on — so a playtest note arrives already knowing which run it is about.
 
+## The third pass: apparatus, a companion page, and access
+
+**The eight endings now carry evidence too.** They make the strongest historical claims
+in the game and until now they carried none. Among them: that Casaubon printed the
+conversations in 1659 to discredit them and thereby guaranteed their survival, so almost
+everything we know about the actions comes through a book published to bury them; that
+the Golden Dawn reconstituted the system in 1888 out of Casaubon and the Ashmole papers,
+which is how most people meet Enochian magic today; and — for the ending where you spend
+the game on Rudolf — that Dee told the Emperor to his face he would be put out of his
+seat if he did not listen, and that in 1611 Rudolf was forced to cede his crowns to his
+brother and died the year after. The note gives both halves and declines to join them.
+
+**[The Evidence](notes.html)** gathers all 45 notes — 37 scenes and 8 endings — on one
+browsable page, with per-scene anchors, the grounding marks colour-coded, and a list under
+each scene of the answers that leave the record. It is generated from the content by
+`node tools/build_notes.mjs`, and `lint` fails if it is older than the files it was built
+from, so it cannot quietly drift.
+
+**Accessibility.** Focus moves into each new card as the screen changes, so keyboard and
+screen-reader users are not stranded on a button that no longer exists; every screen has
+a real heading (visually hidden where the design has no room for one); the reading and
+mode lists are labelled; and focus rings show for keyboard users but not mouse clicks.
+`node tools/contrast.mjs` audits every palette token against WCAG AA — it found the
+ending palette's secondary ink at 4.33:1 where 4.5 is required, which is now fixed. All
+five palettes pass.
+
 ## The chamber
 
 Behind the text, a three.js scrying chamber rendered **from inside the shew-stone,
@@ -179,6 +205,10 @@ node tools/dist.mjs 4000
 node tools/lint.mjs
 ```
 
+```bash
+node tools/build_notes.mjs && node tools/contrast.mjs
+```
+
 `lint` also holds the apparatus to account: every scene must carry an evidence note with
 a named source, no `said` may equal its `written`, option marks must be real grounding
 codes, and `stateReading()` must return usable lines at choice 0, at negative states, and
@@ -211,6 +241,7 @@ generated copy, assembled by `../tools/build_deploy.py` along with the rest of t
   `consequence`, and every scene carries an `evidence` note.
 - `engine/chamber.js` — the three.js chamber, with its emissive hierarchy documented at
   the top.
+- `notes.html` — **generated**. Edit the content and re-run `tools/build_notes.mjs`.
 
 ## Sources
 

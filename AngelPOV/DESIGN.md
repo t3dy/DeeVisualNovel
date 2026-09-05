@@ -126,6 +126,30 @@ The "no throne took it" door uses the **combined** western weight rather than th
 because the question is whether the empire found any Christian throne at all, and two
 half-hearted crowns still amount to a life spent on patronage.
 
+## 3c. The apparatus outside the game
+
+`notes.html` is generated from `content/choices.json` and `pack.js` by
+`tools/build_notes.mjs`. It carries the same 45 notes the game shows collapsed, plus
+per-scene anchors and the off-record answers for each scene, so the scholarship can be
+linked and cited without playing a run.
+
+The endings are reached by **probe** rather than transcribed, so the page cannot drift
+from `computeEnding()` — if a threshold changes and a probe stops reaching its ending,
+the page says so inline and `lint` warns. `lint` also fails outright if `notes.html` is
+older than the content it was built from.
+
+## 3d. Accessibility
+
+- `shell()` moves focus into each new card. Every screen replaces the card wholesale, so
+  without this a keyboard or screen-reader user is left on a removed element with no
+  announcement that anything happened.
+- Every screen carries a heading; where the design has no room for a visible one, an
+  `.sr-only` heading gives the document a navigable outline.
+- Focus rings use `:focus-visible`, so keyboard users get them and mouse users do not.
+- `tools/contrast.mjs` audits all five palettes against WCAG AA. It caught `--ink-2` on
+  the ending palette at 4.33:1 against a 4.5 requirement; lifted to 4.90:1.
+- No entrance animation animates opacity, so no text depends on an animation running.
+
 ## 4. Acts
 
 | # | Title | Years | Where |

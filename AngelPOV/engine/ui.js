@@ -17,6 +17,13 @@ export function setPalette(name) {
 function shell(html) {
   el('app').innerHTML = html;
   window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+  // Move focus into the new card so the screen change is announced and keyboard
+  // navigation resumes at the top of the new content rather than nowhere.
+  const card = document.querySelector('#app .card');
+  if (card) {
+    card.setAttribute('tabindex', '-1');
+    card.focus({ preventScroll: true });
+  }
 }
 
 // --- keyboard ---------------------------------------------------------------
@@ -67,7 +74,7 @@ const markText = (m) => MARKS[m] || m;
 // would need to read it properly. Collapsed by default — a 12-minute run stays a
 // 12-minute run, and everything is there for anyone who wants it.
 function evidenceHtml(node) {
-  if (!node.evidence) return '';
+  if (!node || !node.evidence) return '';
   return `
     <details class="evidence">
       <summary><span class="ev-label">the evidence</span><span class="ev-src">${esc(
@@ -96,7 +103,9 @@ export function renderTitle(pack, hasSave, { onStart, onResume }) {
         ${hasSave ? '<button class="primary" id="resume">Continue</button>' : ''}
         <button class="${hasSave ? '' : 'primary'}" id="start">Answer him</button>
       </div>
-      <p class="note">${esc(pack.groundingNote)}</p>
+      <p class="note">${esc(pack.groundingNote)}
+        Every scene&rsquo;s evidence is also browsable as one page:
+        <a href="${esc(pack.links.notes)}">The Evidence</a>.</p>
     </article>`);
   el('start').onclick = onStart;
   if (hasSave) el('resume').onclick = onResume;
@@ -138,6 +147,7 @@ export function renderChoice(node, act, state, options, { onPick, progress, plat
   const readingHtml = (reading || []).map((r) => `<li>${esc(r)}</li>`).join('');
   shell(`
     <article class="card choice-card">
+      <h2 class="sr-only">${esc(node.event || 'A choice')}</h2>
       <header class="scene-head">
         <p class="eyebrow">Act ${act.n} &middot; ${esc(node.date)}</p>
         <p class="mark" title="grounding: ${esc(node.grounding)}">${esc(markText(node.grounding))}</p>
@@ -146,9 +156,9 @@ export function renderChoice(node, act, state, options, { onPick, progress, plat
       <p class="scene">${esc(node.text)}</p>
       <div class="options">${opts}</div>
       <footer class="panel">
-        ${readingHtml ? `<ul class="reading">${readingHtml}</ul>` : ''}
+        ${readingHtml ? `<ul class="reading" aria-label="How things stand">${readingHtml}</ul>` : ''}
         <div class="panel-row">
-          <ul class="modes">${modes}</ul>
+          <ul class="modes" aria-label="Modes you have used">${modes}</ul>
           <p class="progress">choice ${progress.done} &middot; act ${act.n} of ${progress.acts}<span class="hint">number keys choose</span></p>
         </div>
       </footer>
@@ -184,6 +194,7 @@ export function renderTransmission(node, act, entry, drifted, option, onContinue
 
   shell(`
     <article class="card transmission-card">
+      <h2 class="sr-only">What was said, and what was written</h2>
       <div class="channel">
         <div>
           <h4>What you said</h4>
@@ -251,6 +262,7 @@ export function renderEnding(pack, ending, state, { onRestart, plate }) {
       <p class="ending-text epilogue">${esc(ending.epilogue)}</p>
       ${plateHtml(plate, 'coda-plate')}
       <p class="ending-text reception">${esc(ending.reception)}</p>
+      ${evidenceHtml(ending)}
       <h3 class="catalogue-title">${esc(pack.journalTitle)}</h3>
       ${groups}
       <div class="actions">
@@ -262,7 +274,8 @@ export function renderEnding(pack, ending, state, { onRestart, plate }) {
         one marked <em>so it might have been</em> is Melvin-Koushki&rsquo;s counterfactual, not
         the record&rsquo;s. The sources and the reasoning are in
         <a href="${esc(pack.links.design)}">the design record</a>; the same twenty-seven years
-        from John Dee&rsquo;s side are in <a href="${esc(pack.links.dee)}">Imperial Magus</a>,
+        from John Dee&rsquo;s side are in <a href="${esc(pack.links.dee)}">Imperial Magus</a>;
+        the apparatus for every scene is gathered at <a href="${esc(pack.links.notes)}">The Evidence</a>,
         and the research companion is <a href="${esc(pack.links.portal)}">the Dee Portal</a>.</p>
     </article>`);
   el('again').onclick = onRestart;
