@@ -486,7 +486,7 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
   // --- the two men --------------------------------------------------------------
   // Robed silhouettes: a revolved profile and a head. Deliberately unindividuated —
   // no attempt at portraiture, and none of the period images are being reproduced.
-  function figure({ x, z, height, kneeling, facing, writing = false }) {
+  function figure({ x, z, height, kneeling, facing, writing = false, reach = 0.6 }) {
     const g = new THREE.Group();
     const profile = [];
     const steps = 12;
@@ -507,7 +507,28 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
     );
     head.position.y = height + 0.055;
     head.scale.set(1, 1.15, 0.95);
-    g.add(robe, head);
+
+    const shoulderY = height * 0.9;
+    const shoulders = new THREE.Mesh(
+      track(new THREE.SphereGeometry(1, 14, 10)),
+      robe.material
+    );
+    shoulders.position.set(0, shoulderY, 0.01);
+    shoulders.scale.set(0.2, 0.075, 0.135);
+
+    // Both arms swing forward from the shoulders toward whatever the figure is attending
+    // to: the page for the one who writes, the stone for the one who looks.
+    const armGeo = track(new THREE.CylinderGeometry(0.037, 0.028, height * 0.44, 8));
+    const arms = [];
+    for (const side of [-1, 1]) {
+      const arm = new THREE.Mesh(armGeo, robe.material);
+      arm.position.set(side * 0.155, shoulderY - height * 0.2, 0.055);
+      arm.rotation.set(reach, 0, side * 0.2);
+      g.add(arm);
+      arms.push(arm);
+    }
+
+    g.add(robe, head, shoulders);
 
     // A silhouette alone reads as a lump. Give the man an occupation: a sloped desk and
     // an open page catching the candle. It is also the whole subject of the game -- the
@@ -536,13 +557,13 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
 
     g.position.set(x, 0, z);
     g.rotation.y = facing;
-    return { group: g, head, page, height };
+    return { group: g, head, page, arms, height };
   }
   // Dee kneels and writes; Kelley stands over the stone and looks. Positions and facings
   // put both of them behind the table and turned toward it, so the camera sees two people
   // attending to the same object rather than two posts in the dark.
-  const dee = figure({ x: -0.66, z: -0.26, height: 0.9, kneeling: true, facing: 1.25, writing: true });
-  const kelley = figure({ x: 0.30, z: -0.92, height: 1.18, kneeling: false, facing: -0.3 });
+  const dee = figure({ x: -0.54, z: -0.18, height: 0.9, kneeling: true, facing: 1.3, writing: true, reach: 0.95 });
+  const kelley = figure({ x: 0.30, z: -0.92, height: 1.18, kneeling: false, facing: -0.3, reach: 0.62 });
   scene.add(dee.group, kelley.group);
 
   // Separation light: without it both figures merge into the back wall. Sits behind and
@@ -728,9 +749,17 @@ export function createChamber(canvas, { seed = 1583, debug = false, noPost = fal
     // lifts as he copies; Kelley leans in over the stone and holds, then eases back.
     dee.head.rotation.x = 0.22 + Math.sin(t * 0.9) * 0.1 + Math.sin(t * 2.7) * 0.03;
     if (dee.page) dee.page.material.color.setScalar(EMISSIVE.page * (0.92 + 0.08 * Math.sin(t * 7.1)));
+    if (dee.arms) {
+      dee.arms[1].rotation.z = 0.2 + Math.sin(t * 1.5) * 0.06; // the writing hand
+      dee.arms[1].rotation.x = 0.95 + Math.sin(t * 1.5 + 0.6) * 0.05;
+    }
     const lean = 0.12 + 0.1 * Math.sin(t * 0.42) + v * 0.25;
     kelley.group.rotation.x = lean * 0.35;
     kelley.head.rotation.x = lean;
+    if (kelley.arms) {
+      kelley.arms[0].rotation.x = 0.62 + lean * 0.5;
+      kelley.arms[1].rotation.x = 0.62 + lean * 0.5;
+    }
 
     // letters: rise off the table, orbit, and face the camera
     const shown = Math.round(current.letters);

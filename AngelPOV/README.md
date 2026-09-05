@@ -67,7 +67,7 @@ The empire is not resting on anyone yet.
 Channel, instrument, world, and which throne currently carries the weight. Everything is
 normalised per choice made, so it reads the same at choice 3 as at choice 28.
 
-**An evidence note on every one of the 37 scenes**, collapsed by default, opening into
+**An evidence note on every one of the 41 scenes**, collapsed by default, opening into
 what the scene rests on and what you would need to know to read it properly: the
 manuscript or the scholar, where the record goes silent, where the game has compressed
 its chronology and admits it, and the context — courtly patronage, the economics of
@@ -94,8 +94,8 @@ screen says so outright rather than letting you infer it later:
   Elizabeth's, Rudolf's, Murad's, and how near you have promised the end.
 - **Grounding marks on every scene** — *the record holds this · the record is silent
   here · as the age went · so it was later told · so it might have been.*
-- **37 nodes authored, 26–35 played** depending on foreclosure. Six acts, 1581 to 1608
-  and elsewhere. A run is about 13 minutes.
+- **41 nodes authored, 28–39 played** depending on foreclosure. Six acts, 1581 to 1608
+  and elsewhere. A run is about 15 minutes.
 
 **Eight endings**, chosen by relative dominance against measured norms. The documented
 outcome is not privileged among them. The eastward road is rare and has to be built out
@@ -141,7 +141,7 @@ the game on Rudolf — that Dee told the Emperor to his face he would be put out
 seat if he did not listen, and that in 1611 Rudolf was forced to cede his crowns to his
 brother and died the year after. The note gives both halves and declines to join them.
 
-**[The Evidence](notes.html)** gathers all 45 notes — 37 scenes and 8 endings — on one
+**[The Evidence](notes.html)** gathers all 49 notes — 41 scenes and 8 endings — on one
 browsable page, with per-scene anchors, the grounding marks colour-coded, and a list under
 each scene of the answers that leave the record. It is generated from the content by
 `node tools/build_notes.mjs`, and `lint` fails if it is older than the files it was built
@@ -155,6 +155,33 @@ mode lists are labelled; and focus rings show for keyboard users but not mouse c
 ending palette's secondary ink at 4.33:1 where 4.5 is required, which is now fixed. All
 five palettes pass.
 
+## The fourth pass: the two thinnest acts
+
+Act 1 and act 4 were five scenes each. Act 4 in particular is the emotional centre of the
+game and was carrying Trřeboň, the covenant and Madimi grown in five beats. Four new
+scenes, and all twelve plates are now in use:
+
+- **Which glass you come into** (1581–82). Dee owned several speculae, and two survive in
+  the British Museum: a rock-crystal sphere and a polished obsidian mirror. The mirror is
+  Mexica work, made before the Spanish conquest and carried to Europe afterwards — so the
+  single most famous object in English occultism is a piece of Aztec ritual equipment
+  repurposed by the man who wrote the legal case for an English empire.
+- **By what name he is to call you** (1582). The angels of the diaries split into names
+  any educated Elizabethan already knew and names attested nowhere before — Nalvage,
+  Madimi, Galvah, Il. That split is the most useful evidence in the archive and it cuts
+  both ways.
+- **Jane Dee, before** (early 1587), graded *the record is silent here*, and the note
+  explains why that grading is the honest one: Jane left no writing. She appears
+  throughout her husband's diaries — her illnesses, her childbearing, her anxiety about
+  money, her consent to the covenant — always in his hand, never her own. What she knew
+  and when is exactly what the archive cannot tell us, so the game marks the gap instead
+  of quietly filling it.
+- **Theodorus Trebonianus** (28 February 1588). A son born at Trřeboň and named for the
+  place, about ten months after the covenant was signed. The scene text changes depending
+  on whether you delivered that instruction; the evidence note gives the dates plainly
+  and says the question cannot be resolved, because a player who has just been through
+  the covenant scene is owed the date rather than left to find it.
+
 ## The chamber
 
 Behind the text, a three.js scrying chamber rendered **from inside the shew-stone,
@@ -163,7 +190,10 @@ geometry, chalk circles, candlelight, letters rising off the table, and the two 
 
 Dee sits at the side of the table with a sloped desk and an open page catching the candle
 — the page being the only thing in the room that survives to be argued about — and his
-head dips and lifts as he copies. Kelley stands over the stone and leans in. They are
+head dips and lifts as he copies, his writing hand moving across the page. Kelley stands
+over the stone and leans in, both arms on the table. Each figure is a revolved robe,
+shoulders, two arms and a head: a robe and a head alone read as a cone with a ball on it,
+and the arms are what make the silhouette a person attending to something. They remain
 deliberately unindividuated: this is a grimoire diagram that moves, not portraiture, and
 no attempt is made to reproduce any period image of either man. The walls and fog take
 the act's colour too, so Mortlake, Prague and Třeboň are different rooms.
@@ -224,9 +254,9 @@ show), and that no node requires a flag nothing sets.
 Current distribution over 4,000 random runs — nothing unreachable, nothing dominant:
 
 ```
-tides_and_title 24.9% · habsburg_silence 19.7% · true_and_faithful 14.8%
-long_way_round 10.5% · the_covenant 10.1% · the_year_that_came 9.2%
-stone_goes_dark 7.2% · sultans_angels 3.6%
+tides_and_title 25.5% · habsburg_silence 18.6% · true_and_faithful 14.4%
+the_covenant 10.8% · long_way_round 9.8% · the_year_that_came 9.3%
+stone_goes_dark 7.8% · sultans_angels 3.6%
 ```
 
 ## Where things live
@@ -237,7 +267,7 @@ generated copy, assembled by `../tools/build_deploy.py` along with the rest of t
 
 - [DESIGN.md](DESIGN.md) — the premise and its source, the POV inversion table, the
   systems, the eight endings, the chamber's visual contract, and why the engine is forked.
-- `content/choices.json` — 37 nodes; every option carries `said`, `written` and
+- `content/choices.json` — 41 nodes; every option carries `said`, `written` and
   `consequence`, and every scene carries an `evidence` note.
 - `engine/chamber.js` — the three.js chamber, with its emissive hierarchy documented at
   the top.

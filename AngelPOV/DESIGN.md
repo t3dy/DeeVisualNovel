@@ -67,7 +67,7 @@ choice made so it reads identically early and late. No numerals ever reach the s
 The player can feel a trend and still cannot min-max it, which was the point of hiding
 the states in the first place.
 
-**`node.evidence`** — `{ source, text }` on all 37 scenes, rendered collapsed on the
+**`node.evidence`** — `{ source, text }` on all 41 scenes, rendered collapsed on the
 transmission screen. Its job is four-fold and every note does at least two of them:
 
 1. name the manuscript or the scholarship the scene rests on;
@@ -154,14 +154,14 @@ older than the content it was built from.
 
 | # | Title | Years | Where |
 |---|---|---|---|
-| 1 | The First Appearing | 1581-1582 | Mortlake |
+| 1 | The First Appearing | 1581-1582 | Mortlake (7 scenes) |
 | 2 | The Tables | 1582-1583 | Mortlake |
 | 3 | The Kings | 1583-1586 | Krakow, Prague |
-| 4 | The Covenant | 1586-1587 | Trebon |
+| 4 | The Covenant | 1586-1588 | Trebon (7 scenes; runs to the birth in February 1588) |
 | 5 | Eighty-Eight | 1588-1595 | the road home (8 scenes: the collapse gets the room it needs) |
 | 6 | Where We Put It | 1595-1608, and elsewhere | Mortlake — or the passage east |
 
-37 nodes authored; 26-35 played per run, depending on foreclosure.
+41 nodes authored; 28-39 played per run, depending on foreclosure.
 
 ## 5. Endings (eight)
 

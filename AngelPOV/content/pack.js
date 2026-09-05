@@ -1,4 +1,4 @@
-import { SIGILS } from './sigils.js?v=24';
+import { SIGILS } from './sigils.js?v=26';
 
 // pack.js — the angelic content pack for "Spoken Backward".
 // Sister to protagonists/dee/content/pack.js: same century, same room, inverted POV.
@@ -168,13 +168,13 @@ export const pack = {
   journalTitle: 'The Account of What Was Said',
   journalGroups: [
     { title: 'What we showed',
-      nodes: ['a01', 'a03', 'a19', 'a20', 'a23b', 'a31', 'a33'] },
+      nodes: ['a01', 'a01b', 'a03', 'a19', 'a20', 'a23b', 'a31', 'a33'] },
     { title: 'What we promised',
-      nodes: ['a04', 'a08', 'a11', 'a14', 'a22', 'a30', 'a32'] },
+      nodes: ['a04', 'a08', 'a11', 'a14', 'a22', 'a22b', 'a30', 'a32'] },
     { title: 'What we withheld',
-      nodes: ['a02', 'a07', 'a13', 'a16', 'a23', 'a26b', 'a28'] },
+      nodes: ['a02', 'a03b', 'a07', 'a13', 'a16', 'a23', 'a26b', 'a28'] },
     { title: 'What we required',
-      nodes: ['a05', 'a10', 'a12', 'a17', 'a21', 'a29'] },
+      nodes: ['a05', 'a10', 'a12', 'a17', 'a20b', 'a21', 'a29'] },
     { title: 'What he wrote down instead',
       nodes: ['a06', 'a09', 'a15', 'a18', 'a24', 'a25', 'a25b', 'a26', 'a27', 'a34'] },
   ],
@@ -183,14 +183,14 @@ export const pack = {
   // tools/dist.mjs forced on the Dee pack (fixed thresholds either never fire or always
   // do); inherited deliberately. Re-run `node tools/dist.mjs angels` after any content
   // change and update these.
-  norms: { fidelity: 24, obedience: 29, notice: 14 },
+  norms: { fidelity: 25, obedience: 32, notice: 14 },
 
   // The three thrones do not accumulate at the same rate -- there are simply more
   // opportunities to load England than Prague -- so comparing their raw totals hands
   // England the verdict by default. Compare each against its own measured mean instead,
   // which is the same principle the states use and self-corrects when content changes.
   // Re-run `node tools/dist.mjs 6000` after any content change and paste these back.
-  crownNorms: { crown_english: 5.0, crown_imperial: 3.6, crown_ottoman: 4.2 },
+  crownNorms: { crown_english: 4.7, crown_imperial: 3.5, crown_ottoman: 4.2 },
 
   // Which throne is actually carrying the weight, as a ratio against its own norm.
   // Shared by computeEnding() and stateReading() so the player's orientation line and
